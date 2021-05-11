@@ -52,7 +52,7 @@ public class ClienteDAO {
         Conexion con = new Conexion();
         Connection conexion = con.getConnection();
         try {
-            ps = conexion.prepareStatement("INSERT INTO CLIENTE (RUT, NOMBRES, APELLIDOS, TELEFONO, CORREO, CONTRASEÑA) VALUES (?,?,?,?,?,?)");
+            ps = conexion.prepareStatement("INSERT INTO CLIENTE (RUT, NOMBRES, APELLIDOS, TELEFONO, CORREO, CONTRASEÑA, ID_DIRECCION) VALUES (?,?,?,?,?,?, NULL)");
             ps.setString(1, cliente.getRut());
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getApellido());
@@ -62,7 +62,14 @@ public class ClienteDAO {
 
             int resultado = ps.executeUpdate();
             
-            return resultado > 0;
+            if (resultado > 0) {
+                conexion.close();
+                return true;
+
+            } else {
+                conexion.close();
+                return false;
+            }
 
         } catch (Exception ex) {
             System.err.println("Error, " + ex);
