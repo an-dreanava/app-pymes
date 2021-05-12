@@ -51,6 +51,8 @@ public class ClienteDAO {
        public boolean agregar(Cliente cliente) {
         Conexion con = new Conexion();
         Connection conexion = con.getConnection();
+        boolean estado = false;
+        
         try {
             ps = conexion.prepareStatement("INSERT INTO CLIENTE (RUT, NOMBRES, APELLIDOS, TELEFONO, CORREO, CONTRASEÑA, ID_DIRECCION) VALUES (?,?,?,?,?,?, NULL)");
             ps.setString(1, cliente.getRut());
@@ -64,16 +66,17 @@ public class ClienteDAO {
             
             if (resultado > 0) {
                 conexion.close();
-                return true;
+                estado = true;
 
             } else {
                 conexion.close();
-                return false;
+                estado = false;
             }
 
         } catch (Exception ex) {
             System.err.println("Error, " + ex);
-            return false;
+            estado = false;
         }
+        return estado;
     }
 }

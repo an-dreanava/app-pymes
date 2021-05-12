@@ -47,9 +47,14 @@ public class ControladorCliente extends HttpServlet {
                 Direccion direccion = new Direccion("Siria", "Macul", "Santiago", "Metropolitana");
                 Cliente cliente = new Cliente(rut, nombre, apellido, correo, clave, telefono, direccion );
                 
-                
+                ClienteDAO clienteDAO = new ClienteDAO();
+                if (clienteDAO.agregar(cliente) == true) {
+                    System.out.println("Agregado");
+                } else {
+                    System.out.println("no agregado");
+                }
 
-            }
+        }
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");

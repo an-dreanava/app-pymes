@@ -13,7 +13,7 @@ import java.sql.DriverManager;
  * @author AngieRiera
  */
 public class Conexion {
-        public static final String URL = "jdbc:mysql://localhost:3306/AppPymes";
+        public static final String URL = "jdbc:mysql://localhost:3306/apppymes";
     public static final String usuario = "root";
     public static final String contraseña = "";
 
