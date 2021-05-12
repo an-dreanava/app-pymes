@@ -27,6 +27,15 @@ body{
     
 }
 
+#card{
+    height: 100px;    
+}
+
+#padre-card{
+    display: flex;
+   align-items: center
+}
+
 footer{
   position: absolute;
   bottom: 0;
