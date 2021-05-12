@@ -25,7 +25,7 @@ public class ClienteDAO {
         Connection conexion = con.getConnection();
         try {
             ps = conexion.prepareStatement("SELECT C.RUT, C.NOMBRES, C.APELLIDOS, C.TELEFONO,  "
-                    + "C.CORREO, C.CONTRASEÑA, C.ID_DIRECCION, D. FROM CLIENTE C INNER JOIN DIRECCION D ON C.ID_DIRECCION=D.ID WHERE C.RUT=?");
+                    + "C.CORREO, C.CONTRASENA, C.ID_DIRECCION, D. FROM CLIENTE C INNER JOIN DIRECCION D ON C.ID_DIRECCION=D.ID WHERE C.RUT=?");
             ps.setString(1, cliente.getRut());
             rs = ps.executeQuery();
 
@@ -54,7 +54,7 @@ public class ClienteDAO {
         boolean estado = false;
         
         try {
-            ps = conexion.prepareStatement("INSERT INTO CLIENTE (RUT, NOMBRES, APELLIDOS, TELEFONO, CORREO, CONTRASEÑA, ID_DIRECCION) VALUES (?,?,?,?,?,?, NULL)");
+            ps = conexion.prepareStatement("INSERT INTO CLIENTE (RUT, NOMBRES, APELLIDOS, TELEFONO, CORREO, CONTRASENA, ID_DIRECCION) VALUES (?,?,?,?,?,?, NULL)");
             ps.setString(1, cliente.getRut());
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getApellido());

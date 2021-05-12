@@ -36,7 +36,7 @@ public class ControladorCliente extends HttpServlet {
         
         String rut = request.getParameter("rut");
         String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido1" + " " + "apellido2");
+        String apellido = request.getParameter("apellido");
         String telefono = request.getParameter("telefono");
         String correo = request.getParameter("correo");
         String clave = request.getParameter("clave");

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-05-2021 a las 23:14:35
+-- Tiempo de generación: 12-05-2021 a las 13:46:39
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `AppPymes`
+-- Base de datos: `apppymes`
 --
 
 -- --------------------------------------------------------
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `ciudad` (
 CREATE TABLE IF NOT EXISTS `cliente` (
   `rut` varchar(20) NOT NULL,
   `nombres` varchar(20) NOT NULL,
-  `apelidos` varchar(20) NOT NULL,
+  `apellidos` varchar(20) NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `correo` varchar(30) NOT NULL,
   `contrasena` varchar(20) NOT NULL,
