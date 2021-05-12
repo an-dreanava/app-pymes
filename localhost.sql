@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-05-2021 a las 13:46:39
+-- Tiempo de generación: 12-05-2021 a las 14:05:49
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `apppymes`
 --
+CREATE DATABASE `apppymes` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `apppymes`;
 
 -- --------------------------------------------------------
 
