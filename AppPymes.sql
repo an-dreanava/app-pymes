@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-05-2021 a las 22:20:57
+-- Tiempo de generación: 11-05-2021 a las 23:14:35
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `telefono` varchar(20) NOT NULL,
   `correo` varchar(30) NOT NULL,
   `contrasena` varchar(20) NOT NULL,
-  `id_direccion` int(11) NOT NULL,
+  `id_direccion` int(11) DEFAULT NULL,
   PRIMARY KEY (`rut`),
   KEY `cliente_fk_direccion` (`id_direccion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
