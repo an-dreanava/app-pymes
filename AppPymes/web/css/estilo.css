@@ -8,6 +8,16 @@ and open the template in the editor.
     Author     : AngieRiera
 */
 
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
 
 #boton-banner{
     margin-top: 20px;
