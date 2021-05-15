@@ -87,7 +87,7 @@
         <main>
             <div class="container" style="padding: 20px" >
                 <div class="row" >
-                    <form action="ControladorUsuario" method="POST">
+                    <form action="ControladorCliente" method="POST">
 
                         <div class="col s2">
                             <p>Rut:</p>                            
@@ -188,12 +188,12 @@
                             <p>Contraseña:</p>                            
                         </div>
                         <div class="col s4">
-                            <input name="contraseña" id="contraseña" type="password" class="validate"  required> 
+                            <input name="clave" id="clave" type="password" class="validate"  required> 
                             <p></p>
                         </div>
 
                         <div class="center">
-                            <button class="btn waves-effect red lighten-1" type="submit" name="action">Registrarse</button>
+                            <input class="btn waves-effect red lighten-1" type="submit" id="opcion" name="opcion" value="Registrar">
                         </div>                     
                     </form>
                 </div>

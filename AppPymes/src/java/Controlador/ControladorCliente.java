@@ -7,7 +7,6 @@ package Controlador;
 
 import Dao.ClienteDAO;
 import Modelo.Cliente;
-import Modelo.Direccion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,17 +34,19 @@ public class ControladorCliente extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String rut = request.getParameter("rut");
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
+        String nombres = request.getParameter("nombres");
+        String apellido = request.getParameter("apellidos");
+        int  comuna = Integer.parseInt(request.getParameter("comuna"));
+        String direccion = request.getParameter("direccion");
         String telefono = request.getParameter("telefono");
         String correo = request.getParameter("correo");
         String clave = request.getParameter("clave");
+             
         
         String opcion = request.getParameter("opcion");
         
         if (opcion.equals("Registrar")) {
-                Direccion direccion = new Direccion("Siria", "Macul", "Santiago", "Metropolitana");
-                Cliente cliente = new Cliente(rut, nombre, apellido, correo, clave, telefono, direccion );
+                Cliente cliente = new Cliente(rut, nombres, apellido, correo, clave, telefono, direccion, comuna );
                 
                 ClienteDAO clienteDAO = new ClienteDAO();
                 if (clienteDAO.agregar(cliente) == true) {
@@ -53,8 +54,8 @@ public class ControladorCliente extends HttpServlet {
                 } else {
                     System.out.println("no agregado");
                 }
-
         }
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");

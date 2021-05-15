@@ -16,9 +16,10 @@ public class Cliente {
     private String correo;
     private String contraseña;
     private String telefono;
-    private Direccion direccion;
+    private String direccion;
+    private int Comuna;
 
-    public Cliente(String rut, String nombre, String apellido, String correo, String contraseña, String telefono, Direccion direccion) {
+    public Cliente(String rut, String nombre, String apellido, String correo, String contraseña, String telefono, String direccion, int Comuna) {
         this.rut = rut;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -26,6 +27,7 @@ public class Cliente {
         this.contraseña = contraseña;
         this.telefono = telefono;
         this.direccion = direccion;
+        this.Comuna = Comuna;
     }
 
     public String getRut() {
@@ -76,20 +78,28 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public Direccion getDireccion() {
+    public String getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(Direccion direccion) {
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-   
+    public int getComuna() {
+        return Comuna;
+    }
+
+    public void setComuna(int Comuna) {
+        this.Comuna = Comuna;
+    }
 
     @Override
     public String toString() {
-        return "Cliente{" + "rut=" + rut + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", direccion=" + direccion + '}';
+        return "Cliente{" + "rut=" + rut + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", direccion=" + direccion + ", Comuna=" + Comuna + '}';
     }
     
     
+    
 }
+
