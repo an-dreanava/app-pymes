@@ -1,9 +1,14 @@
+<%-- 
+    Document   : RegistroCliente
+    Created on : may 15, 2021, 12:57:18 p.m.
+    Author     : AngieRiera
+--%>
+
+<%@page import="Modelo.Conexion"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -23,7 +28,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
     </head>
-    <body >
+    <body>
 
         <header>
             <div class="navbar-fixed">
@@ -106,13 +111,22 @@ and open the template in the editor.
                         </div>
                         <div class="col s4">
                             <select name="region" id="region" required>
-                                <option value="" disabled selected>Seleccione Región</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <option value="" disabled selected>Seleccione Region</option>
+                                <%
+                                    PreparedStatement ps = null;
+                                    ResultSet rs = null;
+                                    Conexion con = new Conexion();
+                                    com.mysql.jdbc.Connection conexion = con.getConnection();
+                                    ps = conexion.prepareStatement("SELECT ID, DESCRIPCION FROM REGION ");
+                                    rs = ps.executeQuery();
+                                    
+                                    while(rs.next()){
+                                        out.println("<option value=" + rs.getInt("ID") + ">"+ rs.getString("DESCRIPCION") +"</td>");                                        
+                                    }
+                                %>
                             </select>                     
                         </div>
-                        
+
                         <div class="col s2">
                             <p>Ciudad:</p>                            
                         </div>
