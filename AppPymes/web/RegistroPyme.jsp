@@ -175,7 +175,7 @@
                     </div>
 
                     <div class="center">
-                      <button class="btn waves-effect waves-light" type="submit" name="opcion" value="Agregar">Agregar</button>
+                       <button class="btn waves-effect red lighten-1" type="submit" name="action">Registrarse</button>
                     </div>   
                         
                 </form>
