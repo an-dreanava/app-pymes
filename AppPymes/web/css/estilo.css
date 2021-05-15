@@ -7,16 +7,7 @@ and open the template in the editor.
     Created on : may 12, 2021, 12:44:59 p.m.
     Author     : AngieRiera
 */
-  body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
 
-  main {
-    flex: 1 0 auto;
-  }
- 
 
 #boton-banner{
     margin-top: 20px;
@@ -75,19 +66,14 @@ nav ul li a{
     color: #455a64;
 }
 
-.contenedor{
-    width: 1200px;
-    text-align: center;
-    background-color: red;
-    margin: auto;
-    padding: auto;
-    
-}
+
 
 footer{
     width: 100%;
-    height:200px;
+    height:200px auto;
     bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
 }
 
 
