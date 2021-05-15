@@ -26,13 +26,41 @@ and open the template in the editor.
         <div class="container" >
             <div class="row" id="boton-banner">
                 <div class="col l12 s12 right-align block">
-                    <a class="waves-effect  red lighten-1 btn">Iniciar Sesión</a> 
+                    <a class="waves-effect  red lighten-1 btn modal-trigger" href="#modal1">Iniciar Sesión</a> 
                     <a class="waves-effect blue-grey darken-2 btn">Para tiendas</a>
                 </div>
             </div>
         </div>
 
-        <div class="container brand-logo center" >
+        <!-- Modal Iniciar Sesión -->
+        <div id="modal1" class="modal">
+            <form action="" method="POST">
+                <div class="modal-content center container">
+                    <h5 id="modal-text">INICIAR SESIÓN</h5>
+                    <br>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input name="correo" id="correo" type="text" class="validate">
+                            <label for="correo">Correo</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">https</i>
+                            <input name="contraseña" id="cotraseña" type="password" class="validate">
+                            <label for="contraseña">Contraseña</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <button class="btn waves-effect blue-grey darken-2" type="submit" name="action">Iniciar Sesión</button>
+                            <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
+                            <p class="center"><a href="" class="enlace">¿No estás registrado?</a></p>
+                            <p class="center"><a href="" class="enlace2">Registrarse</a></p>
+                        </div>
+                    </div>                
+                </div>
+            </form>
+        </div>
+
+        <div class="container center" >
             <h3>Nombre</h3>
             <div class="container" >
                 <h3 class="left-align" id="banner-text">TODO LO QUE NECESITES,<BR> EN UN SOLO LUGAR</h3>
@@ -42,7 +70,7 @@ and open the template in the editor.
                         <div class="card white" id="card">
                             <div class="card-content black-text">
                                 <form action="" method="POST">
-                                    
+
                                     <div class="input-field col s4">
                                         <select>
                                             <option value="" disabled selected>Seleccione Región</option>
@@ -51,7 +79,7 @@ and open the template in the editor.
                                             <option value="3">Option 3</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="input-field col s4">
                                         <select >
                                             <option value="" disabled selected>Seleccione Comuna</option>
@@ -60,7 +88,7 @@ and open the template in the editor.
                                             <option value="3">Option 3</option>
                                         </select>
                                     </div>  
-                                    
+
                                     <div class="input-field col s4">
                                         <a class="waves-effect blue-grey darken-2 btn">Ver tiendas</a>
                                     </div>                       
@@ -123,6 +151,11 @@ and open the template in the editor.
             document.addEventListener('DOMContentLoaded', function () {
                 var elems = document.querySelectorAll('select');
                 var instances = M.FormSelect.init(elems, options);
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.modal');
+                var instances = M.Modal.init(elems);
             });
 
         </script>
