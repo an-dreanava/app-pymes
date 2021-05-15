@@ -8,6 +8,10 @@
         <servlet-name>ControladorCliente</servlet-name>
         <servlet-class>Controlador.ControladorCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorPyme</servlet-name>
+        <servlet-class>Controlador.ControladorPyme</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlador</servlet-name>
         <url-pattern>/controlador</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ControladorCliente</servlet-name>
         <url-pattern>/ControladorCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorPyme</servlet-name>
+        <url-pattern>/ControladorPyme</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
