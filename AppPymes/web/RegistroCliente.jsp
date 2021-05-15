@@ -24,12 +24,18 @@
 
         <link type="text/css" rel="stylesheet" href="css/estilo.css" />
 
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
     </head>
     <body>
-
+        <%
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion con = new Conexion();
+            com.mysql.jdbc.Connection conexion = con.getConnection();
+        %>
         <header>
             <div class="navbar-fixed">
                 <nav class="white">
@@ -112,17 +118,13 @@
                         <div class="col s4">
                             <select name="region" id="region" required>
                                 <option value="" disabled selected>Seleccione Region</option>
-                                <%
-                                    PreparedStatement ps = null;
-                                    ResultSet rs = null;
-                                    Conexion con = new Conexion();
-                                    com.mysql.jdbc.Connection conexion = con.getConnection();
-                                    ps = conexion.prepareStatement("SELECT ID, DESCRIPCION FROM REGION ");
+                                <%  ps = conexion.prepareStatement("SELECT ID, DESCRIPCION FROM REGION ");
                                     rs = ps.executeQuery();
-                                    
-                                    while(rs.next()){
-                                        out.println("<option value=" + rs.getInt("ID") + ">"+ rs.getString("DESCRIPCION") +"</td>");                                        
+
+                                    while (rs.next()) {
+                                        out.println("<option value=" + rs.getInt("ID") + ">" + rs.getString("DESCRIPCION") + "</td>");
                                     }
+
                                 %>
                             </select>                     
                         </div>
@@ -130,12 +132,17 @@
                         <div class="col s2">
                             <p>Ciudad:</p>                            
                         </div>
-                        <div class="col s4">
+                        <div class="col s4" id="select2">
                             <select name="ciudad" id="ciudad" required>
                                 <option value="" disabled selected>Seleccione Ciudad</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <% ps = conexion.prepareStatement("SELECT ID, DESCRIPCION FROM CIUDAD ");
+                                    rs = ps.executeQuery();
+
+                                    while (rs.next()) {
+                                        out.println("<option value=" + rs.getInt("ID") + ">" + rs.getString("DESCRIPCION") + "</td>");
+                                    }
+
+                                %>
                             </select>                     
                         </div>
 
@@ -145,9 +152,14 @@
                         <div class="col s4">
                             <select name="comuna" id="comuna" required>
                                 <option value="" disabled selected>Seleccione Comuna:</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <% ps = conexion.prepareStatement("SELECT ID, DESCRIPCION FROM COMUNA ");
+                                    rs = ps.executeQuery();
+
+                                    while (rs.next()) {
+                                        out.println("<option value=" + rs.getInt("ID") + ">" + rs.getString("DESCRIPCION") + "</td>");
+                                    }
+
+                                %>
                             </select>                     
                         </div>
 
@@ -249,7 +261,6 @@
             });
 
         </script>
-
 
 
     </body>
