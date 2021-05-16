@@ -1,9 +1,11 @@
+<%-- 
+    Document   : Index
+    Created on : may 16, 2021, 7:00:15 p.m.
+    Author     : AngieRiera
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -27,14 +29,14 @@ and open the template in the editor.
             <div class="row" id="boton-banner">
                 <div class="col l12 s12 right-align block">
                     <a class="waves-effect  red lighten-1 btn modal-trigger" href="#modal1">Iniciar Sesión</a> 
-                    <a class="waves-effect blue-grey darken-2 btn">Para tiendas</a>
+                    <a class="waves-effect blue-grey darken-2 btn" href="IndexPyme.jsp">Para tiendas</a>
                 </div>
             </div>
         </div>
 
         <!-- Modal Iniciar Sesión -->
         <div id="modal1" class="modal">
-            <form action="" method="POST">
+            <form action="ControladorLoginCliente" method="POST">
                 <div class="modal-content center container">
                     <h5 id="modal-text">INICIAR SESIÓN</h5>
                     <br>
@@ -46,61 +48,63 @@ and open the template in the editor.
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">https</i>
-                            <input name="contraseña" id="cotraseña" type="password" class="validate">
-                            <label for="contraseña">Contraseña</label>
+                            <input name="clave" id="clave" type="password" class="validate">
+                            <label for="clave">Contraseña</label>
                         </div>
                         <div class="input-field col s12">
-                            <button class="btn waves-effect blue-grey darken-2" type="submit" name="action">Iniciar Sesión</button>
+                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar Sesion">
                             <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
                             <p class="center"><a href="" class="enlace">¿No estás registrado?</a></p>
-                            <p class="center"><a href="" class="enlace2">Registrarse</a></p>
+                            <p class="center"><a href="RegistroCliente.jsp" class="enlace2">Registrarse</a></p>
                         </div>
                     </div>                
                 </div>
             </form>
         </div>
 
-        <div class="contenedor">
-            <div class="container center" >
-                <h3>Nombre</h3>
-                <div class="container" >
-                    <h3 class="left-align" id="banner-text">TODO LO QUE NECESITES,<BR> EN UN SOLO LUGAR</h3>
+        <main>
+            <div class="contenedor">
+                <div class="container center" >
+                    <h3>Nombre</h3>
+                    <div class="container" >
+                        <h3 class="left-align" id="banner-text">TODO LO QUE NECESITES,<BR> EN UN SOLO LUGAR</h3>
 
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="card white" id="card">
-                                <div class="card-content black-text">
-                                    <form action="" method="POST">
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="card white" id="card">
+                                    <div class="card-content black-text">
+                                        <form action="" method="POST">
 
-                                        <div class="input-field col s4">
-                                            <select>
-                                                <option value="" disabled selected>Seleccione Región</option>
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                            </select>
-                                        </div>
+                                            <div class="input-field col s4">
+                                                <select>
+                                                    <option value="" disabled selected>Seleccione Región</option>
+                                                    <option value="1">Option 1</option>
+                                                    <option value="2">Option 2</option>
+                                                    <option value="3">Option 3</option>
+                                                </select>
+                                            </div>
 
-                                        <div class="input-field col s4">
-                                            <select >
-                                                <option value="" disabled selected>Seleccione Comuna</option>
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                            </select>
-                                        </div>  
+                                            <div class="input-field col s4">
+                                                <select >
+                                                    <option value="" disabled selected>Seleccione Comuna</option>
+                                                    <option value="1">Option 1</option>
+                                                    <option value="2">Option 2</option>
+                                                    <option value="3">Option 3</option>
+                                                </select>
+                                            </div>  
 
-                                        <div class="input-field col s4">
-                                            <a class="waves-effect blue-grey darken-2 btn">Ver tiendas</a>
-                                        </div>                       
-                                    </form>
-                                </div>                            
+                                            <div class="input-field col s4">
+                                                <a class="waves-effect blue-grey darken-2 btn">Ver tiendas</a>
+                                            </div>                       
+                                        </form>
+                                    </div>                            
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
 
 
 

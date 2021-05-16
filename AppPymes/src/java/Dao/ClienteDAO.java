@@ -75,4 +75,35 @@ public class ClienteDAO {
         }
         return estado;
     }
+
+    public boolean login(Cliente cliente) {
+        Conexion con = new Conexion();
+        com.mysql.jdbc.Connection conexion = con.getConnection();
+
+        try {
+            ps = conexion.prepareStatement("SELECT * FROM CLIENTE WHERE CORREO=?");
+            ps.setString(1, cliente.getCorreo());
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                if (cliente.getContraseña().equals(rs.getString("CONTRASENA"))) {
+                    cliente.setRut(rs.getString("RUT"));
+                    cliente.setNombre(rs.getString("NOMBRES"));
+                    cliente.setApellido(rs.getString("APELLIDOS"));
+                    cliente.setTelefono(rs.getString("TELEFONO"));
+                    cliente.setCorreo(rs.getString("CORREO"));
+                    cliente.setContraseña(rs.getString("CONTRASENA"));
+                    //cliente.setDireccion(rs.getString("D.DESCRIPCION + CO.DESCRIPCION "));
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+            return false;
+        } catch (Exception ex) {
+            System.err.println("Error, " + ex);
+            return false;
+        }
+    }
 }

@@ -19,6 +19,11 @@ public class Cliente {
     private String direccion;
     private int Comuna;
 
+    public Cliente() {
+    }
+    
+    
+
     public Cliente(String rut, String nombre, String apellido, String correo, String contraseña, String telefono, String direccion, int Comuna) {
         this.rut = rut;
         this.nombre = nombre;
