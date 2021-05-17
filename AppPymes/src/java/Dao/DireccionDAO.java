@@ -5,10 +5,8 @@
  */
 package Dao;
 
-import Modelo.Ciudad;
 import Modelo.Comuna;
 import Modelo.Conexion;
-import Modelo.Region;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,7 +36,7 @@ public class DireccionDAO {
             while (rs.next()) {
                 int id=rs.getInt("id");
                 String nombre=rs.getString("descripcion");
-                regiones.add(new Region(id,nombre));               
+                //regiones.add(new Region(id,nombre));               
             }
             conexion.close();                     
         } catch (Exception ex) {
@@ -46,7 +44,7 @@ public class DireccionDAO {
         }       
         return regiones;
     }
-        //OBTENER CIUDADES
+        /*//OBTENER CIUDADES
         public ArrayList<Ciudad> CiudadxR(String id_region){
         ArrayList<Ciudad> ciudades = new ArrayList();
         Conexion con = new Conexion();
@@ -67,7 +65,7 @@ public class DireccionDAO {
             System.err.println("Error, " + ex);
         }       
         return ciudades;
-    }
+    }*/
     
          public ArrayList<Comuna> ComunaxR(int id_region){
         ArrayList<Comuna> comunas = new ArrayList();

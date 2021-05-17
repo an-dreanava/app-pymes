@@ -10,7 +10,7 @@ package Modelo;
  * @author drean
  */
 public class Comuna {
-    int id;
+     int id;
     int id_ciudad;
     int id_pais;
     String name;
@@ -58,6 +58,5 @@ public class Comuna {
     public String toString() {
         return "Comuna{" + "id=" + id + ", id_ciudad=" + id_ciudad + ", id_pais=" + id_pais + ", name=" + name + '}';
     }
-    
     
 }

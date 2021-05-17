@@ -31,7 +31,7 @@
             <nav class="white">
                 <div class="nav-wrapper">
                     <ul id="nav-mobile" class="left hide-on-med-and-down black-text">
-                        <li><a href="sass.html" ></a></li>
+                        <li><a href="sass.html" >Sass</a></li>
                     </ul>                
                     <div class="brand-logo center" id="titulo-banner">
                         <span>Para Tiendas</span>
@@ -175,8 +175,9 @@
                     </div>
 
                     <div class="center">
-                       <input class="waves-effect waves-light btn" type="submit" name="opcion" value="Registrar">
-                    </div>                          
+                       <button class="btn waves-effect red lighten-1" type="submit" name="action">Registrarse</button>
+                    </div>   
+                        
                 </form>
             </div>
         </div>

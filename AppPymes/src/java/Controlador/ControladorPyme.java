@@ -5,15 +5,8 @@
  */
 package Controlador;
 
-import com.google.gson.Gson;
-import Dao.DireccionDAO;
-import Modelo.Comuna;
-import Modelo.Conexion;
-import Modelo.Region;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,39 +41,7 @@ public class ControladorPyme extends HttpServlet {
         String direccion = request.getParameter("direccion");
         String telefono = request.getParameter("telefono");
         String correo = request.getParameter("correo");
-        String contraseña = request.getParameter("contraseña");
-        String opcion=request.getParameter("opcion");
-        
-       /*String op = request.getParameter("operation");
-        Conexion con = new Conexion();
-        Connection conexion = con.getConnection();
-        DireccionDAO DireccionDAO = new DireccionDAO();
-            
-            if (op.equals("region")) {
-                ArrayList<Region> regiones = DireccionDAO.RegionxI();
-                Gson json = new Gson();
-                String lista_regiones = json.toJson(regiones);
-                response.setContentType("text/html");
-                response.getWriter().write(lista_regiones);
-            }
-
-            if (op.equals("comuna")) {
-                int id_region = Integer.parseInt(request.getParameter("id_region"));
-                ArrayList<Comuna> comunas = DireccionDAO.ComunaxR(id_region);
-                Gson json = new Gson();
-                String lista_comunas = json.toJson(comunas);
-                response.setContentType("text/html");
-                response.getWriter().write(lista_comunas);
-            }
-
-           /*f (op.equals("city")) {
-                int id = Integer.parseInt(request.getParameter("id"));
-                List<City> citylist = csd.getCityByStateId(id);
-                Gson json = new Gson();
-                String countryList = json.toJson(citylist);
-                response.setContentType("text/html");
-                response.getWriter().write(countryList);
-            }*/
+        String contraseña = request.getParameter("contrasena");
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
