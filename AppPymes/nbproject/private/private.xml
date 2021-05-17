@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/drean/Downloads/Nueva%20carpeta%20(2)/Nueva%20carpeta%20(2)/app-pymes/AppPymes/src/java/Modelo/Comuna.java</file>
-            <file>file:/C:/Users/drean/Downloads/Nueva%20carpeta%20(2)/Nueva%20carpeta%20(2)/app-pymes/AppPymes/src/java/Modelo/Region.java</file>
-            <file>file:/C:/Users/drean/Downloads/Nueva%20carpeta%20(2)/Nueva%20carpeta%20(2)/app-pymes/AppPymes/src/java/Dao/DireccionDAO.java</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/Index.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/src/java/Controlador/ControladorCliente.java</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/src/java/Controlador/ControladorLoginCliente.java</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/RegistroCliente.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/src/java/Controlador/ControladorPyme.java</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/src/java/Dao/ClienteDAO.java</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/src/java/Dao/PymeDAO.java</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/RegistroPyme.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/IndexPyme.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/css/estilo.css</file>
         </group>
     </open-files>
 </project-private>
