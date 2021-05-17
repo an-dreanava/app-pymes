@@ -48,7 +48,7 @@
                         </div>                
                         <ul id="nav-mobile" class="right hide-on-med-and-down black-text">
                             <a class="waves-effect  red lighten-1 btn modal-trigger" href="#modal1">Iniciar Sesión</a> 
-                            <a class="waves-effect blue-grey darken-2 btn">Para tiendas</a>              
+                            <a class="waves-effect blue-grey darken-2 btn" href="IndexPyme.jsp">Para tiendas</a>              
                         </ul>
                     </div>
                 </nav>
@@ -57,7 +57,7 @@
 
         <!-- Modal Iniciar Sesión -->
         <div id="modal1" class="modal">
-            <form action="" method="POST">
+            <form action="ControladorLoginCliente" method="POST">
                 <div class="modal-content center container">
                     <h5 id="modal-text">INICIAR SESIÓN</h5>
                     <br>
@@ -69,14 +69,14 @@
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">https</i>
-                            <input name="contraseña" id="cotraseña" type="password" class="validate">
-                            <label for="contraseña">Contraseña</label>
+                            <input name="clave" id="clave" type="password" class="validate">
+                            <label for="clave">Contraseña</label>
                         </div>
                         <div class="input-field col s12">
-                            <button class="btn waves-effect blue-grey darken-2" type="submit" name="action">Iniciar Sesión</button>
+                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar Sesion">
                             <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
                             <p class="center"><a href="" class="enlace">¿No estás registrado?</a></p>
-                            <p class="center"><a href="" class="enlace2">Registrarse</a></p>
+                            <p class="center"><a href="RegistroCliente.jsp" class="enlace2">Registrarse</a></p>
                         </div>
                     </div>                
                 </div>
@@ -87,7 +87,7 @@
         <main>
             <div class="container" style="padding: 20px" >
                 <div class="row" >
-                    <form action="ControladorUsuario" method="POST">
+                    <form action="ControladorCliente" method="POST">
 
                         <div class="col s2">
                             <p>Rut:</p>                            
@@ -188,12 +188,12 @@
                             <p>Contraseña:</p>                            
                         </div>
                         <div class="col s4">
-                            <input name="contraseña" id="contraseña" type="password" class="validate"  required> 
+                            <input name="clave" id="clave" type="password" class="validate"  required> 
                             <p></p>
                         </div>
 
                         <div class="center">
-                            <button class="btn waves-effect red lighten-1" type="submit" name="action">Registrarse</button>
+                            <input class="btn waves-effect red lighten-1" onclick="return pagar()" type="submit" id="opcion" name="opcion" value="Registrar">
                         </div>                     
                     </form>
                 </div>
@@ -241,27 +241,130 @@
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script>
-            $(document).ready(function () {
-                $('select').formSelect();
-            });
+                                $(document).ready(function () {
+                                    $('select').formSelect();
+                                });
 
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('select');
-                var instances = M.FormSelect.init(elems, options);
-            });
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    var elems = document.querySelectorAll('select');
+                                    var instances = M.FormSelect.init(elems, options);
+                                });
 
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('.sidenav');
-                var instances = M.Sidenav.init(elems, options);
-            });
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    var elems = document.querySelectorAll('.sidenav');
+                                    var instances = M.Sidenav.init(elems, options);
+                                });
 
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('.modal');
-                var instances = M.Modal.init(elems);
-            });
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    var elems = document.querySelectorAll('.modal');
+                                    var instances = M.Modal.init(elems);
+                                });
 
         </script>
+        
+        <script>
+    $('#telefono').mask('(+56) 0 0000 0000');
+   </script>
+        
+        <script>
+            var rut = document.getElementById('rut');
+            var nombres = document.getElementById('nombres');
+            var apellidos = document.getElementById('apellidos');
+            var correo = document.getElementById('correo');
+            var clave = document.getElementById('clave');
+            var direccion = document.getElementById('direccion');
+            var comuna = document.getElementById('comuna');
+            var telefono = document.getElementById('telefono');
 
 
+            function pagar() {
+                
+                var letras = /[A-Za-zÑñÁÉÍÓÚáéíóú\s]$/;
+                var email = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+                var alfanum = /^[\w\s]+$/;
+
+
+                if (rut.value === '') {
+                    alert('Rut es obligatorio');
+                    rut.focus();
+                    return false;
+                }
+
+                if (nombres.value === '') {
+                    alert('Nombre es obligatorio');
+                    nombres.focus();
+                    return false;
+                }
+
+                if (!letras.test(nombres.value)) {
+                    alert('Nombre solo admite letras y espacios');
+                    nombres.focus();
+                    return false;
+                }
+
+                if (apellidos.value === '') {
+                    alert('Apellidos es obligatorio');
+                    apellidos.focus();
+                    return false;
+                }
+
+                if (!letras.test(apellidos.value)) {
+                    alert('Apellidos solo admite letras y espacios');
+                    apellidos.focus();
+                    return false;
+                }
+
+                if (comuna.selectedIndex === 0) {
+                    alert('Seleccione comuna');
+                    return false;
+                }
+
+                if (direccion.value === '') {
+                    alert('Dirección es obligatorio');
+                    direccion.focus();
+                    return false;
+                }
+
+                if (!alfanum.test(direccion.value)) {
+                    alert('Dirección solo admite letras y números');
+                    direccion.focus();
+                    return false;
+                }
+
+
+                if (telefono.value === '') {
+                    alert('Teléfono es obligatorio');
+                    telefono.focus();
+                    return false;
+                }
+
+                if (telefono.value.length < 16) {
+                    alert('Ingrese un telefono válido');
+                    telefono.focus();
+                    return false;
+                }
+
+                if (correo.value === '') {
+                    alert('Correo es obligatorio');
+                    correo.focus();
+                    return false;
+                }
+                
+                if (!email.test(correo.value)) {
+                  alert('Correo no es válido');
+                  correo.focus();
+                  return false;
+                }
+
+
+                if (clave.value === '') {
+                    alert('Clave es obligatorio');
+                    clave.focus();
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
     </body>
 </html>

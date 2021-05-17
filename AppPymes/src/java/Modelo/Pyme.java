@@ -19,10 +19,11 @@ public class Pyme {
     private String contraseña;
     private String telefono;
     private String categoria;
-    private Direccion direccion;
+    private String direccion;
+    private int Comuna;
     private String estado;
 
-    public Pyme(int id, String nombre, String apellido, String rut, String nombrePyme, String correo, String contraseña, String telefono, String categoria, Direccion direccion, String estado) {
+    public Pyme(int id, String nombre, String apellido, String rut, String nombrePyme, String correo, String contraseña, String telefono, String categoria, String direccion, int Comuna, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -33,6 +34,7 @@ public class Pyme {
         this.telefono = telefono;
         this.categoria = categoria;
         this.direccion = direccion;
+        this.Comuna = Comuna;
         this.estado = estado;
     }
 
@@ -108,12 +110,20 @@ public class Pyme {
         this.categoria = categoria;
     }
 
-    public Direccion getDireccion() {
+    public String getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(Direccion direccion) {
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public int getComuna() {
+        return Comuna;
+    }
+
+    public void setComuna(int Comuna) {
+        this.Comuna = Comuna;
     }
 
     public String getEstado() {
@@ -126,8 +136,11 @@ public class Pyme {
 
     @Override
     public String toString() {
-        return "Pyme{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", rut=" + rut + ", nombrePyme=" + nombrePyme + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", categoria=" + categoria + ", direccion=" + direccion + ", estado=" + estado + '}';
+        return "Pyme{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", rut=" + rut + ", nombrePyme=" + nombrePyme + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", categoria=" + categoria + ", direccion=" + direccion + ", Comuna=" + Comuna + ", estado=" + estado + '}';
     }
+
+    
+    
     
     
 }

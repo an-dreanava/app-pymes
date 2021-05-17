@@ -43,7 +43,7 @@
             </nav>
         </div>
         
-        <div>
+        <div class="container">
             <h5 id="titulo_form_pymes">Formulario de Inscripción</h5>           
         </div>
         
