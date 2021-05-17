@@ -4,6 +4,10 @@
     Author     : drean
 --%>
 
+<%@page import="Modelo.Comuna"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Modelo.Region"%>
+<%@page import="Dao.DireccionDAO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
@@ -119,16 +123,11 @@
                         <select name="region" id="region" required>
                             <option value="" disabled selected>Seleccione Región</option>
                             <%
-                                    Conexion con = new Conexion();
-                             Connection conexion = con.getConnection();
-     
-                             PreparedStatement ps = conexion.prepareStatement("SELECT * FROM region");
-                             ResultSet rs = ps.executeQuery();
-
-                             while (rs.next()) {%>
-                             <option value="<%=rs.getString("id")%>"><%=rs.getString("descripcion")%></option>
+                                  DireccionDAO DireccionDAO=new DireccionDAO();
+                                  for( Region region : DireccionDAO.Regiones()){                            
+                            %>
+                             <option value="<%=region.getId()%>"><%=region.getName()%></option>
                             <% }
-                               conexion.close();
                             %>
                         </select>                     
                     </div>
@@ -139,9 +138,12 @@
                     <div class="col s4">
                         <select name="comuna" id="comuna" required>
                             <option value="" disabled selected>Seleccione Comuna:</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
+                           <%
+                               for( Comuna comuna : DireccionDAO.Comunas()){                            
+                            %>
+                             <option value="<%=comuna.getId()%>"><%=comuna.getName()%></option>
+                            <% }
+                            %>
                         </select>                     
                     </div>
 

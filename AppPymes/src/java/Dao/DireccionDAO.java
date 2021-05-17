@@ -7,6 +7,7 @@ package Dao;
 
 import Modelo.Comuna;
 import Modelo.Conexion;
+import Modelo.Region;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +26,7 @@ public class DireccionDAO {
 //        this.con = con;
 //    }
     //OBTENER REGIONES
-    public ArrayList<Region> RegionxI(){
+    public ArrayList<Region> Regiones(){
         ArrayList<Region> regiones = new ArrayList();
         Conexion con = new Conexion();
         Connection conexion = con.getConnection();
@@ -36,7 +37,7 @@ public class DireccionDAO {
             while (rs.next()) {
                 int id=rs.getInt("id");
                 String nombre=rs.getString("descripcion");
-                //regiones.add(new Region(id,nombre));               
+                regiones.add(new Region(id,nombre));               
             }
             conexion.close();                     
         } catch (Exception ex) {
@@ -84,6 +85,28 @@ public class DireccionDAO {
                 int id=rs.getInt(1);
                 int id_ciudad=rs.getInt("3");
                 int region=rs.getInt("4");
+                String nombre=rs.getString(2);
+                comunas.add(new Comuna(id,id_ciudad,region,nombre));         
+            }
+            conexion.close();                     
+        } catch (Exception ex) {
+            System.err.println("Error, " + ex);
+        }       
+        return comunas;
+    }
+         
+        public ArrayList<Comuna> Comunas(){
+        ArrayList<Comuna> comunas = new ArrayList();
+        Conexion con = new Conexion();
+        Connection conexion = con.getConnection();
+        try {
+            ps = conexion.prepareStatement("SELECT * FROM comuna");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int id=rs.getInt(1);
+                int id_ciudad=rs.getInt(3);
+                int region=0;
                 String nombre=rs.getString(2);
                 comunas.add(new Comuna(id,id_ciudad,region,nombre));         
             }
