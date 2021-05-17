@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-05-2021 a las 00:39:39
+-- Tiempo de generación: 17-05-2021 a las 00:43:28
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -107,7 +107,6 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `correo` varchar(30) NOT NULL,
   `contrasena` varchar(20) NOT NULL,
   `id_direccion` int(11) DEFAULT NULL,
-  `foto` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`rut`),
   KEY `id_direccion` (`id_direccion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -262,6 +261,7 @@ CREATE TABLE IF NOT EXISTS `pyme` (
   `id_categoria_pyme` int(11) NOT NULL,
   `id_direccion` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
+  `logo` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `pyme_fk_categoria_pyme` (`id_categoria_pyme`),
   KEY `pyme_fk_direccion` (`id_direccion`),
