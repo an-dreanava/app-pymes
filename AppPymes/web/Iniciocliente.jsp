@@ -83,7 +83,7 @@
 
                         </ul>
                     </div>  
-                    <div class="container">
+                    <div class="">
                         <div class="carousel">
                             <div>
                                 <div class="card carousel-item">
@@ -100,7 +100,19 @@
                             <div>
                                 <div class="card carousel-item ">
                                     <div class="card-content black-text ">
-                                        <span class="card-title">TITULO TIENDA</span>
+                                        <span class="card-title"></span>
+                                        <img src="Imagenes/imagen.jpg">
+                                        <p class="">hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola .</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="#">Ir a tienda</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="card carousel-item ">
+                                    <div class="card-content black-text ">
+                                        <span class="card-title"></span>
                                         <img src="Imagenes/imagen.jpg">
                                         <p class="">hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola hola .</p>
                                     </div>
@@ -110,6 +122,7 @@
                                 </div>
                             </div>
                         </div>
+    
                     </div>
 
 
