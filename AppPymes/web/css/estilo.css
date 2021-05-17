@@ -57,7 +57,7 @@ and open the template in the editor.
     margin-left: auto;
     margin-right: auto;
 }
-#card{
+.card-index{
     height: 100px;    
 }
 
@@ -86,4 +86,9 @@ footer{
     padding-bottom: 0;
 }
 
+carousel{
+    
+    width:200px;
+    height:200px;
+}
 

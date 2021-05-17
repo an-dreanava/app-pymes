@@ -72,7 +72,7 @@
                         <div class="row">
                             <div class="col s12">
                                 <div class="card white" id="card">
-                                    <div class="card-content black-text">
+                                    <div class="card-content black-text" id="card-index">
                                         <form action="" method="POST">
 
                                             <div class="input-field col s4">
