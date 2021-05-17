@@ -32,7 +32,7 @@ public class PymeDAO {
         if (conexion != null) {
             try {                
                 Statement st = conexion.createStatement();
-                String query = "INSERT INTO pyme (nombres,apellidos,rut, nombre_pyme,correo,contrasena,telefono,id_categoria_pyme,id_direccion,id_estado,                                 logo)VALUES('"+pyme.getNombre()+"','"+pyme.getApellido()+"','"+pyme.getRut()+"','"+pyme.getCorreo()+"','"+pyme.getContraseña()+"','"+pyme.getTelefono()+"','"+pyme.getCategoria()+"','"+dao.Id_Direccion(pyme)+"',2,'"+pyme.getLogo()+"')";
+                String query = "INSERT INTO pyme (nombres,apellidos,rut, nombre_pyme,correo,contrasena,telefono,id_categoria_pyme,id_direccion,id_estado,                                 logo)VALUES('"+pyme.getNombre()+"','"+pyme.getApellido()+"','"+pyme.getRut()+"','"+pyme.getNombrePyme()+"','"+pyme.getCorreo()+"','"+pyme.getContraseña()+"','"+pyme.getTelefono()+"','"+pyme.getCategoria()+"','"+dao.Id_Direccion(pyme)+"',2,'"+pyme.getLogo()+"')";
                
                 int filas = st.executeUpdate(query);
                 if (filas > 0) {
@@ -54,9 +54,8 @@ public class PymeDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                id_direccion=rs.getInt(1);        
-            }
-            conexion.close();                     
+                id_direccion=(rs.getInt(1)+1);        
+            }                     
         } catch (Exception ex) {
             System.err.println("Error, " + ex);
         }       
@@ -67,10 +66,10 @@ public class PymeDAO {
                
                 st.executeUpdate(query);
             } catch (Exception e) {
-                System.out.println("ERROR PymeDAO AgregarPyme:" + e.getMessage());
+                System.out.println("ERROR PymeDAO Id_Direccion:" + e.getMessage()+ id_direccion);
             }
         
-        return id_direccion;
+        return (id_direccion);
     }
         
         public ArrayList<Categoria> Categoria() {
@@ -84,8 +83,7 @@ public class PymeDAO {
                 int id_categoria=rs.getInt(1);        
                 String descripcion=rs.getString(2);   
                 categorias.add(new Categoria(id_categoria,descripcion));
-            }           
-            conexion.close();      
+            }               
         } catch (Exception ex) {
             System.err.println("Error, " + ex);
         }       

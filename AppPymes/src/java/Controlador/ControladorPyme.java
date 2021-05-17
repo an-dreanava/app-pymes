@@ -48,10 +48,18 @@ public class ControladorPyme extends HttpServlet {
         String opcion = request.getParameter("opcion");
         
         if(opcion.equals("Agregar")){
-            Pyme pyme=new Pyme(0,nombre,apellido,rut,nombre_pyme,correo,contrasena,telefono,id_categoria,des_direccion,id_comuna,id_region,0,2," ");
+            try{
+                Pyme pyme=new Pyme(0,nombre,apellido,rut,nombre_pyme,correo,contrasena,telefono,id_categoria,des_direccion,id_comuna,id_region,0,2," ");
             
             PymeDAO PymeDAO=new PymeDAO();
-            PymeDAO.AgregarPyme(pyme);
+            if(PymeDAO.AgregarPyme(pyme)==true){
+                response.sendRedirect("RegistroPyme.jsp");
+            }
+            
+            }catch(Exception e){
+                 System.out.println("ERROR ControladorPyme AgregarPyme:" + e.getMessage());
+            }
+            
         }
         
         try (PrintWriter out = response.getWriter()) {
