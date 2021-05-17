@@ -1,53 +1,58 @@
 <%-- 
-    Document   : RegistroPyme
-    Created on : 15-05-2021, 13:42:43
-    Author     : drean
+    Document   : RegistroCliente
+    Created on : may 15, 2021, 12:57:18 p.m.
+    Author     : AngieRiera
 --%>
 
+<%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="Modelo.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  />
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
         <link type="text/css" rel="stylesheet" href="css/estilo.css" />
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
     </head>
-    
     <body>
-        <div class="navbar-fixed">
-            <nav class="white">
-                <div class="nav-wrapper">
-                    <ul id="nav-mobile" class="left hide-on-med-and-down black-text">
-                        <li><a href="sass.html" ></a></li>
-                    </ul>                
-                    <div class="brand-logo center" id="titulo-banner">
-                        <span>Para Tiendas</span>
-                    </div>                
-                    <ul id="nav-mobile" class="right hide-on-med-and-down black-text">
-                        <a class="waves-effect  red lighten-1 btn modal-trigger" href="#modal1">Ingresa a tu Cuenta</a> 
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        
-        <div class="container">
-            <h5 id="titulo_form_pymes">Formulario de Inscripción</h5>           
-        </div>
-        
-        
+        <%
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion con = new Conexion();
+            com.mysql.jdbc.Connection conexion = con.getConnection();
+        %>
+        <header>
+            <div class="navbar-fixed">
+                <nav class="white">
+                    <div class="nav-wrapper">
+                        <ul id="nav-mobile" class="left hide-on-med-and-down black-text">
+                            <li><a href="sass.html" >Sass</a></li>
+                        </ul>                
+                        <div class="brand-logo center" id="titulo-banner">
+                            <span href="#" >Para Tiendas</span>
+                        </div>                
+                        <ul id="nav-mobile" class="right hide-on-med-and-down black-text">
+                            <a class="waves-effect  red lighten-1 btn modal-trigger" href="#modal1">Ingresa a tu Cuenta</a>           
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
 
         <!-- Modal Iniciar Sesión -->
         <div id="modal1" class="modal">
@@ -78,12 +83,12 @@
         </div>
 
 
-        
-        <div class="container" style="padding: 20px" >
-            <div class="row" >
-                <form action="ControladorPyme" method="POST">
+        <main>
+            <div class="container" style="padding: 20px" >
+                <div class="row" >
+                    <form action="ControladorPyme" method="POST">
 
-                    <div class="col s2">
+                        <div class="col s2">
                         <p>Rut:</p>                            
                     </div>
                     <div class="col s4">
@@ -117,19 +122,8 @@
                     </div>
                     <div class="col s4">
                         <select name="region" id="region" required>
-                            <option value="" disabled selected>Seleccione Región</option>
-                            <%
-                                    Conexion con = new Conexion();
-                             Connection conexion = con.getConnection();
-     
-                             PreparedStatement ps = conexion.prepareStatement("SELECT * FROM region");
-                             ResultSet rs = ps.executeQuery();
-
-                             while (rs.next()) {%>
-                             <option value="<%=rs.getString("id")%>"><%=rs.getString("descripcion")%></option>
-                            <% }
-                               conexion.close();
-                            %>
+                            <option>Seleccione Región</option>   
+                            
                         </select>                     
                     </div>
 
@@ -138,10 +132,7 @@
                     </div>
                     <div class="col s4">
                         <select name="comuna" id="comuna" required>
-                            <option value="" disabled selected>Seleccione Comuna:</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
+                            <option>Seleccione Comuna</option>
                         </select>                     
                     </div>
 
@@ -174,12 +165,96 @@
                         <p></p>
                     </div>
 
-                    <div class="center">
-                       <input class="waves-effect waves-light btn" type="submit" name="opcion" value="Registrar">
-                    </div>                          
-                </form>
+                        <div class="center">
+                            <button class="btn waves-effect red lighten-1" type="submit" name="action">Registrarse</button>
+                        </div>                     
+                    </form>
+                </div>
             </div>
-        </div>
+        </main>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.ajax({
+                    url: "ControladorPyme",
+                    method: "GET",
+                    data: {operation: 'region'},
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        let obj = $.parseJSON(data);
+                        $.each(obj, function (key, value) {
+                            $('#region').append('<option value="' + value.id + '">' + value.nombre + '</option>')
+                        });
+                        $('select').formSelect();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#region').append('<option>Region Invalida</option>');
+                    },
+                    cache: false
+                });
+
+
+                $('#region').change(function () {
+                    $('#comuna').find('option').remove();
+                    $('#comuna').append('<option>Selecciona una Comuna</option>'); 
+
+                    let cid = $('#comuna').val();
+                    let data = {
+                        operation: "comuna",
+                        id: cid
+                    };
+
+                    $.ajax({
+                        url: "ControladorPyme",
+                        method: "GET",
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+                            console.log(data);
+                            let obj = $.parseJSON(data);
+                            $.each(obj, function (key, value) {
+                                $('#comuna').append('<option value="' + value.id + '">' + value.name + '</option>')
+                            });
+                            $('select').formSelect();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#state').append('<option>Comuna Invalida</option>');
+                        },
+                        cache: false
+                    });
+                });
+                
+//                $('#state').change(function () {
+//                    $('#city').find('option').remove();
+//                    $('#city').append('<option>Select City</option>');
+//
+//                    let sid = $('#state').val();
+//                    let data = {
+//                        operation: "city",
+//                        id: sid
+//                    };
+//
+//                    $.ajax({
+//                        url: "GetCountryStateservlet",
+//                        method: "GET",
+//                        data: data,
+//                        success: function (data, textStatus, jqXHR) {
+//                            console.log(data);
+//                            let obj = $.parseJSON(data);
+//                            $.each(obj, function (key, value) {
+//                                $('#city').append('<option value="' + value.id + '">' + value.name + '</option>')
+//                            });
+//                            $('select').formSelect();
+//                        },
+//                        error: function (jqXHR, textStatus, errorThrown) {
+//                            $('#city').append('<option>City Unavailable</option>');
+//                        },
+//                        cache: false
+//                    });
+                });
+        </script>
+
 
         <footer class="page-footer blue-grey darken-2">
             <div class="container">
@@ -238,5 +313,7 @@
             });
 
         </script>
+
+
     </body>
 </html>
