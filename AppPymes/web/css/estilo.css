@@ -57,7 +57,7 @@ and open the template in the editor.
     margin-left: auto;
     margin-right: auto;
 }
-.card-index{
+#card-index{
     height: 100px;    
 }
 
@@ -70,13 +70,28 @@ nav ul li a{
     color: #455a64;
 }
 
+.nav-content{
+    height: 50px;
+}
+
 #titulo-banner{
     width: 400px;
     background-color: #e0f7fa;
     color: #455a64;
 }
 
+.card-pyme{
+    height: 300px;
+    width: 200px;
+}
 
+.card-logo{
+    height: 5px;
+}
+
+.container a{
+    color: black;
+}
 
 footer{
     width: 100%;
@@ -84,11 +99,5 @@ footer{
     bottom: 0;
     border-bottom: 0;
     padding-bottom: 0;
-}
-
-carousel{
-    
-    width:200px;
-    height:200px;
 }
 

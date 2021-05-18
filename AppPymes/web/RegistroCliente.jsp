@@ -88,6 +88,8 @@
             <div class="container" style="padding: 20px" >
                 <div class="row" >
                     <form action="ControladorCliente" method="POST">
+                        <div class="col s6">
+                        </div>
 
                         <div class="col s2">
                             <p>Rut:</p>                            
@@ -95,7 +97,6 @@
                         <div class="col s4">
                             <input name="rut" id="rut" type="text" class="validate"  required> 
                         </div>
-
 
                         <div class= "col s2">
                             <p>Nombres:</p>                            
@@ -119,23 +120,6 @@
                             <select name="region" id="region" required>
                                 <option value="" disabled selected>Seleccione Region</option>
                                 <%  ps = conexion.prepareStatement("SELECT ID, DESCRIPCION FROM REGION ");
-                                    rs = ps.executeQuery();
-
-                                    while (rs.next()) {
-                                        out.println("<option value=" + rs.getInt("ID") + ">" + rs.getString("DESCRIPCION") + "</td>");
-                                    }
-
-                                %>
-                            </select>                     
-                        </div>
-
-                        <div class="col s2">
-                            <p>Ciudad:</p>                            
-                        </div>
-                        <div class="col s4" id="select2">
-                            <select name="ciudad" id="ciudad" required>
-                                <option value="" disabled selected>Seleccione Ciudad</option>
-                                <% ps = conexion.prepareStatement("SELECT ID, DESCRIPCION FROM CIUDAD ");
                                     rs = ps.executeQuery();
 
                                     while (rs.next()) {
@@ -261,11 +245,11 @@
                                 });
 
         </script>
-        
+
         <script>
-    $('#telefono').mask('(+56) 0 0000 0000');
-   </script>
-        
+            $('#telefono').mask('(+56) 0 0000 0000');
+        </script>
+
         <script>
             var rut = document.getElementById('rut');
             var nombres = document.getElementById('nombres');
@@ -278,7 +262,7 @@
 
 
             function pagar() {
-                
+
                 var letras = /[A-Za-zÑñÁÉÍÓÚáéíóú\s]$/;
                 var email = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
                 var alfanum = /^[\w\s]+$/;
@@ -349,11 +333,11 @@
                     correo.focus();
                     return false;
                 }
-                
+
                 if (!email.test(correo.value)) {
-                  alert('Correo no es válido');
-                  correo.focus();
-                  return false;
+                    alert('Correo no es válido');
+                    correo.focus();
+                    return false;
                 }
 
 
