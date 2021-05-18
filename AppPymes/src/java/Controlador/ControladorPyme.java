@@ -5,6 +5,8 @@
  */
 package Controlador;
 
+import Dao.PymeDAO;
+import Modelo.Pyme;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,12 +38,29 @@ public class ControladorPyme extends HttpServlet {
         String nombre_pyme = request.getParameter("nombre_pyme");
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
-        String region = request.getParameter("region");
-        String comuna = request.getParameter("comuna");
-        String direccion = request.getParameter("direccion");
+        int id_region = Integer.parseInt(request.getParameter("id_region"));
+        int id_comuna = Integer.parseInt(request.getParameter("id_comuna"));
+        String des_direccion = request.getParameter("des_direccion");
         String telefono = request.getParameter("telefono");
         String correo = request.getParameter("correo");
-        String contraseña = request.getParameter("contrasena");
+        String contrasena = request.getParameter("contrasena");
+         String id_categoria = request.getParameter("id_categoria");
+        String opcion = request.getParameter("opcion");
+        
+        if(opcion.equals("Agregar")){
+            try{
+                Pyme pyme=new Pyme(0,nombre,apellido,rut,nombre_pyme,correo,contrasena,telefono,id_categoria,des_direccion,id_comuna,id_region,0,2," ");
+            
+            PymeDAO PymeDAO=new PymeDAO();
+            if(PymeDAO.AgregarPyme(pyme)==true){
+                response.sendRedirect("RegistroPyme.jsp");
+            }
+            
+            }catch(Exception e){
+                 System.out.println("ERROR ControladorPyme AgregarPyme:" + e.getMessage());
+            }
+            
+        }
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -53,7 +72,7 @@ public class ControladorPyme extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Servlet ControladorPyme at " + request.
                     getContextPath() + "</h1>");
-             out.println("<h1> RUT:"+rut+"</h1>");
+             /*out.println("<h1> RUT:"+rut+"</h1>");
              out.println("<h1> NOMBRE PYMES:"+nombre_pyme+"</h1>");
              out.println("<h1> APELLIDO:"+apellido+"</h1>");
              out.println("<h1> REGION:"+region+"</h1>");
@@ -61,7 +80,7 @@ public class ControladorPyme extends HttpServlet {
              out.println("<h1>DIRECCION:"+direccion+"</h1>");
              out.println("<h1>TELEFONO:"+telefono+"</h1>");
              out.println("<h1>CORREO:"+correo+"</h1>");
-             out.println("<h1>CONTRASEÑA:"+contraseña+"</h1>");
+             out.println("<h1>CONTRASEÑA:"+contraseña+"</h1>");*/
             out.println("</body>");
             out.println("</html>");
         }
