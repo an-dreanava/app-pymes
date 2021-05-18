@@ -4,6 +4,8 @@
     Author     : drean
 --%>
 
+<%@page import="Dao.PymeDAO"%>
+<%@page import="Modelo.Categoria"%>
 <%@page import="Modelo.Comuna"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Modelo.Region"%>
@@ -105,7 +107,7 @@
                         <p>Nombres Titular:</p>                            
                     </div>
                     <div class="col s4">
-                        <input name="nombre" id="nombres" type="text" class="validate"  required>                            
+                        <input name="nombre" id="nombre" type="text" class="validate"  required>                            
                     </div>
 
 
@@ -113,14 +115,14 @@
                         <p>Apellidos Titular:</p>                            
                     </div>
                     <div class="col s4">
-                        <input name="apellido" id="apellidos" type="text" class="validate"  required>                            
+                        <input name="apellido" id="apellido" type="text" class="validate"  required>                            
                     </div>
 
                     <div class="col s2">
                         <p>Región:</p>                            
                     </div>
                     <div class="col s4">
-                        <select name="region" id="region" required>
+                        <select name="id_region" id="id_region" required>
                             <option value="" disabled selected>Seleccione Región</option>
                             <%
                                   DireccionDAO DireccionDAO=new DireccionDAO();
@@ -136,7 +138,7 @@
                         <p>Comuna:</p>                            
                     </div>
                     <div class="col s4">
-                        <select name="comuna" id="comuna" required>
+                        <select name="id_comuna" id="id_comuna" required>
                             <option value="" disabled selected>Seleccione Comuna:</option>
                            <%
                                for( Comuna comuna : DireccionDAO.Comunas()){                            
@@ -151,7 +153,7 @@
                         <p>Dirección:</p>                            
                     </div>
                     <div class="col s4">
-                        <input name="direccion" id="direccion" type="text" class="validate"  required> 
+                        <input name="des_direccion" id="des_direccion" type="text" class="validate"  required> 
                     </div>
 
                     <div class="col s2">
@@ -172,12 +174,28 @@
                         <p>Contraseña:</p>                            
                     </div>
                     <div class="col s4">
-                        <input name="contraseña" id="contraseña" type="password" class="validate"  required> 
+                        <input name="contrasena" id="contrasena" type="password" class="validate"  required> 
                         <p></p>
+                    </div>
+                        
+                         <div class="col s2">
+                        <p>Categoria:</p>                            
+                    </div>
+                    <div class="col s4">
+                        <select name="id_categoria" id="id_categoria" required>
+                            <option value="" disabled selected>Seleccione Categoria:</option>
+                           <%
+                               PymeDAO PymeDAO=new PymeDAO();
+                               for( Categoria categoria : PymeDAO.Categoria()){                            
+                            %>
+                             <option value="<%=categoria.getId_categoria()%>"><%=categoria.getDescripcion()%></option>
+                            <% }
+                            %>
+                        </select>                     
                     </div>
 
                     <div class="center">
-                       <button class="btn waves-effect red lighten-1" type="submit" name="action">Registrarse</button>
+                       <button class="btn waves-effect red lighten-1" type="submit"  id="opcion" name="opcion" value="Agregar">Registrarse</button>
                     </div>   
                         
                 </form>

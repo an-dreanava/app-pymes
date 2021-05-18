@@ -101,3 +101,28 @@ footer{
     padding-bottom: 0;
 }
 
+<<<<<<< HEAD
+=======
+carousel{
+    
+    width:200px;
+    height:200px;
+}
+
+
+
+.card-image img{
+	height: 100px;
+	width: 100px;
+}
+
+ .tarjeta{
+    height:200px;
+    width: 140px;
+}
+
+.boton{
+    height:25px;
+    text-align: initial;
+}
+>>>>>>> 81a96638f545dd9f6c767529e4527d593f40758e

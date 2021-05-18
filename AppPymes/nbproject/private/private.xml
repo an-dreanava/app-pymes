@@ -4,28 +4,21 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
-=======
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/Iniciocliente.jsp</file>
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/src/java/Controlador/ControladorPyme.java</file>
+            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/CategoriaProductos.jsp</file>
+            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/Index.jsp</file>
+            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/src/java/Controlador/ControladorLoginCliente.java</file>
             <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/css/estilo.css</file>
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/src/java/Controlador/ControladorCliente.java</file>
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/RegistroPyme.jsp</file>
+=======
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Modelo/Pyme.java</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/RegistroPyme.jsp</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/RegistroCliente.jsp</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Modelo/Categoria.java</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Dao/ClienteDAO.java</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Controlador/ControladorPyme.java</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Controlador/ControladorCliente.java</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Dao/PymeDAO.java</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Dao/DireccionDAO.java</file>
+>>>>>>> 58b389b10009ae3d66d9dc1b9f2ea5ee79a36343
         </group>
-=======
-<<<<<<< HEAD
-        <group>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/Index.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/src/java/Controlador/ControladorCliente.java</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/src/java/Controlador/ControladorLoginCliente.java</file>
->>>>>>> 6c38fe560e0fbb551a5ca17af7daae0c89a10c38
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/RegistroCliente.jsp</file>
-        </group>
-<<<<<<< HEAD
-=======
-=======
-        <group/>
->>>>>>> 90ba7242df333dc4c5bea16dcc72a09f30a69c6d
->>>>>>> e023a92de9dab9be766dbabc86654d368a2da0c0
->>>>>>> 6c38fe560e0fbb551a5ca17af7daae0c89a10c38
     </open-files>
 </project-private>
