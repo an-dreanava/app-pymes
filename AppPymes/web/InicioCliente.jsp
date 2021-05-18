@@ -142,7 +142,7 @@
 
             <div class="container">
                 <div class="row grid">
-                    <a href=""><div class="col s4   cyan lighten-5 center"><span class="flow-text"><br><br>HOMBRE<br><br><br></span></div></a>
+                    <a href="ProductosCategoria.jsp?id=1"><div class="col s4   cyan lighten-5 center"><span class="flow-text"><br><br>HOMBRE<br><br><br></span></div></a>
                     <a href=""><div class="col s4  teal lighten-5 center"><span class="flow-text"><br>TECNOLOGÍA<br><br></span></div></a>
                     <a href=""><div class="col s4 cyan lighten-5 center"><span class="flow-text"><br>HOGAR<br><br></span></div></a>
 

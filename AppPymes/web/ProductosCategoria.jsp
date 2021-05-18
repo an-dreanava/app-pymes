@@ -33,10 +33,16 @@
 
     <body>
         <%
+            String id = "";
+            id = request.getParameter("id");
+
             PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion con = new Conexion();
             com.mysql.jdbc.Connection conexion = con.getConnection();
+            ps = conexion.prepareStatement("SELECT * FROM PRODUCTOS PR INNER JOIN PYME PY ON PR.ID_PYME = PY.ID INNER JOIN CATEGORIA_PRODUCTO CA ON PR.ID_CATEGORIA_PRODUCTO = CA.ID WHERE PR.ID_CATEGORIA_PRODUCTO =? ");
+            ps.setString(1, id);
+            rs = ps.executeQuery();
         %>
         <header>
 
@@ -47,11 +53,20 @@
                             <li><a href="sass.html" >Nombre</a></li>
                         </ul>                
                         <div class="brand-logo center" id="titulo-banner">
-                            <span href="#" >Nombre Tienda</span>
+                            <% if(rs.next()){
+                out.println("<span href=''>" + rs.getString("CA.DESCRIPCION") + "</span>");
+                }%>
                         </div>                
                         <ul id="nav-mobile" class="right hide-on-med-and-down black-text">
-                            <a class="waves-effect  red lighten-1 btn modal-trigger" href="#modal1">Iniciar Sesión</a> 
-                            <a class="waves-effect blue-grey darken-2 btn" href="IndexPyme.jsp">Para tiendas</a>              
+                            <li>
+                                <a class="" href=""><i class="material-icons">account_circle</i></a>                                 
+                            </li>
+                            <li>
+                            <h7>Cuenta</h7> 
+                            </li>
+                            <li>
+                                <a class="" href=""><i class="material-icons">favorite</i></a> 
+                            </li>          
                         </ul>
                     </div>
                 </nav>
@@ -62,27 +77,26 @@
         <main>
             <br>
 
-            <div class="container" id="">
-
-                <h6 color="#fafafa">CATEGORÍA 1</h6>
+            <div class="container" id="">                
 
                 <div class="row">
-                    <div class="col 12 m3 s10">  
-                        <div class="card sticky-action tarjeta">
-                            <div class="card-image tarjeta-imagen">
-                                <a href="" >
-                                    <img src="Imagenes/imagen.jpg" class="responsive-img">
-                                </a>
-                            </div>
-                            <div class="card-content tarjeta-contenido">
-                                <label class="left">KRASNA</label> <br>
-                                <p class="center">Chaqueta Eco-Cuero</p>
-                                <p class="center" style="font-size: large;">$12.990</p>
-                            </div>            
-                            
-                        </div>
-                    </div>
+                    <% while (rs.next()) {
+                            out.println("<div class='col 12 m3 s10'>");
+                            out.println("<div class='card sticky-action tarjeta'>");
+                            out.println("<div class='card-image tarjeta-imagen'>");
+                            out.println("<a href='' >");
+                            out.println("<img src='Imagenes/" + rs.getString("PR.FOTO") + "' height='200' class='responsive-img' >");
+                            out.println("</a>");
+                            out.println("</div>");
+                            out.println("<div class='card-content tarjeta-contenido'>");
+                            out.println("<label class='left'>" + rs.getString("PY.NOMBRE_PYME") + "</label> <br>");
+                            out.println("<p class='center'>" + rs.getString("TITULO") + "</p>");
+                            out.println("<p class='center' style='font-size: large;'>" + rs.getString("PRECIO") + "</p>");
+                            out.println("</div>");
 
+                            out.println("</div>");
+                            out.println("</div>");
+                        }%>
                 </div>
             </div>
 
