@@ -8,15 +8,15 @@ and open the template in the editor.
     Author     : AngieRiera
 */
 
-  body {
+body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-  }
+}
 
-  main {
+main {
     flex: 1 0 auto;
-  }
+}
 
 
 #boton-banner{
@@ -30,7 +30,7 @@ and open the template in the editor.
 #banner-text{
     color: #ef5350;
     font-weight: bold;
-    
+
 }
 
 .enlace{
@@ -63,7 +63,7 @@ and open the template in the editor.
 
 #padre-card{
     display: flex;
-   align-items: center
+    align-items: center
 }
 
 nav ul li a{
@@ -101,28 +101,33 @@ footer{
     padding-bottom: 0;
 }
 
-<<<<<<< HEAD
-=======
-carousel{
-    
-    width:200px;
-    height:200px;
+.tarjeta-imagen{
+    height: 200px;    
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    padding: 0px;
+}
+
+.tarjeta-imagen img{
+    height: 200px;
+    width: 160px;
+}
+
+.tarjeta-contenido{
+    text-align: center;
+    height: 100px;
 }
 
 
-
-.card-image img{
-	height: 100px;
-	width: 100px;
-}
-
- .tarjeta{
-    height:200px;
-    width: 140px;
+.tarjeta{
+    height: 100%;
+    max-width: 100%;
+    width: 220px;
+    text-align: center;
 }
 
 .boton{
     height:25px;
     text-align: initial;
 }
->>>>>>> 81a96638f545dd9f6c767529e4527d593f40758e
