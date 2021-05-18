@@ -92,3 +92,19 @@ carousel{
     height:200px;
 }
 
+
+
+.card-image img{
+	height: 100px;
+	width: 100px;
+}
+
+ .tarjeta{
+    height:200px;
+    width: 140px;
+}
+
+.boton{
+    height:25px;
+    text-align: initial;
+}
