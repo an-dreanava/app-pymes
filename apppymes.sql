@@ -1,20 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 17-05-2021 a las 22:35:41
--- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.4.3
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 18-05-2021 a las 02:01:48
+-- Versión del servidor: 5.7.31
+-- Versión de PHP: 7.3.21
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `apppymes`
@@ -24,8 +25,8 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_cliente`(IN `vRut` VARCHAR(20), IN `vNombres` VARCHAR(40), IN `vApellidos` VARCHAR(40), IN `vTelefono` VARCHAR(20), IN `vCorreo` VARCHAR(40), IN `vContraseña` VARCHAR(20), IN `vDireccion` VARCHAR(30), IN `vComuna` INT)
-    NO SQL
+DROP PROCEDURE IF EXISTS `sp_agregar_cliente`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_agregar_cliente` (IN `vRut` VARCHAR(20), IN `vNombres` VARCHAR(40), IN `vApellidos` VARCHAR(40), IN `vTelefono` VARCHAR(20), IN `vCorreo` VARCHAR(40), IN `vContraseña` VARCHAR(20), IN `vDireccion` VARCHAR(30), IN `vComuna` INT)  NO SQL
 begin
 
 select @id := max(id) + 1 from direccion;
@@ -43,11 +44,20 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `categoria_producto`
 --
 
+DROP TABLE IF EXISTS `categoria_producto`;
 CREATE TABLE IF NOT EXISTS `categoria_producto` (
   `id` int(11) NOT NULL,
   `descripcion` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categoria_producto`
+--
+
+INSERT INTO `categoria_producto` (`id`, `descripcion`) VALUES
+(1, 'Vestuario Hombre'),
+(2, 'Vestuario Mujer');
 
 -- --------------------------------------------------------
 
@@ -55,19 +65,23 @@ CREATE TABLE IF NOT EXISTS `categoria_producto` (
 -- Estructura de tabla para la tabla `categoria_pyme`
 --
 
+DROP TABLE IF EXISTS `categoria_pyme`;
 CREATE TABLE IF NOT EXISTS `categoria_pyme` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `descripcion` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria_pyme`
 --
 
 INSERT INTO `categoria_pyme` (`id`, `descripcion`) VALUES
-(1, 'Jugueteria'),
-(2, 'Vestimenta');
+(1, 'Chaquetas'),
+(2, 'Pantalones'),
+(3, 'Zapatillas'),
+(4, 'Celulares'),
+(5, 'Televisores');
 
 -- --------------------------------------------------------
 
@@ -75,13 +89,14 @@ INSERT INTO `categoria_pyme` (`id`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `ciudad`
 --
 
+DROP TABLE IF EXISTS `ciudad`;
 CREATE TABLE IF NOT EXISTS `ciudad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(20) NOT NULL,
   `id_region` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ciudad_fk_region` (`id_region`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ciudad`
@@ -105,6 +120,7 @@ INSERT INTO `ciudad` (`id`, `descripcion`, `id_region`) VALUES
 -- Estructura de tabla para la tabla `cliente`
 --
 
+DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
   `rut` varchar(20) NOT NULL,
   `nombres` varchar(20) NOT NULL,
@@ -123,13 +139,14 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 -- Estructura de tabla para la tabla `comuna`
 --
 
+DROP TABLE IF EXISTS `comuna`;
 CREATE TABLE IF NOT EXISTS `comuna` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(20) NOT NULL,
   `id_ciudad` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `comuna_fk_ciudad` (`id_ciudad`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `comuna`
@@ -175,25 +192,21 @@ INSERT INTO `comuna` (`id`, `descripcion`, `id_ciudad`) VALUES
 -- Estructura de tabla para la tabla `direccion`
 --
 
+DROP TABLE IF EXISTS `direccion`;
 CREATE TABLE IF NOT EXISTS `direccion` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(20) NOT NULL,
   `id_comuna` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `direccion_fk_comuna` (`id_comuna`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `direccion`
 --
 
 INSERT INTO `direccion` (`id`, `descripcion`, `id_comuna`) VALUES
-(1001, 'New York 55', 2),
-(1002, 'Palaos 74', 4),
-(1003, 'Leonte 96', 6),
-(1004, 'Pedro Juarez 43', 2),
-(1005, 'Pedro Juarez 43', 2),
-(1006, 'Cans 556', 2);
+(20, 'Efeso 3396', 13);
 
 -- --------------------------------------------------------
 
@@ -201,21 +214,20 @@ INSERT INTO `direccion` (`id`, `descripcion`, `id_comuna`) VALUES
 -- Estructura de tabla para la tabla `estado`
 --
 
+DROP TABLE IF EXISTS `estado`;
 CREATE TABLE IF NOT EXISTS `estado` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `descripcion` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `estado`
 --
 
 INSERT INTO `estado` (`id`, `descripcion`) VALUES
-(1, 'Activo'),
-(2, 'Inactivo'),
-(3, 'Activo'),
-(4, 'Inactivo');
+(100, 'Activo'),
+(200, 'Inactivo');
 
 -- --------------------------------------------------------
 
@@ -223,6 +235,7 @@ INSERT INTO `estado` (`id`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `estado_pedido`
 --
 
+DROP TABLE IF EXISTS `estado_pedido`;
 CREATE TABLE IF NOT EXISTS `estado_pedido` (
   `id` int(11) NOT NULL,
   `descripcion` varchar(30) NOT NULL,
@@ -235,6 +248,7 @@ CREATE TABLE IF NOT EXISTS `estado_pedido` (
 -- Estructura de tabla para la tabla `pedidos`
 --
 
+DROP TABLE IF EXISTS `pedidos`;
 CREATE TABLE IF NOT EXISTS `pedidos` (
   `boleta` int(11) NOT NULL,
   `rut_cliente` varchar(20) NOT NULL,
@@ -257,6 +271,7 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
 -- Estructura de tabla para la tabla `productos`
 --
 
+DROP TABLE IF EXISTS `productos`;
 CREATE TABLE IF NOT EXISTS `productos` (
   `id` int(11) NOT NULL,
   `titulo` varchar(20) NOT NULL,
@@ -271,14 +286,29 @@ CREATE TABLE IF NOT EXISTS `productos` (
   KEY `productos_fk_categoria_producto` (`id_categoria_producto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `titulo`, `descripcion`, `foto`, `precio`, `stock`, `id_pyme`, `id_categoria_producto`) VALUES
+(11, 'CHAQUETA ROSA', 'chaqueta hermosa rosa ', 'chaqueta.jpg', 1000, 12, 1, 2),
+(12, 'Chaqueta Negra', 'hermosa chaqueta negra', 'chaquetanegra.jpg', 15000, 12, 1, 2),
+(14, 'chaqueta verde', 'chaqueta verde', 'chaquetaverde.jpg', 12000, 12, 1, 2),
+(15, 'Chaqueta  morada', 'Chaqueta morada', 'chaquetamorada.jpg', 10200, 12, 1, 2),
+(16, 'Chaqueta chiquita', 'chaqueta chiquita', 'chaquetachiquita.jpg', 5000, 12, 1, 2),
+(17, 'Chaqueton', 'Chaquetonnn', 'chaqueton.jpg', 12000, 12, 1, 1),
+(18, 'Chaquetote', 'chaquetote', 'chaquetote.jpg', 12000, 12, 1, 1),
+(19, 'Chaquetonazo', 'chaquetonazo', 'chaquetonazo.jpg', 12000, 12, 1, 2);
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pyme`
 --
 
+DROP TABLE IF EXISTS `pyme`;
 CREATE TABLE IF NOT EXISTS `pyme` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `nombres` varchar(30) NOT NULL,
   `apellidos` varchar(30) NOT NULL,
   `rut` varchar(20) NOT NULL,
@@ -294,15 +324,14 @@ CREATE TABLE IF NOT EXISTS `pyme` (
   KEY `pyme_fk_categoria_pyme` (`id_categoria_pyme`),
   KEY `pyme_fk_direccion` (`id_direccion`),
   KEY `pyme_fk_estado` (`id_estado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `pyme`
 --
 
 INSERT INTO `pyme` (`id`, `nombres`, `apellidos`, `rut`, `nombre_pyme`, `correo`, `contrasena`, `telefono`, `id_categoria_pyme`, `id_direccion`, `id_estado`, `logo`) VALUES
-(1, 'Ana', 'Perez', '1-1', 'Luisana', 'analuisa@gmail.com', '1-1', '+5691001', 1, 1005, 2, ' '),
-(2, 'Hanna', 'Hayes', '2-2', 'Loop', 'hh@gmail.com', '2-2', '+5691002', 1, 1006, 2, ' ');
+(1, 'Francisco', 'Poblete', '207462179', 'Krasna', 'fpoblete018@gmail.com', '1234', '123456789', 1, 20, 100, 'logo');
 
 -- --------------------------------------------------------
 
@@ -310,11 +339,12 @@ INSERT INTO `pyme` (`id`, `nombres`, `apellidos`, `rut`, `nombre_pyme`, `correo`
 -- Estructura de tabla para la tabla `region`
 --
 
+DROP TABLE IF EXISTS `region`;
 CREATE TABLE IF NOT EXISTS `region` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `region`
@@ -328,7 +358,7 @@ INSERT INTO `region` (`id`, `descripcion`) VALUES
 (5, 'Coquimbo'),
 (6, 'Valparaíso'),
 (7, 'Metropolitana'),
-(8, 'Bernardo O''Higgins'),
+(8, 'Bernardo O\'Higgins'),
 (9, 'Maule'),
 (10, 'Ñuble'),
 (11, 'Biobío'),
@@ -342,6 +372,7 @@ INSERT INTO `region` (`id`, `descripcion`) VALUES
 -- Estructura de tabla para la tabla `validacion`
 --
 
+DROP TABLE IF EXISTS `validacion`;
 CREATE TABLE IF NOT EXISTS `validacion` (
   `id` int(11) NOT NULL,
   `id_pyme` int(11) NOT NULL,
@@ -407,6 +438,7 @@ ALTER TABLE `pyme`
 --
 ALTER TABLE `validacion`
   ADD CONSTRAINT `validacion_fk_pyme` FOREIGN KEY (`id_pyme`) REFERENCES `pyme` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
