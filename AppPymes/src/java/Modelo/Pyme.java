@@ -19,17 +19,13 @@ public class Pyme {
     private String contraseña;
     private String telefono;
     private int id_categoria;
-    private String des_direccion;
-    private int id_comuna;
-    private int id_region;
     private int id_direccion;
     private int estado;
     private String logo;
 
     public Pyme(int id, String nombre, String apellido, String rut,
             String nombrePyme, String correo, String contraseña, String telefono,
-            int id_categoria, String des_direccion, int id_comuna, int id_region,
-            int id_direccion, int estado, String logo) {
+            int id_categoria, int id_direccion, int estado, String logo) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -39,9 +35,6 @@ public class Pyme {
         this.contraseña = contraseña;
         this.telefono = telefono;
         this.id_categoria = id_categoria;
-        this.des_direccion = des_direccion;
-        this.id_comuna = id_comuna;
-        this.id_region = id_region;
         this.id_direccion = id_direccion;
         this.estado = estado;
         this.logo = logo;
@@ -119,30 +112,6 @@ public class Pyme {
         this.id_categoria = id_categoria;
     }
 
-    public String getDes_direccion() {
-        return des_direccion;
-    }
-
-    public void setDes_direccion(String des_direccion) {
-        this.des_direccion = des_direccion;
-    }
-
-    public int getId_comuna() {
-        return id_comuna;
-    }
-
-    public void setId_comuna(int id_comuna) {
-        this.id_comuna = id_comuna;
-    }
-
-    public int getId_region() {
-        return id_region;
-    }
-
-    public void setId_region(int id_region) {
-        this.id_region = id_region;
-    }
-
     public int getId_direccion() {
         return id_direccion;
     }
@@ -166,8 +135,9 @@ public class Pyme {
     public void setLogo(String logo) {
         this.logo = logo;
     }
+
     @Override
     public String toString() {
-        return "Pyme{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", rut=" + rut + ", nombrePyme=" + nombrePyme + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", id_categoria=" + id_categoria + ", des_direccion=" + des_direccion + ", id_comuna=" + id_comuna + ", id_region=" + id_region + ", id_direccion=" + id_direccion + ", estado=" + estado + ", logo=" + logo + '}';
+        return "Pyme{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", rut=" + rut + ", nombrePyme=" + nombrePyme + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", id_categoria=" + id_categoria + ", id_direccion=" + id_direccion + ", estado=" + estado + ", logo=" + logo + '}';
     }
 }

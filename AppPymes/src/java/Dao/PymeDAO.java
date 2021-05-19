@@ -23,7 +23,7 @@ public class PymeDAO {
     ResultSet rs = null;
     Connection con;
     
-       public boolean AgregarPyme(Pyme pyme) {
+       public boolean AgregarPyme(Pyme pyme, String des_direccion, int id_comuna) {
         int i = 0;
         boolean estado = false;
         Conexion con = new Conexion();
@@ -32,7 +32,7 @@ public class PymeDAO {
         if (conexion != null) {
             try {                
                 Statement st = conexion.createStatement();
-                String query = "INSERT INTO pyme (nombres,apellidos,rut, nombre_pyme,correo,contrasena,telefono,id_categoria_pyme,id_direccion,id_estado,                                 logo)VALUES('"+pyme.getNombre()+"','"+pyme.getApellido()+"','"+pyme.getRut()+"','"+pyme.getNombrePyme()+"','"+pyme.getCorreo()+"','"+pyme.getContraseña()+"','"+pyme.getTelefono()+"','"+pyme.getId_categoria()+"','"+dao.Id_Direccion(pyme)+"',2,'"+pyme.getLogo()+"')";
+                String query = "INSERT INTO pyme (nombres,apellidos,rut, nombre_pyme,correo,contrasena,telefono,id_categoria_pyme,id_direccion,id_estado,                                 logo)VALUES('"+pyme.getNombre()+"','"+pyme.getApellido()+"','"+pyme.getRut()+"','"+pyme.getNombrePyme()+"','"+pyme.getCorreo()+"','"+pyme.getContraseña()+"','"+pyme.getTelefono()+"','"+pyme.getId_categoria()+"','"+dao.Id_Direccion(des_direccion,id_comuna)+"',2,'"+pyme.getLogo()+"')";
                
                 int filas = st.executeUpdate(query);
                 if (filas > 0) {
@@ -45,7 +45,7 @@ public class PymeDAO {
         return estado;
     }
        
-        public int Id_Direccion(Pyme pyme) {
+        public int Id_Direccion(String des_direccion, int id_comuna) {
         int id_direccion = 0;
         Conexion con = new Conexion();
         Connection conexion = con.getConnection();
@@ -62,7 +62,7 @@ public class PymeDAO {
         
          try {                
                 Statement st = conexion.createStatement();
-                String query = "INSERT INTO direccion (id,descripcion,id_comuna)VALUES('"+id_direccion+"','"+pyme.getDes_direccion()+"','"+pyme.getId_comuna()+"')";
+                String query = "INSERT INTO direccion (id,descripcion,id_comuna)VALUES('"+id_direccion+"','"+des_direccion+"','"+id_comuna+"')";
                
                 st.executeUpdate(query);
             } catch (Exception e) {
@@ -74,9 +74,10 @@ public class PymeDAO {
         
         
         
-         public boolean login(String correo,String contrasena) {
+         public Pyme login(String correo,String contrasena) {
         Conexion con = new Conexion();
         com.mysql.jdbc.Connection conexion = con.getConnection();
+        Pyme pyme=null;
 
         try {
             ps = conexion.prepareStatement("SELECT * FROM pyme WHERE correo=? AND contrasena=?");
@@ -85,13 +86,22 @@ public class PymeDAO {
             rs = ps.executeQuery();
 
             while(rs.next()){
-               
-            }
-            return false;
+               int id_pyme=rs.getInt(1);
+               String nombre=rs.getString(2);
+               String apellido=rs.getString(3);
+               String rut=rs.getString(4);
+               String nombre_pyme=rs.getString(5);
+               String telefono=rs.getString(8);
+               int id_categoria=rs.getInt(9);
+               int id_direccion=rs.getInt(10);
+               int id_estado=rs.getInt(11);
+               String logo=rs.getString(12);
+               pyme=new Pyme(0,nombre,apellido,rut,nombre_pyme,correo,contrasena,telefono,id_categoria,id_direccion,id_estado,logo);
+           }
         } catch (Exception ex) {
-            System.err.println("Error, " + ex);
-            return false;
+            System.err.println("Error LOGIN PYMEDAO, " + ex);
         }
+        return pyme;
     }
         
         public ArrayList<Categoria> Categoria() {
