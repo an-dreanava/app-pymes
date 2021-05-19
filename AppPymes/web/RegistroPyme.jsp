@@ -23,6 +23,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" href="js/modal.js"></script>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
@@ -31,7 +32,7 @@
         <link type="text/css" rel="stylesheet" href="css/estilo.css" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     </head>
-    
+
     <body>
         <div class="navbar-fixed">
             <nav class="white">
@@ -53,8 +54,7 @@
             <h5 id="titulo_form_pymes">Formulario de Inscripción</h5>           
         </div>
         
-        
-
+      
         <!-- Modal Iniciar Sesión -->
         <div id="modal1" class="modal">
             <form action="" method="POST">
@@ -82,8 +82,20 @@
                 </div>
             </form>
         </div>
+        
+<button id="open">
+  Hacer Click
+</button>
 
-
+<div id="modal_container" class="modal-container">
+  <div class="modal">
+    <h1>Ventana Modal</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque assumenda dignissimos illo explicabo natus quia repellat, praesentium voluptatibus harum ipsam dolorem cumque labore sunt dicta consectetur, nesciunt maiores delectus maxime?
+    </p>
+    <button id="close">Cerrar</button>
+  </div>
+</div>
         
         <div class="container" style="padding: 20px" >
             <div class="row" >
@@ -252,7 +264,7 @@
                 var elems = document.querySelectorAll('.sidenav');
                 var instances = M.Sidenav.init(elems, options);
             });
-
+            
             document.addEventListener('DOMContentLoaded', function () {
                 var elems = document.querySelectorAll('.modal');
                 var instances = M.Modal.init(elems);

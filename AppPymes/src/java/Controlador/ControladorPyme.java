@@ -53,7 +53,7 @@ public class ControladorPyme extends HttpServlet {
             
             PymeDAO PymeDAO=new PymeDAO();
             if(PymeDAO.AgregarPyme(pyme)==true){
-                response.sendRedirect("RegistroPyme.jsp");
+                response.sendRedirect("#modall");
             }
             
             }catch(Exception e){
