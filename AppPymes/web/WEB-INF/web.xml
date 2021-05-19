@@ -16,6 +16,14 @@
         <servlet-name>ControladorLogin</servlet-name>
         <servlet-class>Controlador.ControladorLoginCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorLoginPyme2</servlet-name>
+        <servlet-class>ControladorLoginPyme2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorLoginPyme</servlet-name>
+        <servlet-class>Controlador.ControladorLoginPyme</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlador</servlet-name>
         <url-pattern>/controlador</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>ControladorLogin</servlet-name>
         <url-pattern>/ControladorLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorLoginPyme2</servlet-name>
+        <url-pattern>/ControladorLoginPyme2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorLoginPyme</servlet-name>
+        <url-pattern>/ControladorLoginPyme</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

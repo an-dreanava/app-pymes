@@ -30,11 +30,11 @@ public class ControladorLoginPyme extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        PymeDAO PymeDAO = new PymeDAO();
+         PymeDAO PymeDAO = new PymeDAO();
 
         String correo = "";
         String clave = "";
@@ -56,7 +56,7 @@ public class ControladorLoginPyme extends HttpServlet {
             if (pyme != (null)) {
                 sesion.setAttribute("usuario", pyme);
                 sesion.setAttribute("estadoSesion", "on");
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Aceptado&mensaje=Sus datos NO han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=IndexPyme.jsp");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Aceptado&mensaje=Sus datos han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=IndexPyme.jsp");
                 System.out.println("pyme encontrada");
             }else{
                 System.out.println("pyme null");
@@ -70,10 +70,11 @@ public class ControladorLoginPyme extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorLogin</title>");
+            out.println("<title>Servlet ControladorLoginPyme</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControladorLogin at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControladorLoginPyme at " + request.
+                    getContextPath() + "</h1>");
             out.println("CORREO:" + correo);
             out.println("CLAVE:" + clave);
             out.println("OPCION:" + opcion);
@@ -92,7 +93,8 @@ public class ControladorLoginPyme extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -106,7 +108,8 @@ public class ControladorLoginPyme extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

@@ -131,11 +131,7 @@ footer{
     height:25px;
     text-align: initial;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 73a4317e778448a85c4c82ccafe686797fce6891
-fieldset .imagen{
+.imagen{
         height:350px;
 	width: 350px;
 	padding:10px;
@@ -144,15 +140,11 @@ fieldset .imagen{
 }
 .Info{
     
-<<<<<<< HEAD
     padding:100px
 }
 
 .corazon{
-    float:right;
- 
-=======
-    padding:50px;
+    float:right; padding:50px;
     
 }
 
@@ -173,7 +165,6 @@ button{
     padding: 0 10px;
     border-radius: 5px;
     
->>>>>>> 73a4317e778448a85c4c82ccafe686797fce6891
 }
 
 button:hover, button:focus{
@@ -196,7 +187,3 @@ button:hover, button:focus{
  float:right;
  position:fixed;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 73a4317e778448a85c4c82ccafe686797fce6891
