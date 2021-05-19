@@ -3,32 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Modelo/Pyme.java</file>
             <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/RegistroPyme.jsp</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/RegistroPyme_Modal.jsp</file>
             <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/RegistroCliente.jsp</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Modelo/Categoria.java</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Controlador/ControladorPyme.java</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Controlador/ControladorCliente.java</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Dao/PymeDAO.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/RegistroCliente.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/src/java/Dao/ClienteDAO.java</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/ProductosCategoria.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/InicioCliente.jsp</file>
-=======
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/Index.jsp</file>
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/css/estilo.css</file>
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/VistaProducto.jsp</file>
->>>>>>> 16f5e2fa1280b81562fac49d48f386bd9c95325c
->>>>>>> 39fb29bd68a3e1689c8eec7db6739543b7d33771
-=======
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/Index.jsp</file>
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/css/estilo.css</file>
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/VistaProducto.jsp</file>
->>>>>>> b0c5183d1e724417f285ca1f7f8b6c4dcffa8b4d
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/css/ventana.css</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/VentanaModal.jsp</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/js/ventana.js</file>
+            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Dao/DireccionDAO.java</file>
         </group>
     </open-files>
 </project-private>
