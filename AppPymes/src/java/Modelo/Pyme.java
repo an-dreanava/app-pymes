@@ -18,7 +18,7 @@ public class Pyme {
     private String correo;
     private String contraseña;
     private String telefono;
-    private String categoria;
+    private int id_categoria;
     private String des_direccion;
     private int id_comuna;
     private int id_region;
@@ -28,7 +28,7 @@ public class Pyme {
 
     public Pyme(int id, String nombre, String apellido, String rut,
             String nombrePyme, String correo, String contraseña, String telefono,
-            String categoria, String des_direccion, int id_comuna, int id_region,
+            int id_categoria, String des_direccion, int id_comuna, int id_region,
             int id_direccion, int estado, String logo) {
         this.id = id;
         this.nombre = nombre;
@@ -38,7 +38,7 @@ public class Pyme {
         this.correo = correo;
         this.contraseña = contraseña;
         this.telefono = telefono;
-        this.categoria = categoria;
+        this.id_categoria = id_categoria;
         this.des_direccion = des_direccion;
         this.id_comuna = id_comuna;
         this.id_region = id_region;
@@ -111,12 +111,12 @@ public class Pyme {
         this.telefono = telefono;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public int getId_categoria() {
+        return id_categoria;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
     }
 
     public String getDes_direccion() {
@@ -166,11 +166,8 @@ public class Pyme {
     public void setLogo(String logo) {
         this.logo = logo;
     }
-
     @Override
     public String toString() {
-        return "Pyme{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", rut=" + rut + ", nombrePyme=" + nombrePyme + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", categoria=" + categoria + ", des_direccion=" + des_direccion + ", id_comuna=" + id_comuna + ", id_region=" + id_region + ", id_direccion=" + id_direccion + ", estado=" + estado + ", logo=" + logo + '}';
+        return "Pyme{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", rut=" + rut + ", nombrePyme=" + nombrePyme + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", id_categoria=" + id_categoria + ", des_direccion=" + des_direccion + ", id_comuna=" + id_comuna + ", id_region=" + id_region + ", id_direccion=" + id_direccion + ", estado=" + estado + ", logo=" + logo + '}';
     }
-    
-        
 }

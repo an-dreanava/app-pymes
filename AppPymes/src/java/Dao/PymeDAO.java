@@ -32,7 +32,7 @@ public class PymeDAO {
         if (conexion != null) {
             try {                
                 Statement st = conexion.createStatement();
-                String query = "INSERT INTO pyme (nombres,apellidos,rut, nombre_pyme,correo,contrasena,telefono,id_categoria_pyme,id_direccion,id_estado,                                 logo)VALUES('"+pyme.getNombre()+"','"+pyme.getApellido()+"','"+pyme.getRut()+"','"+pyme.getNombrePyme()+"','"+pyme.getCorreo()+"','"+pyme.getContraseña()+"','"+pyme.getTelefono()+"','"+pyme.getCategoria()+"','"+dao.Id_Direccion(pyme)+"',2,'"+pyme.getLogo()+"')";
+                String query = "INSERT INTO pyme (nombres,apellidos,rut, nombre_pyme,correo,contrasena,telefono,id_categoria_pyme,id_direccion,id_estado,                                 logo)VALUES('"+pyme.getNombre()+"','"+pyme.getApellido()+"','"+pyme.getRut()+"','"+pyme.getNombrePyme()+"','"+pyme.getCorreo()+"','"+pyme.getContraseña()+"','"+pyme.getTelefono()+"','"+pyme.getId_categoria()+"','"+dao.Id_Direccion(pyme)+"',2,'"+pyme.getLogo()+"')";
                
                 int filas = st.executeUpdate(query);
                 if (filas > 0) {
@@ -70,6 +70,28 @@ public class PymeDAO {
             }
         
         return (id_direccion);
+    }
+        
+        
+        
+         public boolean login(String correo,String contrasena) {
+        Conexion con = new Conexion();
+        com.mysql.jdbc.Connection conexion = con.getConnection();
+
+        try {
+            ps = conexion.prepareStatement("SELECT * FROM pyme WHERE correo=? AND contrasena=?");
+            ps.setString(1, correo);
+            ps.setString(2, contrasena);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+               
+            }
+            return false;
+        } catch (Exception ex) {
+            System.err.println("Error, " + ex);
+            return false;
+        }
     }
         
         public ArrayList<Categoria> Categoria() {
