@@ -70,8 +70,9 @@
                 <div class="">
                     <fieldset>
                         <img src="Imagenes/imagen.jpg" class="imagen">
-                        <p class="Info"><br>
-                        <h5>NOMBRE PRODUCTO  </h5>
+                        <p class="Info">
+                        <h5>NOMBRE PRODUCTO</h5> <a class="corazon" href=""><i class="material-icons">favorite</i></a>  
+                        <br>
                         <h6>NOMBRE TIENDA </h6>
 
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -82,6 +83,8 @@
                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
                         </p>
+                        
+                        <a class="waves-effect  red lighten-1 btn modal-trigger white-text" href="#modal1">Iniciar Sesión</a>
                     </fieldset>
 
 
