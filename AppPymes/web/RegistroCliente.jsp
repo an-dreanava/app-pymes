@@ -329,11 +329,11 @@
                     return false;
                 }
 
-                if (correo.value === '') {
-                    alert('Correo es obligatorio');
-                    correo.focus();
-                    return false;
-                }
+               // if (correo.value === '') {
+                   // alert('Correo es obligatorio');
+                   // correo.focus();
+                  //  return false;
+              //  }
 
                 //if (!email.test(correo.value)) {
                  //   alert('Correo no es válido');
