@@ -1,7 +1,7 @@
 <%-- 
-    Document   : CategoriaProductos
-    Created on : 17-05-2021, 16:45:37
-    Author     : Paula Poblete
+    Document   : ProductosPyme
+    Created on : may 18, 2021, 9:26:22 p.m.
+    Author     : AngieRiera
 --%>
 
 <%@page import="Modelo.Conexion"%>
@@ -40,7 +40,7 @@
             ResultSet rs = null;
             Conexion con = new Conexion();
             com.mysql.jdbc.Connection conexion = con.getConnection();
-            ps = conexion.prepareStatement("SELECT * FROM PRODUCTOS PR INNER JOIN PYME PY ON PR.ID_PYME = PY.ID INNER JOIN CATEGORIA_PRODUCTO CA ON PR.ID_CATEGORIA_PRODUCTO = CA.ID WHERE PR.ID_CATEGORIA_PRODUCTO =? ");
+            ps = conexion.prepareStatement("SELECT * FROM PRODUCTOS PR INNER JOIN PYME PY ON PR.ID_PYME = PY.ID  WHERE PY.ID =? ");
             ps.setString(1, id);
             rs = ps.executeQuery();
         %>
@@ -54,7 +54,7 @@
                         </ul>                
                         <div class="brand-logo center" id="titulo-banner">
                             <% if (rs.next()) {
-                                    out.println("<span href=''>" + rs.getString("CA.DESCRIPCION") + "</span>");
+                                    out.println("<span href=''>" + rs.getString("PY.NOMBRE_PYME") + "</span>");
                                 }%>
                         </div>                
                         <ul id="nav-mobile" class="right hide-on-med-and-down black-text">
@@ -92,8 +92,14 @@
                     </div>
                 </div>
             </div>
-
-            <div class="divider"></div><br>
+            
+            <br>
+            <div class="divider"></div>
+            <div class="container">
+                <h6 color="#fafafa">CATÁLOGO</h6>
+            </div>
+            <div class="divider"></div>
+            <br>
 
             <div class="container" id="">        
 
