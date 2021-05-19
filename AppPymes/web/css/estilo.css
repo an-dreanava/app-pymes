@@ -131,3 +131,15 @@ footer{
     height:25px;
     text-align: initial;
 }
+fieldset .imagen{
+    height:350px;
+	width: 350px;
+	padding:10px;
+	margin: 10px;
+	float:left;
+}
+fieldset Info{
+    
+    padding:100px;
+    
+}
