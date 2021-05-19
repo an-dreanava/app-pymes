@@ -92,7 +92,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col s10">
-                        <a href="InicioCliente.jsp"><h6><i class="material-icons">navigate_before</i>VOLVER</h6></a>                        
+                        <a href="IndexCliente.jsp"><h6><i class="material-icons">navigate_before</i>VOLVER</h6></a>                        
                     </div>
                 </div>
 

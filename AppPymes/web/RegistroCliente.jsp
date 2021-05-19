@@ -64,13 +64,13 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
-                            <input name="correo" id="correo" type="text" class="validate">
-                            <label for="correo">Correo</label>
+                            <input name="correoL" id="correoL" type="text" class="validate">
+                            <label for="correoL">Correo</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">https</i>
-                            <input name="clave" id="clave" type="password" class="validate">
-                            <label for="clave">Contraseña</label>
+                            <input name="claveL" id="claveL" type="password" class="validate">
+                            <label for="claveL">Contraseña</label>
                         </div>
                         <div class="input-field col s12">
                             <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar Sesion">
@@ -329,11 +329,11 @@
                     return false;
                 }
 
-                if (correo.value === '') {
-                    alert('Correo es obligatorio');
-                    correo.focus();
-                    return false;
-                }
+               // if (correo.value === '') {
+                   // alert('Correo es obligatorio');
+                   // correo.focus();
+                  //  return false;
+              //  }
 
                 //if (!email.test(correo.value)) {
                  //   alert('Correo no es válido');

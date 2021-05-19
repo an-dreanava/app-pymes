@@ -131,6 +131,10 @@ footer{
     height:25px;
     text-align: initial;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73a4317e778448a85c4c82ccafe686797fce6891
 fieldset .imagen{
         height:350px;
 	width: 350px;
@@ -138,15 +142,45 @@ fieldset .imagen{
 	margin: 10px;
 	float:left;
 }
-fieldset Info{
+.Info{
     
+<<<<<<< HEAD
     padding:100px
 }
 
 .corazon{
     float:right;
  
+=======
+    padding:50px;
+    
 }
+
+.box input{
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    margin:0 5px !important;
+    width: 100px;
+}
+
+button{
+    background: white;
+    color: black;;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    border-radius: 5px;
+    
+>>>>>>> 73a4317e778448a85c4c82ccafe686797fce6891
+}
+
+button:hover, button:focus{
+    background: #ef5350;
+    color: white;
+}
+
 
 .imagenmodal{
     float:left;
@@ -162,3 +196,7 @@ fieldset Info{
  float:right;
  position:fixed;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73a4317e778448a85c4c82ccafe686797fce6891

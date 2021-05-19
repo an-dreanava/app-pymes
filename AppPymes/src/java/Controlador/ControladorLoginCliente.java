@@ -43,8 +43,8 @@ public class ControladorLoginCliente extends HttpServlet {
         //sesion.setAttribute("estadoSesion", "off");
 
         if (opcion.equals("Iniciar Sesion")) {
-            String correo = request.getParameter("correo");
-            String clave = request.getParameter("clave");
+            String correo = request.getParameter("correoL");
+            String clave = request.getParameter("claveL");
 
             cliente.setCorreo(correo);
             cliente.setContraseña(clave);
