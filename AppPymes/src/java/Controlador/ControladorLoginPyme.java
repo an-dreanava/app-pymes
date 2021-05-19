@@ -5,8 +5,8 @@
  */
 package Controlador;
 
-import Dao.ClienteDAO;
-import Modelo.Cliente;
+import Dao.PymeDAO;
+import Modelo.Pyme;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author AngieRiera
+ * @author drean
  */
-public class ControladorLoginCliente extends HttpServlet {
+public class ControladorLoginPyme extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,33 +34,37 @@ public class ControladorLoginCliente extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String opcion = request.getParameter("opcion");
-        ClienteDAO dao = new ClienteDAO();
-        Cliente cliente = new Cliente();
+        PymeDAO PymeDAO = new PymeDAO();
 
-        //HttpSession sesion = request.getSession(true);
-        //sesion.setAttribute("usuario", null);
-        //sesion.setAttribute("estadoSesion", "off");
+        String correo = "";
+        String clave = "";
+        String opcion = "";
 
-        if (opcion.equals("Iniciar Sesion")) {
-            String correo = request.getParameter("correoL");
-            String clave = request.getParameter("claveL");
+        opcion = request.getParameter("opcion");
+        clave = request.getParameter("clave");
+        correo = request.getParameter("correo");
 
-            cliente.setCorreo(correo);
-            cliente.setContraseña(clave);
+        if (opcion.equals("IniciarSesion")) {
 
-            if (dao.login(cliente) == true) {
+            HttpSession sesion = request.getSession(true);
 
-                //sesion.setAttribute("usuario", cliente);
-                //sesion.setAttribute("estadoSesion", "on");
+            sesion.setAttribute("usuario", null);
+            sesion.setAttribute("estadoSesion", "off");
 
-                response.sendRedirect("InicioCliente.jsp");
+            Pyme pyme = PymeDAO.login(correo, clave);
 
-            } else {
-                response.sendRedirect("MensajeError.jsp?mensaje="+correo+clave);
+            if (pyme != (null)) {
+                sesion.setAttribute("usuario", pyme);
+                sesion.setAttribute("estadoSesion", "on");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Aceptado&mensaje=Sus datos NO han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=IndexPyme.jsp");
+                System.out.println("pyme encontrada");
+            }else{
+                System.out.println("pyme null");
             }
-        }
 
+        } else {
+            response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Sus datos NO han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=IndexPyme.jsp");
+        }
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -70,6 +74,9 @@ public class ControladorLoginCliente extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ControladorLogin at " + request.getContextPath() + "</h1>");
+            out.println("CORREO:" + correo);
+            out.println("CLAVE:" + clave);
+            out.println("OPCION:" + opcion);
             out.println("</body>");
             out.println("</html>");
         }

@@ -44,7 +44,7 @@
                             <label for="clave">Contraseña</label>
                         </div>
                         <div class="input-field col s12">
-                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar Sesion">
+                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="IniciarSesion">
                             <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
                         </div>
                     </div>                

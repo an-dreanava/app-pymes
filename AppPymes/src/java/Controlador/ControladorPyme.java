@@ -34,26 +34,30 @@ public class ControladorPyme extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String rut = request.getParameter("rut");
-        String nombre_pyme = request.getParameter("nombre_pyme");
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        int id_region = Integer.parseInt(request.getParameter("id_region"));
-        int id_comuna = Integer.parseInt(request.getParameter("id_comuna"));
-        String des_direccion = request.getParameter("des_direccion");
-        String telefono = request.getParameter("telefono");
-        String correo = request.getParameter("correo");
-        String contrasena = request.getParameter("contrasena");
-         String id_categoria = request.getParameter("id_categoria");
-        String opcion = request.getParameter("opcion");
+        String rut,nombre_pyme,nombre,apellido,des_direccion,telefono,correo,contrasena,opcion="";
+        int id_region=0,id_comuna=0,id_categoria=0;
+        
+        rut = request.getParameter("rut");
+        nombre_pyme = request.getParameter("nombre_pyme");
+        nombre = request.getParameter("nombre");
+        apellido = request.getParameter("apellido");
+        id_region = Integer.parseInt(request.getParameter("id_region"));
+        id_comuna = Integer.parseInt(request.getParameter("id_comuna"));
+        des_direccion = request.getParameter("des_direccion");
+        telefono = request.getParameter("telefono");
+        correo = request.getParameter("correo");
+        contrasena = request.getParameter("contrasena");
+        id_categoria = Integer.parseInt(request.getParameter("id_categoria"));
+        opcion = request.getParameter("opcion");
         
         if(opcion.equals("Agregar")){
             try{
-                Pyme pyme=new Pyme(0,nombre,apellido,rut,nombre_pyme,correo,contrasena,telefono,id_categoria,des_direccion,id_comuna,id_region,0,2," ");
-            
+                Pyme pyme=new Pyme(0,nombre,apellido,rut,nombre_pyme,correo,contrasena,telefono,id_categoria,0,2," ");           
             PymeDAO PymeDAO=new PymeDAO();
-            if(PymeDAO.AgregarPyme(pyme)==true){
-                response.sendRedirect("RegistroPyme.jsp");
+            if(PymeDAO.AgregarPyme(pyme, des_direccion, id_comuna)==true){
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Solicitud Ingresada&mensaje=Sus datos han sido recepcionados con exito,en cuanto la validacion este completada podra iniciar sesion sin problemas.&boton=Aceptar&retorno=IndexPyme.jsp");
+            }else{
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Solicitud NO Ingresada&mensaje=Sus datos NO han sido recepcionados con exito,vuelva a intentarlo.&boton=Aceptar&retorno=IndexPyme.jsp");
             }
             
             }catch(Exception e){

@@ -18,18 +18,14 @@ public class Pyme {
     private String correo;
     private String contraseña;
     private String telefono;
-    private String categoria;
-    private String des_direccion;
-    private int id_comuna;
-    private int id_region;
+    private int id_categoria;
     private int id_direccion;
     private int estado;
     private String logo;
 
     public Pyme(int id, String nombre, String apellido, String rut,
             String nombrePyme, String correo, String contraseña, String telefono,
-            String categoria, String des_direccion, int id_comuna, int id_region,
-            int id_direccion, int estado, String logo) {
+            int id_categoria, int id_direccion, int estado, String logo) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -38,10 +34,7 @@ public class Pyme {
         this.correo = correo;
         this.contraseña = contraseña;
         this.telefono = telefono;
-        this.categoria = categoria;
-        this.des_direccion = des_direccion;
-        this.id_comuna = id_comuna;
-        this.id_region = id_region;
+        this.id_categoria = id_categoria;
         this.id_direccion = id_direccion;
         this.estado = estado;
         this.logo = logo;
@@ -111,36 +104,12 @@ public class Pyme {
         this.telefono = telefono;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public int getId_categoria() {
+        return id_categoria;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getDes_direccion() {
-        return des_direccion;
-    }
-
-    public void setDes_direccion(String des_direccion) {
-        this.des_direccion = des_direccion;
-    }
-
-    public int getId_comuna() {
-        return id_comuna;
-    }
-
-    public void setId_comuna(int id_comuna) {
-        this.id_comuna = id_comuna;
-    }
-
-    public int getId_region() {
-        return id_region;
-    }
-
-    public void setId_region(int id_region) {
-        this.id_region = id_region;
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
     }
 
     public int getId_direccion() {
@@ -169,8 +138,6 @@ public class Pyme {
 
     @Override
     public String toString() {
-        return "Pyme{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", rut=" + rut + ", nombrePyme=" + nombrePyme + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", categoria=" + categoria + ", des_direccion=" + des_direccion + ", id_comuna=" + id_comuna + ", id_region=" + id_region + ", id_direccion=" + id_direccion + ", estado=" + estado + ", logo=" + logo + '}';
+        return "Pyme{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", rut=" + rut + ", nombrePyme=" + nombrePyme + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", id_categoria=" + id_categoria + ", id_direccion=" + id_direccion + ", estado=" + estado + ", logo=" + logo + '}';
     }
-    
-        
 }

@@ -85,7 +85,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col s4 ">
-                        <a href="InicioCliente.jsp">
+                        <a href="IndexCliente.jsp">
                             <i class="material-icons left" >navigate_before</i>
                             <h6 color="#fafafa">VOLVER</h6>  
                         </a>

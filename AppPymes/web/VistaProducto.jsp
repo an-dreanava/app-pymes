@@ -13,17 +13,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
-        <link type="text/css" rel="stylesheet" href="css/estilo.css" />
+        <link href="css/jquery.nice-number.css" rel="stylesheet">
+        
 
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+        <link type="text/css" rel="stylesheet" href="css/estilo.css" />
 
     </head>
     <body>
@@ -70,21 +70,34 @@
                 <div class="">
                     <fieldset>
                         <img src="Imagenes/imagen.jpg" class="imagen">
-                        <p class="Info">
-                        <h5>NOMBRE PRODUCTO</h5> <a class="corazon" href=""><i class="material-icons">favorite</i></a>  
-                        <br>
-                        <h6>NOMBRE TIENDA </h6>
+                        <div class="Info">
+                            <div class="container">
+                                <h5>NOMBRE PRODUCTO <a class="fav right" href=""><i class="material-icons">favorite</i></a> </h5> 
+                            </div>
 
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <label>NOMBRE TIENDA </label>
+                            <div class="row">
+                                <div class="col s2">
+                                    <h5>$15.000</h5>                        
+                                </div>
+                                <div class="col s3 box">
+                                    <input name="cant" id="cant" value="1" type="number" class="validate"  required> 
+                                </div>
+                                <div class="col s7">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. </p>                      
+                                </div>
+                                <div class="col s7">
+                                    <a class="waves-effect  red lighten-1 btn modal-trigger white-text" href="#modal1" id="modall">COMPRAR</a>
+                                </div>
+                            </div>
 
-                        </p>
 
-                        <a class="waves-effect  red lighten-1 btn modal-trigger white-text" href="#modal1" id="modall">COMPRAR</a>
+                        </div>
+
+
 
                         <div id="modal1" class="modal">
                             <form action="ControladorLoginCliente" method="POST">
@@ -94,14 +107,14 @@
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <img src="Imagenes/imagen.jpg" class="imagenmodal">
-                                            
+
                                             <h5>NOMBRE </h5> 
                                             <h6>NOMBRE TIENDA </h6>
                                             <input type="number" class="numeracion">
-                                            
-                                            
+
+
                                             <p class="precio">$!!!!</p><br>
-                                            
+
 
                                             <br><br>
                                             <a class="waves-effect  red lighten-1 btn modal-trigger white-text " href="#modal1" id="modall">COMPRAR</a>
@@ -164,20 +177,30 @@
 
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+                integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+                crossorigin="anonymous">
+        </script>
+        <script src="js/jquery.nice-number.js"></script>
+
         <script>
-            $(document).ready(function () {
-                $('select').formSelect();
-            });
+                    $(function () {
+                        $('input[type="number"]').niceNumber();
+                    });
+                    
+                    $(document).ready(function () {
+                        $('select').formSelect();
+                    });
 
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('select');
-                var instances = M.FormSelect.init(elems, options);
-            });
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var elems = document.querySelectorAll('select');
+                        var instances = M.FormSelect.init(elems, options);
+                    });
 
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('.modal');
-                var instances = M.Modal.init(elems);
-            });
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var elems = document.querySelectorAll('.modal');
+                        var instances = M.Modal.init(elems);
+                    });
 
         </script>
     </body>
