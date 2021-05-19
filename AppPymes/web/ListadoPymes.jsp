@@ -1,6 +1,6 @@
 <%-- 
-    Document   : InicioCliente
-    Created on : may 17, 2021, 5:27:53 p.m.
+    Document   : ListadoPymes
+    Created on : may 18, 2021, 8:19:57 p.m.
     Author     : AngieRiera
 --%>
 
@@ -35,7 +35,7 @@
             ResultSet rs = null;
             Conexion con = new Conexion();
             com.mysql.jdbc.Connection conexion = con.getConnection();
-            ps = conexion.prepareStatement("SELECT * FROM PYME P INNER JOIN CATEGORIA_PYME C ON P.ID_CATEGORIA_PYME = C.ID WHERE P.ID_ESTADO=2 ORDER BY RAND() LIMIT 4");
+            ps = conexion.prepareStatement("SELECT * FROM PYME P INNER JOIN CATEGORIA_PYME C ON P.ID_CATEGORIA_PYME = C.ID WHERE P.ID_ESTADO=2");
             rs = ps.executeQuery();
         %>
         <header>
@@ -92,10 +92,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col s10">
-                        <h6 color="#fafafa">PYMES DESTACADAS</h6>
-                    </div>
-                    <div class="col s2">
-                        <a href="ListadoPymes.jsp"><h6>VER TODAS <i class="material-icons">navigate_next</i></h6></a>                        
+                        <a href="InicioCliente.jsp"><h6><i class="material-icons">navigate_before</i>VOLVER</h6></a>                        
                     </div>
                 </div>
 
@@ -119,27 +116,6 @@
                             out.println("</div>");
                             out.println("</div>");
                         }%>
-
-                </div>
-            </div>
-
-            <div class="divider"></div>
-            <div class="container">
-                <h6 color="#fafafa">CATEGORÍAS</h6>
-            </div>
-            <div class="divider"></div><br>
-
-            <div class="container">
-                <div class="row grid">
-                    <a href="ProductosCategoria.jsp?id=1"><div class="col s4   cyan lighten-5 center"><span class="flow-text"><br><br>VESTUARIO HOMBRE<br><br><br></span></div></a>
-                    <a href="ProductosCategoria.jsp?id=5"><div class="col s4  teal lighten-5 center"><span class="flow-text"><br>TECNOLOGÍA<br><br></span></div></a>
-                    <a href="ProductosCategoria.jsp?id=4"><div class="col s4 cyan lighten-5 center"><span class="flow-text"><br>HOGAR<br><br></span></div></a>
-
-                    <a href="ProductosCategoria.jsp?id=6"><div class="col s4  light-blue lighten-5 center"><span class="flow-text"><br>PAPELERÍA<br></span></div></a>
-                    <a href=""><div class="col s4  teal lighten-5 center"><span class="flow-text"><br><br></span></div></a>
-                    <a href="ProductosCategoria.jsp?id=2"><div class="col s8   blue lighten-5 center"><span class="flow-text"><br><br>VESTUARIO MUJER<br><br><br></span></div></a>
-                    <a href="ProductosCategoria.jsp?id=3"><div class="col s4  teal lighten-5 center"><span class="flow-text"><br>VESTUARIO INFANTIL<br><br><br><br></span></div></a>
-
 
                 </div>
             </div>
@@ -191,3 +167,4 @@
         </script>
     </body>
 </html>
+
