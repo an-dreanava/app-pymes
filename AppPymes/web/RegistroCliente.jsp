@@ -177,7 +177,7 @@
                         </div>
 
                         <div class="center">
-                            <input class="btn waves-effect red lighten-1" onclick="return pagar()" type="submit" id="opcion" name="opcion" value="Registrar">
+                            <input class="btn waves-effect red lighten-1" onclick="return validar()" type="submit" id="opcion" name="opcion" value="Registrar">
                         </div>                     
                     </form>
                 </div>
@@ -247,7 +247,8 @@
         </script>
 
         <script>
-            $('#telefono').mask('(+56) 0 0000 0000');
+            string mensaje = "";
+            M.toast({html: mensaje});
         </script>
 
         <script>
@@ -261,7 +262,7 @@
             var telefono = document.getElementById('telefono');
 
 
-            function pagar() {
+            function validar() {
 
                 var letras = /[A-Za-zÑñÁÉÍÓÚáéíóú\s]$/;
                 var email = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
@@ -334,11 +335,11 @@
                     return false;
                 }
 
-                if (!email.test(correo.value)) {
-                    alert('Correo no es válido');
-                    correo.focus();
-                    return false;
-                }
+                //if (!email.test(correo.value)) {
+                 //   alert('Correo no es válido');
+                   // correo.focus();
+                    //return false;
+                //}
 
 
                 if (clave.value === '') {

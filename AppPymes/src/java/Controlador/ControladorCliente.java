@@ -50,6 +50,7 @@ public class ControladorCliente extends HttpServlet {
                 
                 ClienteDAO clienteDAO = new ClienteDAO();
                 if (clienteDAO.agregar(cliente) == true) {
+                    response.sendRedirect("RegistroCliente.jsp?");
                     System.out.println("Agregado");
                 } else {
                     System.out.println("no agregado");

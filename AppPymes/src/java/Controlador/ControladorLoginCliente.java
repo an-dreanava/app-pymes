@@ -54,7 +54,7 @@ public class ControladorLoginCliente extends HttpServlet {
                 //sesion.setAttribute("usuario", cliente);
                 //sesion.setAttribute("estadoSesion", "on");
 
-                response.sendRedirect("RegistroCliente.jsp");
+                response.sendRedirect("InicioCliente.jsp");
 
             } else {
                 response.sendRedirect("MensajeError.jsp?mensaje="+correo+clave);

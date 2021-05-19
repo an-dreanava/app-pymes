@@ -28,8 +28,8 @@
         <div class="container" >
             <div class="row" id="boton-banner">
                 <div class="col l12 s12 right-align block">
-                    <a class="waves-effect  red lighten-1 btn modal-trigger" href="#modal1">Iniciar Sesión</a> 
-                    <a class="waves-effect blue-grey darken-2 btn" href="IndexPyme.jsp">Para tiendas</a>
+                    <a class="waves-effect  red lighten-1 btn modal-trigger white-text" href="#modal1">Iniciar Sesión</a> 
+                    <a class="waves-effect blue-grey darken-2 btn white-text" href="IndexPyme.jsp">Para tiendas</a>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                             <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar Sesion">
                             <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
                             <p class="center"><a href="" class="enlace">¿No estás registrado?</a></p>
-                            <p class="center"><a href="RegistroCliente.jsp" class="enlace2">Registrarse</a></p>
+                            <p class="center"><a href="RegistroCliente.jsp" class="enlace2 red-text">Registrarse</a></p>
                         </div>
                     </div>                
                 </div>
@@ -94,7 +94,7 @@
                                             </div>  
 
                                             <div class="input-field col s4">
-                                                <a class="waves-effect blue-grey darken-2 btn">Ver tiendas</a>
+                                                <a class="waves-effect blue-grey darken-2 btn white-text">Ver tiendas</a>
                                             </div>                       
                                         </form>
                                     </div>                            
