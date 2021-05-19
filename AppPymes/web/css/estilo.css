@@ -131,6 +131,10 @@ footer{
     height:25px;
     text-align: initial;
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> bfcdb6b323690d28363e81f2f6242d85f2f41490
 fieldset .imagen{
         height:350px;
 	width: 350px;
@@ -142,6 +146,9 @@ fieldset Info{
     
     padding:100px;
     
+<<<<<<< HEAD
+}
+=======
 }
 .corazon{
     float:right;
@@ -162,3 +169,4 @@ fieldset Info{
  float:right;
  position:fixed;
 }
+>>>>>>> bfcdb6b323690d28363e81f2f6242d85f2f41490
