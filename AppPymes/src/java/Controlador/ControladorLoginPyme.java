@@ -33,47 +33,50 @@ public class ControladorLoginPyme extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         PymeDAO PymeDAO = new PymeDAO();
-        
+
         String correo = "";
         String clave = "";
         String opcion = "";
 
         opcion = request.getParameter("opcion");
-        clave=request.getParameter("clave");
-        correo=request.getParameter("correo");
+        clave = request.getParameter("clave");
+        correo = request.getParameter("correo");
 
-        /*if (opcion.equals("IniciarSesion")) {
-            
-        HttpSession sesion = request.getSession(true);
+        if (opcion.equals("IniciarSesion")) {
 
-        sesion.setAttribute("usuario", null);
-        sesion.setAttribute("estadoSesion", "off");
-        
-       Pyme pyme=PymeDAO.login(correo, clave);
+            HttpSession sesion = request.getSession(true);
 
-        if (pyme != (null)) {
-            sesion.setAttribute("usuario", pyme);
-            sesion.setAttribute("estadoSesion", "on");
-            response.sendRedirect("IndexPyme.jsp");
+            sesion.setAttribute("usuario", null);
+            sesion.setAttribute("estadoSesion", "off");
+
+            Pyme pyme = PymeDAO.login(correo, clave);
+
+            if (pyme != (null)) {
+                sesion.setAttribute("usuario", pyme);
+                sesion.setAttribute("estadoSesion", "on");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Aceptado&mensaje=Sus datos NO han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=IndexPyme.jsp");
+                System.out.println("pyme encontrada");
+            }else{
+                System.out.println("pyme null");
+            }
+
+        } else {
+            response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Sus datos NO han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=IndexPyme.jsp");
         }
-        
-        }else{
-             response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Sus datos NO han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=IndexPyme.jsp");
-        }*/
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorLogin</title>");            
+            out.println("<title>Servlet ControladorLogin</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ControladorLogin at " + request.getContextPath() + "</h1>");
-            out.println("CORREO:" +correo);
-            out.println("CLAVE:" +clave);
-            out.println("OPCION:" +opcion);
+            out.println("CORREO:" + correo);
+            out.println("CLAVE:" + clave);
+            out.println("OPCION:" + opcion);
             out.println("</body>");
             out.println("</html>");
         }

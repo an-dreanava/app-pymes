@@ -131,10 +131,7 @@ footer{
     height:25px;
     text-align: initial;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> bfcdb6b323690d28363e81f2f6242d85f2f41490
 fieldset .imagen{
         height:350px;
 	width: 350px;
@@ -142,18 +139,36 @@ fieldset .imagen{
 	margin: 10px;
 	float:left;
 }
-fieldset Info{
+.Info{
     
-    padding:100px;
+    padding:50px;
     
-<<<<<<< HEAD
 }
-=======
+
+.box input{
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    margin:0 5px !important;
+    width: 100px;
 }
-.corazon{
-    float:right;
- 
+
+button{
+    background: white;
+    color: black;;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    border-radius: 5px;
+    
 }
+
+button:hover, button:focus{
+    background: #ef5350;
+    color: white;
+}
+
 
 .imagenmodal{
     float:left;
@@ -169,4 +184,4 @@ fieldset Info{
  float:right;
  position:fixed;
 }
->>>>>>> bfcdb6b323690d28363e81f2f6242d85f2f41490
+

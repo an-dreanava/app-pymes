@@ -3,23 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/Index.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/ProductosPyme.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/ListadoPymes.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/RegistroCliente.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/css/materialize.min.css</file>
             <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/ProductosCategoria.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/InicioCliente.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/css/materialize.css</file>
             <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/css/estilo.css</file>
-=======
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/RegistroPyme.jsp</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/RegistroPyme_Modal.jsp</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/RegistroCliente.jsp</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/css/ventana.css</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/VentanaModal.jsp</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/js/ventana.js</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Dao/DireccionDAO.java</file>
->>>>>>> bfcdb6b323690d28363e81f2f6242d85f2f41490
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/VistaProducto.jsp</file>
         </group>
     </open-files>
 </project-private>
