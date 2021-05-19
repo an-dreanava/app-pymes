@@ -131,5 +131,20 @@ footer{
     height:25px;
     text-align: initial;
 }
+<<<<<<< HEAD
 
 
+=======
+fieldset .imagen{
+    height:350px;
+	width: 350px;
+	padding:10px;
+	margin: 10px;
+	float:left;
+}
+fieldset Info{
+    
+    padding:100px;
+    
+}
+>>>>>>> 16f5e2fa1280b81562fac49d48f386bd9c95325c
