@@ -83,8 +83,36 @@
                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
                         </p>
-                        
-                        <a class="waves-effect  red lighten-1 btn modal-trigger white-text" href="#modal1">Iniciar Sesión</a>
+
+                        <a class="waves-effect  red lighten-1 btn modal-trigger white-text" href="#modal1" id="modall">COMPRAR</a>
+
+                        <div id="modal1" class="modal">
+                            <form action="ControladorLoginCliente" method="POST">
+                                <div class="modal-content center container">
+                                    <h5 id="modal-text">CONFIRMAR COMPRA</h5>
+                                    <br>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <img src="Imagenes/imagen.jpg" class="imagenmodal">
+                                            
+                                            <h5>NOMBRE </h5> 
+                                            <h6>NOMBRE TIENDA </h6>
+                                            <input type="number" class="numeracion">
+                                            
+                                            
+                                            <p class="precio">$!!!!</p><br>
+                                            
+
+                                            <br><br>
+                                            <a class="waves-effect  red lighten-1 btn modal-trigger white-text " href="#modal1" id="modall">COMPRAR</a>
+
+
+
+                                        </div>                
+                                    </div>
+                            </form>
+                        </div>
+
                     </fieldset>
 
 
@@ -136,5 +164,21 @@
 
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('select').formSelect();
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('select');
+                var instances = M.FormSelect.init(elems, options);
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.modal');
+                var instances = M.Modal.init(elems);
+            });
+
+        </script>
     </body>
 </html>

@@ -131,3 +131,38 @@ footer{
     height:25px;
     text-align: initial;
 }
+<<<<<<< HEAD
+=======
+
+fieldset .imagen{
+        height:350px;
+	width: 350px;
+	padding:10px;
+	margin: 10px;
+	float:left;
+}
+fieldset Info{
+    
+    padding:100px;
+    
+}
+.corazon{
+    float:right;
+ 
+}
+
+.imagenmodal{
+    float:left;
+    height: 150px;
+    width: 150px; 
+    
+}
+.precio{
+ float:right;
+ 
+}
+.numeracion{
+ float:right;
+ position:fixed;
+}
+>>>>>>> b0c5183d1e724417f285ca1f7f8b6c4dcffa8b4d
