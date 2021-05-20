@@ -32,9 +32,8 @@
         <link type="text/css" rel="stylesheet" href="css/estilo.css" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     </head>
-
     <body>
-        <div class="navbar-fixed">
+     <div class="navbar-fixed">
             <nav class="white">
                 <div class="nav-wrapper">
                     <ul id="nav-mobile" class="left hide-on-med-and-down black-text">
@@ -50,12 +49,13 @@
             </nav>
         </div>
         
-        <div class="container">
-            <h5 id="titulo_form_pymes">Formulario de Inscripción</h5>           
-        </div>
-        
-      
-        <!-- Modal Iniciar Sesión -->
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    
+     <!-- Modal Iniciar Sesión -->
         <div id="modal1" class="modal">
             <form action="" method="POST">
                 <div class="modal-content center container">
@@ -82,123 +82,28 @@
                 </div>
             </form>
         </div>
+
+    <div id="menu-pymes">
+        
+        
+        
+  
+    
+  
+        
+        <div class="container">
+            <h5 id="titulo_form_pymes">Formulario de Inscripción</h5>           
+        </div>
+        
+      
+       
       
         <div class="container" style="padding: 20px" >
             <div class="row" >
-                <form action="ControladorPyme" method="POST">
-
-                    <div class="col s2">
-                        <p>Rut:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <input name="rut" id="rut" type="text" class="validate"  required> 
-                    </div>
-
-                    <div class="col s2">
-                        <p>Nombre Tienda:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <input name="nombre_pyme" id="nombre_pyme" type="text" class="validate"  required> 
-                    </div>
-
-                    <div class= "col s2">
-                        <p>Nombres Titular:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <input name="nombre" id="nombre" type="text" class="validate"  required>                            
-                    </div>
-
-
-                    <div class="col s2">
-                        <p>Apellidos Titular:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <input name="apellido" id="apellido" type="text" class="validate"  required>                            
-                    </div>
-
-                    <div class="col s2">
-                        <p>Región:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <select name="id_region" id="id_region" required>
-                            <option value="" disabled selected>Seleccione Región</option>
-                            <%
-                                  DireccionDAO DireccionDAO=new DireccionDAO();
-                                  for( Region region : DireccionDAO.Regiones()){                            
-                            %>
-                             <option value="<%=region.getId()%>"><%=region.getName()%></option>
-                            <% }
-                            %>
-                        </select>                     
-                    </div>
-
-                    <div class="col s2">
-                        <p>Comuna:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <select name="id_comuna" id="id_comuna" required>
-                            <option value="" disabled selected>Seleccione Comuna:</option>
-                           <%
-                               for( Comuna comuna : DireccionDAO.Comunas()){                            
-                            %>
-                             <option value="<%=comuna.getId()%>"><%=comuna.getName()%></option>
-                            <% }
-                            %>
-                        </select>                     
-                    </div>
-
-                    <div class="col s2">
-                        <p>Dirección:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <input name="des_direccion" id="des_direccion" type="text" class="validate"  required> 
-                    </div>
-
-                    <div class="col s2">
-                        <p>Teléfono:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <input name="telefono" id="telefono" type="text" class="validate"  required> 
-                    </div>
-
-                    <div class="col s2">
-                        <p>Correo:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <input name="correo" id="correo" type="text" class="validate"  required> 
-                    </div>
-
-                    <div class="col s2">
-                        <p>Contraseña:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <input name="contrasena" id="contrasena" type="password" class="validate"  required> 
-                        <p></p>
-                    </div>
-                        
-                         <div class="col s2">
-                        <p>Categoria:</p>                            
-                    </div>
-                    <div class="col s4">
-                        <select name="id_categoria" id="id_categoria" required>
-                            <option value="" disabled selected>Seleccione Categoria:</option>
-                           <%
-                               PymeDAO PymeDAO=new PymeDAO();
-                               for( Categoria categoria : PymeDAO.Categoria()){                            
-                            %>
-                             <option value="<%=categoria.getId_categoria()%>"><%=categoria.getDescripcion()%></option>
-                            <% }
-                            %>
-                        </select>                     
-                    </div>
-
-                    <div class="center">
-                       <button class="btn waves-effect red lighten-1" type="submit"  id="opcion" name="opcion" value="Agregar">Registrarse</button>
-                    </div>   
-                        
-                </form>
+                
             </div>
         </div>
+    
 
         <footer class="page-footer blue-grey darken-2">
             <div class="container">
@@ -231,8 +136,8 @@
                     <a class="grey-text text-lighten-4 right" href="#!"></a>
                 </div>
             </div>
-        </footer>
-
+        </footer>     
+</div>
 
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -255,6 +160,12 @@
                 var elems = document.querySelectorAll('.modal');
                 var instances = M.Modal.init(elems);
             });
+            
+             $(document).ready(function(){
+               $('.sidenav').sidenav({
+            });
+            });
+        
 
         </script>
     </body>
