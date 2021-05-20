@@ -49,10 +49,10 @@ public class ControladorCliente extends HttpServlet {
 
             ClienteDAO clienteDAO = new ClienteDAO();
             if (clienteDAO.agregar(cliente) == true) {
-                response.sendRedirect("RegistroCliente.jsp?");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Registro correcto&mensaje=Se ha registrado correctamente, verifique su correo electronico e inicie sesion&boton=Volver&retorno=Index.jsp");
                 System.out.println("Agregado");
             } else {
-                System.out.println("no agregado");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al registrar&mensaje=El correo ingresado ya posee una cuenta, inicie sesion o recupere clave&boton=Volver&retorno=Index.jsp");
             }
         }
 

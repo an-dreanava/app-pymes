@@ -5,8 +5,13 @@
  */
 package Controlador;
 
+import Dao.PedidoDAO;
+import Modelo.Pedido;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author drean
+ * @author AngieRiera
  */
-public class controlador extends HttpServlet {
+public class ControladorPedido extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,15 +35,41 @@ public class controlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        String opcion = request.getParameter("opcion");
+
+        if (opcion.equals("Confirmar")) {
+            String cliente = request.getParameter("cliente");
+            int pyme = Integer.parseInt(request.getParameter("pyme"));
+            int producto = Integer.parseInt(request.getParameter("producto"));
+            int cantidad = Integer.parseInt(request.getParameter("cantidad-oculta"));
+            int total = Integer.parseInt(request.getParameter("total-oculto"));
+
+            java.util.Date date = new Date();
+            SimpleDateFormat formateador = new SimpleDateFormat("hh:mm a");
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String fecha = dateFormat.format(date) + " " + formateador.format(date);
+            System.out.println(cliente + pyme + producto + "1" + fecha + "2000");
+            Pedido pedido = new Pedido(cliente, pyme, producto, cantidad, fecha, total, 1);
+            PedidoDAO pedidoDAO = new PedidoDAO();
+            
+            if (pedidoDAO.agregar(pedido) == true) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Solicitud de compra recibidad&mensaje=Se ha registrado correctamente, verifique su correo electronico e inicie sesion&boton=Volver&retorno=Index.jsp");
+                System.out.println("Agregado");
+            } else {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al comprar&mensaje=El correo ingresado ya posee una cuenta, inicie sesion o recupere clave&boton=Volver&retorno=Index.jsp");
+            }
+        }
+
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet controlador</title>");            
+            out.println("<title>Servlet ControladorPedido</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet controlador at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControladorPedido at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

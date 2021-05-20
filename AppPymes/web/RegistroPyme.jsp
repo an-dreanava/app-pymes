@@ -57,7 +57,7 @@
       
         <!-- Modal Iniciar Sesión -->
         <div id="modal1" class="modal">
-            <form action="" method="POST">
+            <form action="ControladorLoginPyme" name="login" method="POST">
                 <div class="modal-content center container">
                     <h5 id="modal-text">INICIAR SESIÓN</h5>
                     <br>
@@ -69,14 +69,12 @@
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">https</i>
-                            <input name="contraseña" id="cotraseña" type="password" class="validate">
-                            <label for="contraseña">Contraseña</label>
+                            <input name="clave" id="clave" type="password" class="validate">
+                            <label for="clave">Contraseña</label>
                         </div>
                         <div class="input-field col s12">
-                            <button class="btn waves-effect blue-grey darken-2" type="submit" name="action">Iniciar Sesión</button>
+                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar">
                             <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
-                            <p class="center"><a href="" class="enlace">¿No estás registrado?</a></p>
-                            <p class="center"><a href="" class="enlace2">Registrarse</a></p>
                         </div>
                     </div>                
                 </div>

@@ -4,6 +4,7 @@
     Author     : Paula Poblete
 --%>
 
+<%@page import="Modelo.Cliente"%>
 <%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -33,6 +34,19 @@
 
     <body>
         <%
+            
+            Cliente cliente = null;
+            String estadoSesion = "off";
+
+            HttpSession sesion = request.getSession(true);
+
+            cliente = (Cliente) sesion.getAttribute("cliente");
+            estadoSesion = (String) sesion.getAttribute("estadoSesion");
+
+            if (estadoSesion == null) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+            }
+            
             String id = "";
             id = request.getParameter("id");
 
@@ -87,13 +101,12 @@
                     <div class="col s4 ">
                         <a href="IndexCliente.jsp">
                             <i class="material-icons left" >navigate_before</i>
-                            <h6 color="#fafafa">VOLVER</h6>  
+                            <label class="label-volver">VOLVER</label>  
                         </a>
                     </div>
                 </div>
             </div>
-
-            <div class="divider"></div><br>
+            <div class="divider separador"></div>
 
             <div class="container" id="">        
 
@@ -102,7 +115,7 @@
                             out.println("<div class='col 12 m3 s10'>");
                             out.println("<div class='card sticky-action tarjeta'>");
                             out.println("<div class='card-image tarjeta-imagen'>");
-                            out.println("<a href='' >");
+                            out.println("<a href='VistaProducto.jsp?id="+ rs.getString("PR.ID") +"' >");
                             out.println("<img src='Imagenes/" + rs.getString("PR.FOTO") + "' height='200' class='responsive-img' >");
                             out.println("</a>");
                             out.println("</div>");
@@ -110,7 +123,8 @@
                             out.println("<label class='left'>" + rs.getString("PY.NOMBRE_PYME") + "</label> <br>");
                             out.println("<a class='right' href=''><i class='material-icons'>favorite_border</i></a>");
                             out.println("<p class='center'>" + rs.getString("PR.TITULO") + "</p>");
-                            out.println("<p class='center' style='font-size: large;'>" + rs.getString("PR.PRECIO") + "</p>");
+                            out.println("<label class='label-precio2'>$</label>");
+                            out.println("<label class='center label-precio2'>" + rs.getString("PR.PRECIO") + "</label>");
 
                             out.println("</div>");
 

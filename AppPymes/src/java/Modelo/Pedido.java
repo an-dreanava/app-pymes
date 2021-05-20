@@ -10,17 +10,15 @@ package Modelo;
  * @author AngieRiera
  */
 public class Pedido {
-    private int boleta;
     private String rutCliente;
     private int idPyme;
     private int producto;
     private int cantidad;
     private String fecha;
     private int total;
-    private String estado;
+    private int estado;
 
-    public Pedido(int boleta, String rutCliente, int idPyme, int producto, int cantidad, String fecha, int total, String estado) {
-        this.boleta = boleta;
+    public Pedido(String rutCliente, int idPyme, int producto, int cantidad, String fecha, int total, int estado) {
         this.rutCliente = rutCliente;
         this.idPyme = idPyme;
         this.producto = producto;
@@ -30,13 +28,6 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public int getBoleta() {
-        return boleta;
-    }
-
-    public void setBoleta(int boleta) {
-        this.boleta = boleta;
-    }
 
     public String getRutCliente() {
         return rutCliente;
@@ -86,18 +77,20 @@ public class Pedido {
         this.total = total;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Pedido{" + "boleta=" + boleta + ", rutCliente=" + rutCliente + ", idPyme=" + idPyme + ", producto=" + producto + ", cantidad=" + cantidad + ", fecha=" + fecha + ", total=" + total + ", estado=" + estado + '}';
+        return "Pedido{" + "rutCliente=" + rutCliente + ", idPyme=" + idPyme + ", producto=" + producto + ", cantidad=" + cantidad + ", fecha=" + fecha + ", total=" + total + ", estado=" + estado + '}';
     }
+
+    
     
     
 }

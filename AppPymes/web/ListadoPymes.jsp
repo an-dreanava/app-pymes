@@ -4,6 +4,7 @@
     Author     : AngieRiera
 --%>
 
+<%@page import="Modelo.Cliente"%>
 <%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -31,6 +32,19 @@
     </head>
     <body>
         <%
+            Cliente cliente = null;
+            String estadoSesion = "off";
+
+            HttpSession sesion = request.getSession(true);
+
+            cliente = (Cliente) sesion.getAttribute("cliente");
+            estadoSesion = (String) sesion.getAttribute("estadoSesion");
+
+            if (estadoSesion == null) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+            }
+            
+            
             PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion con = new Conexion();
@@ -91,13 +105,16 @@
             <div class="divider"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col s10">
-                        <a href="IndexCliente.jsp"><h6><i class="material-icons">navigate_before</i>VOLVER</h6></a>                        
+                    <div class="col s4 ">
+                        <a href="IndexCliente.jsp">
+                            <i class="material-icons left" >navigate_before</i>
+                            <label class="label-volver">VOLVER</label>  
+                        </a>
                     </div>
                 </div>
-
             </div>
-            <div class="divider"></div><br>
+            <div class="divider separador"></div>
+            <br>
 
             <div class="container">
                 <div class="row">
