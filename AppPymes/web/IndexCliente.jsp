@@ -4,6 +4,7 @@
     Author     : AngieRiera
 --%>
 
+<%@page import="Modelo.Cliente"%>
 <%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -31,6 +32,19 @@
     </head>
     <body>
         <%
+            Cliente cliente = null;
+            String estadoSesion = "off";
+
+            HttpSession sesion = request.getSession(true);
+
+            cliente = (Cliente) sesion.getAttribute("cliente");
+            estadoSesion = (String) sesion.getAttribute("estadoSesion");
+
+            if (estadoSesion == null) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+            }
+ 
+
             PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion con = new Conexion();
@@ -92,15 +106,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col s10">
-                        <h6 color="#fafafa">PYMES DESTACADAS</h6>
+                        <h6>PYMES DESTACADAS</h6>
                     </div>
                     <div class="col s2">
-                        <a href="ListadoPymes.jsp"><h6>VER TODAS <i class="material-icons">navigate_next</i></h6></a>                        
+                        <a href="ListadoPymes.jsp">                            
+                            <label class="label-volver">VER TODAS</label> 
+                            <i class="material-icons right" >navigate_next</i>                             
+                        </a>                        
                     </div>
                 </div>
 
             </div>
-            <div class="divider"></div><br>
+            <div class="divider separador"></div><br>
 
             <div class="container">
                 <div class="row">
@@ -108,7 +125,7 @@
                             out.println("<div class='col 12 m3 s10'>");
                             out.println("<div class='card-pyme'>");
                             out.println("<div class='card-image'>");
-                            out.println("<a href='ProductosPyme.jsp?id="+ rs.getString("P.ID") +"' class='card-logo'>");
+                            out.println("<a href='ProductosPyme.jsp?id=" + rs.getString("P.ID") + "' class='card-logo'>");
                             out.println("<img src='Imagenes/" + rs.getString("P.LOGO") + "' class='responsive-img circle'>");
                             out.println("</a>");
                             out.println("</div>");

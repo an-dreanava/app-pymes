@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author drean
@@ -30,10 +31,12 @@ public class PymeDAO {
         Conexion con = new Conexion();
         Connection conexion = con.getConnection();
         PymeDAO dao = new PymeDAO();
+        
+        
         if (conexion != null) {
             try {
                 Statement st = conexion.createStatement();
-                String query = "INSERT INTO pyme (nombres,apellidos,rut, nombre_pyme,correo,contrasena,telefono,id_categoria_pyme,id_direccion,id_estado,                                 logo)VALUES('" + pyme.getNombre() + "','" + pyme.getApellido() + "','" + pyme.getRut() + "','" + pyme.getNombrePyme() + "','" + pyme.getCorreo() + "','" + pyme.getContraseña() + "','" + pyme.getTelefono() + "','" + pyme.getId_categoria() + "','" + dao.Id_Direccion(des_direccion, id_comuna) + "',2,'" + pyme.getLogo() + "')";
+                String query = "INSERT INTO pyme (nombres,apellidos,rut, nombre_pyme,correo,contrasena,telefono,id_categoria_pyme,id_direccion,id_estado,logo)VALUES('" + pyme.getNombre() + "','" + pyme.getApellido() + "','" + pyme.getRut() + "','" + pyme.getNombrePyme() + "','" + pyme.getCorreo() + "','" + pyme.getContraseña() + "','" + pyme.getTelefono() + "','" + pyme.getId_categoria() + "','" + dao.Id_Direccion(des_direccion, id_comuna) + "',2,'" + pyme.getLogo() + "')";
 
                 int filas = st.executeUpdate(query);
                 if (filas > 0) {

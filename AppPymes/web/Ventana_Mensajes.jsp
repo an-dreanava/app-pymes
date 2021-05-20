@@ -19,24 +19,24 @@
         <link type="text/css" rel="stylesheet" href="css/estilo.css" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     </head>
-    <body>
+    <body bgcolor="#e0f7fa">
         <%
         String titulo=request.getParameter("titulo");
         String mensaje=request.getParameter("mensaje");
         String boton=request.getParameter("boton");        
         String retorno=request.getParameter("retorno");    
         %>
-        <div>
+        <div class='mensaje'>
             <form action="#" method="POST">
                 <div class="modal-content center container">
                     <br>
-                    <h5 id="modal-text"><%=titulo%></h5>
+                    <h3 id="modal-text"><%=titulo%></h3>
                     <br>
                         <div class="row">
-                         <%=mensaje%>
+                            <h5><%=mensaje%></h5>
                         </div>
                          <div class="input-field col s6">
-                            <a href="<%=retorno%>" class="waves-effect blue-grey darken-2 btn-large"><%=boton%></a>
+                            <a href="<%=retorno%>" class="waves-effect red lighten-1 btn-large white-text"><%=boton%></a>
                          </div>  
                 </div>  
             </form>

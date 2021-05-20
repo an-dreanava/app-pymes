@@ -44,7 +44,7 @@
                             <label for="clave">Contraseña</label>
                         </div>
                         <div class="input-field col s12">
-                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="IniciarSesion">
+                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar">
                             <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
                         </div>
                     </div>                
@@ -67,11 +67,11 @@
                                         <form action="" method="POST">
 
                                             <div class="input-field col s6">
-                                                <a class="waves-effect  red lighten-1 btn-large modal-trigger" href="#modal1">Iniciar Sesión</a> 
+                                                <a class="waves-effect  red lighten-1 btn-large modal-trigger white-text" href="#modal1">Iniciar Sesión</a> 
                                             </div>
 
                                             <div class="input-field col s6">
-                                                <a href="RegistroPyme.jsp" class="waves-effect blue-grey darken-2 btn-large">Registrarse</a>
+                                                <a href="RegistroPyme.jsp" class="waves-effect blue-grey darken-2 btn-large white-text">Registrarse</a>
                                             </div>  
 
                                         </form>

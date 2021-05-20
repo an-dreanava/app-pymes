@@ -55,9 +55,9 @@ public class ControladorPyme extends HttpServlet {
                 Pyme pyme=new Pyme(0,nombre,apellido,rut,nombre_pyme,correo,contrasena,telefono,id_categoria,0,2," ");           
             PymeDAO PymeDAO=new PymeDAO();
             if(PymeDAO.AgregarPyme(pyme, des_direccion, id_comuna)==true){
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Solicitud Ingresada&mensaje=Sus datos han sido recepcionados con exito,en cuanto la validacion este completada podra iniciar sesion sin problemas.&boton=Aceptar&retorno=IndexPyme.jsp");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Solicitud Ingresada&mensaje=Sus datos han sido recepcionados con exito,en cuanto la validación este completada podra iniciar sesion sin problemas.&boton=Aceptar&retorno=IndexPyme.jsp");
             }else{
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Solicitud NO Ingresada&mensaje=Sus datos NO han sido recepcionados con exito,vuelva a intentarlo.&boton=Aceptar&retorno=IndexPyme.jsp");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al registrar&mensaje=El correo ingresado ya posee una cuenta, inicie sesion o recupere clave&boton=Volver&retorno=IndexPyme.jsp");
             }
             
             }catch(Exception e){

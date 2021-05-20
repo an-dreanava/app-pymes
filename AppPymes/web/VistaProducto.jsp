@@ -3,6 +3,7 @@
     Created on : 18-05-2021, 19:26:19
     Author     : Paula Poblete
 --%>
+<%@page import="Modelo.Cliente"%>
 <%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -31,6 +32,19 @@
     <body>
 
         <%
+            Cliente cliente = null;
+            String estadoSesion = "off";
+
+            HttpSession sesion = request.getSession(true);
+
+            cliente = (Cliente) sesion.getAttribute("cliente");
+            estadoSesion = (String) sesion.getAttribute("estadoSesion");
+
+            if (estadoSesion == null) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+            }
+
+            String rut = cliente.getRut();
             String id = "";
             id = request.getParameter("id");
 
@@ -38,13 +52,13 @@
             ResultSet rs = null;
             Conexion con = new Conexion();
             com.mysql.jdbc.Connection conexion = con.getConnection();
-            ps = conexion.prepareStatement("SELECT PR.FOTO,PR.TITULO,PY.NOMBRE_PYME,PR.PRECIO, PR.DESCRIPCION FROM PRODUCTOS PR INNER JOIN PYME PY ON PR.ID_PYME = PY.ID  WHERE PR.ID =? ");
+            ps = conexion.prepareStatement("SELECT PR.ID, PR.FOTO,PR.TITULO,PY.NOMBRE_PYME,PR.PRECIO,PR.DESCRIPCION, PR.ID_PYME FROM PRODUCTOS PR INNER JOIN PYME PY ON PR.ID_PYME = PY.ID  WHERE PR.ID =? ");
             ps.setString(1, id);
             rs = ps.executeQuery();
-            
+
         %>
-        
-        
+
+
         <script>
             $(document).ready(function () {
 
@@ -61,7 +75,7 @@
                         localStorage.setItem(name, value);
                     });
 
-                    
+
                 }, 1000);
             });
 
@@ -71,14 +85,28 @@
                     let cant = 0;
                     cant = localStorage.getItem("cant");
                     /*Mostrar datos almacenados*/
-                    document.getElementById("cantidad").innerHTML = cant + " Unid.";
-                    
+                    document.getElementById("cantidad").innerHTML = cant + " Uni.";
+
+
                     let precio = document.getElementById("precio").textContent;
-                    localStorage.setItem("preciooooo", precio);
-                    
+                    let producto = document.getElementById("producto").textContent;
+                    let nombre = document.getElementById("nombre-pyme").textContent;
+                    localStorage.setItem("precio", precio);
+                    localStorage.setItem("producto", producto);
+                    localStorage.setItem("nombre", nombre);
+
                     let total = parseInt(cant) * parseInt(precio);
+
+                    document.getElementById("totalModal").innerHTML = total;
+                    document.getElementById("precioModal").innerHTML = "$ " + precio;
+                    document.getElementById("productoModal").innerHTML = producto;
+                    document.getElementById("pymeModal").innerHTML = nombre;
+
+                    let cantidadOculta = document.getElementById("cantidad-oculta");
+                    cantidadOculta.value = cant;
                     
-                    document.getElementById("total").innerHTML = "Total $" + total;
+                    let totalOculto = document.getElementById("total-oculto");
+                    totalOculto.value = total;
                 });
             });
         </script>
@@ -113,54 +141,19 @@
         <main>
 
 
-            <div id="modal2" class="modal">
-                <form action="" method="POST">
-                    <div class="modal-content">
-                        <h5 id="modal-text" class="center">CONFIRMAR COMPRA</h5>
-
-
-                        <img src="Imagenes/imagen.jpg" class="imagenmodal">
-                        <div class="container" id="confirmar-compra">
-                            <div class=" left">
-                                <h5>NOMBRE PRODUCTO </h5> 
-
-                                <label class="left" id="nom">NOMBRE TIENDA </label><br>
-                                <div class="row">
-                                    <div class="col s4">
-                                        <h6>$15.000</h6>                        
-                                    </div>
-                                    <div class="col s3">
-                                        <h6 id="cantidad" type="text"></h6>
-                                    </div>
-                                    <div class="col s7 ">
-
-                                        <h5 id="total"></h5>
-                                    </div>
-
-                                    <div class="col s7 center">
-                                        <br>
-                                        <a class="waves-effect  red lighten-1 btn modal-trigger white-text" >CONFIRMAR</a>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                    </div>
-                </form>
-            </div>
-
             <br><br>
             <div class="divider"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col s2">
-                        <a href=""><i class="material-icons">navigate_before</i></a>                        
+                    <div class="col s4 ">
+                        <a href="IndexCliente.jsp">
+                            <i class="material-icons left" >navigate_before</i>
+                            <label class="label-volver">VOLVER</label>  
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="divider"></div>
+            <div class="divider separador"></div>
             <br><br>
 
             <div class="container">
@@ -171,13 +164,16 @@
                                 out.println("<div class='Info'>");
 
                                 out.println("<div class='container'>");
-                                out.println("<h5><a class='fav right' href=''><i class='material-icons'>favorite</i></a> " + rs.getString("PR.TITULO") + " </h5> ");
+
+                                out.println("<label id='producto' class='label-producto'>" + rs.getString("PR.TITULO") + " </label> ");
+                                out.println("<a class='fav right' href=''><i class='material-icons'>favorite</i></a>");
                                 out.println("</div>");
                                 out.println("<div class='divider'></div>");
-                                out.println("<h6>" + rs.getString("PY.NOMBRE_PYME") + "</h6>");
+                                out.println("<h6 id='nombre-pyme'>" + rs.getString("PY.NOMBRE_PYME") + "</h6>");
                                 out.println("<div class='row'>");
                                 out.println("<div class='col s2'>");
-                                out.println("<h5 id='precio'>"+ rs.getInt("PR.PRECIO")+"</h5>");
+                                out.println("<label class='label-precio'>$</label>");
+                                out.println("<label id='precio' class='label-precio'>" + rs.getInt("PR.PRECIO") + "</label>");
                                 out.println("</div>");
                                 out.println("<div class='col s3 box'>");
                                 out.println("<input name='cant' id='cant' value='1' type='number' class='validate'  required>");
@@ -187,9 +183,9 @@
                                 out.println("</div>");
                                 out.println("<div class='col s7 left'>");
                                 out.println("<a class='waves-effect  red lighten-1 btn modal-trigger white-text' href='#modal2' id='confirmar'>COMPRAR</a>");
-                                
+
                                 out.println("</div>");
-                            }%>
+                        %>
                 </div>
             </div>
         </fieldset>
@@ -198,6 +194,47 @@
 
 
 
+<div id="modal2" class="modal">
+    <form action="ControladorPedido" method="POST">
+        <div class="modal-content">
+            <h5 id="modal-text" class="center">CONFIRMAR COMPRA</h5>
+            <img src="Imagenes/imagen.jpg" class="imagenmodal">
+            <div class="container" id="confirmar-compra">
+                <div class=" left">
+                    <h5 id="productoModal"></h5> 
+
+                    <label class="left" id="pymeModal"></label><br>
+                    <div class="row">
+                        <div class="col s4">
+
+                            <h6 id="precioModal"></h6>                        
+                        </div>
+                        <div class="col s3">
+                            <h6 id="cantidad" type="text"></h6>
+                            <input id="cantidad-oculta" name="cantidad-oculta" type="hidden" value="">
+                        </div>
+                        <div class="col s7 ">
+                            <label class='label-total'>Total: $</label>
+                            <label id="totalModal" class='label-total'></label>
+                            <input id="total-oculto" name="total-oculto" type="hidden" value="">
+                        </div>
+
+                        <div class="col s7 center">
+                            <br>
+                            <input class="btn waves-effect red lighten-1 white-text" type="submit" id="opcion" name="opcion" value="Confirmar">
+
+                        </div>
+                        <%
+                                out.println("<input id='cliente' name='cliente' type='hidden' value='" + cliente.getRut() + "'>");
+                                out.println("<input id='pyme' name='pyme' type='hidden' value='" + rs.getInt("PR.ID_PYME") + "'>");
+                                out.println("<input id='producto' name='producto' type='hidden' value='" + rs.getInt("PR.ID") + "'>");
+                            }%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 
 
 
