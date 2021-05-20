@@ -3,45 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/SolicitudCompra.jsp</file>
             <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/ProductosPyme.jsp</file>
+            <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/DetallesCuenta.jsp</file>
             <file>file:/C:/Users/MI/Desktop/git/app-pymes/AppPymes/web/css/estilo.css</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/Index.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/ProductosPyme.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/IndexCliente.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/RegistroCliente.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/css/estilo.css</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/VistaProducto.jsp</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/MenuPyme.jsp</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/css/estilo.css</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/RegistroCliente.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/Index.jsp</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/src/java/Controlador/ControladorLoginCliente.java</file>
-            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/src/java/Controlador/ControladorCliente.java</file>
-=======
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/RegistroPyme.jsp</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Modelo/Pyme.java</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/IndexPyme.jsp</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Controlador/ControladorLoginCliente.java</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/RegistroCliente.jsp</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Controlador/ControladorPyme.java</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/css/estilo.css</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/Index.jsp</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Controlador/ControladorCliente.java</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Dao/PymeDAO.java</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Dao/DireccionDAO.java</file>
-            <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/src/java/Controlador/ControladorLoginPyme.java</file>
->>>>>>> 163195b4a25e1a78c5abcc3b61cc522f76a7b4cf
->>>>>>> 35e14cfecb1fea3beaa802e5e2862ef966b531b3
->>>>>>> 39a73c8d100b3527277e9567e5f51ac71d3a7eff
->>>>>>> c5dcf938ca228f87e5efa386d775086e73e24098
         </group>
     </open-files>
 </project-private>

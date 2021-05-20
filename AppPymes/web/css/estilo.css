@@ -197,7 +197,7 @@ button:hover, button:focus{
  float:right;
  position:fixed;
 }
-<<<<<<< HEAD
+
 #11{
     height:250px;
 	width: 250px;
@@ -205,17 +205,24 @@ button:hover, button:focus{
 	float:left;
     
 }
-=======
-<<<<<<< HEAD
 
+.Info .direccion{
+    float:right;
+    
+}
 fieldset{
     padding: 10px;
     margin-bottom: 10px;
-    height: 400px;
-=======
+    height: 400px;}
+
+    Infopersonal{
+        text-align:center;
+    }
 #menu-pymes{
     display: block;
     margin-left: 300px;
->>>>>>> 39a73c8d100b3527277e9567e5f51ac71d3a7eff
 }
->>>>>>> c5dcf938ca228f87e5efa386d775086e73e24098
+
+.fieldsetD{
+  border:none;
+}
