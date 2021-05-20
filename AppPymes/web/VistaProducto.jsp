@@ -110,20 +110,10 @@
 
                                             <h5>NOMBRE </h5> 
                                             <h6>NOMBRE TIENDA </h6>
-                                            <input type="number" class="numeracion">
-
-
-                                            <p class="precio">$!!!!</p><br>
-
-
-                                            <br><br>
-                                            <a class="waves-effect  red lighten-1 btn modal-trigger white-text " href="#modal1" id="modall">COMPRAR</a>
-
-
 
                                         </div>                
                                     </div>
-                            </form>
+                     
                         </div>
 
                     </fieldset>
@@ -140,7 +130,6 @@
 
 
         </main>
-
         <footer class="page-footer blue-grey darken-2">
             <div class="container">
                 <div class="row">
