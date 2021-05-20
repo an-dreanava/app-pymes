@@ -187,3 +187,7 @@ button:hover, button:focus{
  float:right;
  position:fixed;
 }
+#menu-pymes{
+    display: block;
+    margin-left: 300px;
+}
