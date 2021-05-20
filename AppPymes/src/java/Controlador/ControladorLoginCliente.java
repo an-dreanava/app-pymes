@@ -13,7 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,43 +32,40 @@ public class ControladorLoginCliente extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
         String opcion = request.getParameter("opcion");
-        ClienteDAO dao = new ClienteDAO();
-        Cliente cliente = new Cliente();
+        
+        if (opcion.equals("Iniciar")) {
+            String correoL = request.getParameter("correoL");
+            String claveL = request.getParameter("claveL");
 
-        //HttpSession sesion = request.getSession(true);
-        //sesion.setAttribute("usuario", null);
-        //sesion.setAttribute("estadoSesion", "off");
+            ClienteDAO dao = new ClienteDAO();
+            Cliente cliente = new Cliente();
 
-        if (opcion.equals("Iniciar Sesion")) {
-            String correo = request.getParameter("correoL");
-            String clave = request.getParameter("claveL");
-
-            cliente.setCorreo(correo);
-            cliente.setContraseña(clave);
-
+            cliente.setCorreo(correoL);
+            cliente.setContraseña(claveL);
+            System.out.println("entro login");
             if (dao.login(cliente) == true) {
 
                 //sesion.setAttribute("usuario", cliente);
                 //sesion.setAttribute("estadoSesion", "on");
-
-                response.sendRedirect("InicioCliente.jsp");
+                response.sendRedirect("IndexCliente.jsp");
 
             } else {
-                response.sendRedirect("MensajeError.jsp?mensaje="+correo+clave);
+                response.sendRedirect("MensajeError.jsp?mensaje=" + correoL + claveL);
+                System.out.println("error login");
             }
         }
-
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorLogin</title>");
+            out.println("<title>Servlet ControladorLoginCliente</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControladorLogin at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControladorLoginCliente at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

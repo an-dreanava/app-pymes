@@ -52,7 +52,7 @@
                             <label for="claveL">Contraseña</label>
                         </div>
                         <div class="input-field col s12">
-                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar Sesion">
+                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar">
                             <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
                             <p class="center"><a href="" class="enlace">¿No estás registrado?</a></p>
                             <p class="center"><a href="RegistroCliente.jsp" class="enlace2 red-text">Registrarse</a></p>

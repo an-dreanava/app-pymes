@@ -13,7 +13,7 @@
         <servlet-class>Controlador.ControladorPyme</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ControladorLogin</servlet-name>
+        <servlet-name>ControladorLoginCliente</servlet-name>
         <servlet-class>Controlador.ControladorLoginCliente</servlet-class>
     </servlet>
     <servlet>
@@ -37,8 +37,8 @@
         <url-pattern>/ControladorPyme</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ControladorLogin</servlet-name>
-        <url-pattern>/ControladorLogin</url-pattern>
+        <servlet-name>ControladorLoginCliente</servlet-name>
+        <url-pattern>/ControladorLoginCliente</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ControladorLoginPyme2</servlet-name>
