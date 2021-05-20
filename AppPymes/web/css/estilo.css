@@ -37,9 +37,6 @@ main {
     color: #455a64;
 }
 
-.enlace2{
-    color: #ef5350;
-}
 
 #modal-text{
     font-weight: bold;
@@ -131,8 +128,7 @@ footer{
     height:25px;
     text-align: initial;
 }
-
-fieldset .imagen{
+.imagen{
         height:350px;
 	width: 350px;
 	padding:10px;
@@ -141,7 +137,11 @@ fieldset .imagen{
 }
 .Info{
     
-    padding:50px;
+    padding:50px
+}
+
+.corazon{
+    float:right; padding:50px;
     
 }
 
@@ -170,11 +170,24 @@ button:hover, button:focus{
 }
 
 
+
+#modal2{
+    width: 750px;
+    height: 400px;
+}
+
 .imagenmodal{
+    margin-bottom: 100px;
     float:left;
-    height: 150px;
-    width: 150px; 
-    
+    height: 250px;
+    width: 250px;     
+}
+
+#confirmar-compra{
+    margin-left: 250px;
+    width: 400px;
+    padding: 40px;
+    height: 200px;
 }
 .precio{
  float:right;
@@ -184,6 +197,7 @@ button:hover, button:focus{
  float:right;
  position:fixed;
 }
+<<<<<<< HEAD
 #11{
     height:250px;
 	width: 250px;
@@ -191,3 +205,17 @@ button:hover, button:focus{
 	float:left;
     
 }
+=======
+<<<<<<< HEAD
+
+fieldset{
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 400px;
+=======
+#menu-pymes{
+    display: block;
+    margin-left: 300px;
+>>>>>>> 39a73c8d100b3527277e9567e5f51ac71d3a7eff
+}
+>>>>>>> c5dcf938ca228f87e5efa386d775086e73e24098

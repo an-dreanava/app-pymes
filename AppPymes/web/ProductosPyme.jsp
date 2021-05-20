@@ -108,7 +108,7 @@
                             out.println("<div class='col 12 m3 s10'>");
                             out.println("<div class='card sticky-action tarjeta'>");
                             out.println("<div class='card-image tarjeta-imagen'>");
-                            out.println("<a href='' >");
+                            out.println("<a href='VistaProducto.jsp?id="+ rs.getString("PR.ID") +"' >");
                             out.println("<img src='Imagenes/" + rs.getString("PR.FOTO") + "' height='200' class='responsive-img' >");
                             out.println("</a>");
                             out.println("</div>");

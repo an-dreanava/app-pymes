@@ -28,7 +28,7 @@
 
         <!-- Modal Iniciar Sesión -->
         <div id="modal1" class="modal">
-            <form action="ControladorLoginPyme" method="POST">
+            <form action="ControladorLoginPyme" name="login" method="POST">
                 <div class="modal-content center container">
                     <h5 id="modal-text">INICIAR SESIÓN</h5>
                     <br>

@@ -32,37 +32,38 @@ public class ControladorCliente extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String rut = request.getParameter("rut");
-        String nombres = request.getParameter("nombres");
-        String apellido = request.getParameter("apellidos");
-        int  comuna = Integer.parseInt(request.getParameter("comuna"));
-        String direccion = request.getParameter("direccion");
-        String telefono = request.getParameter("telefono");
-        String correo = request.getParameter("correo");
-        String clave = request.getParameter("clave");
-             
-        
+
         String opcion = request.getParameter("opcion");
-        
+
         if (opcion.equals("Registrar")) {
-                Cliente cliente = new Cliente(rut, nombres, apellido, correo, clave, telefono, direccion, comuna );
-                
-                ClienteDAO clienteDAO = new ClienteDAO();
-                if (clienteDAO.agregar(cliente) == true) {
-                    response.sendRedirect("RegistroCliente.jsp?");
-                    System.out.println("Agregado");
-                } else {
-                    System.out.println("no agregado");
-                }
+            String rut = request.getParameter("rut");
+            String nombres = request.getParameter("nombres");
+            String apellido = request.getParameter("apellidos");
+            int comuna = Integer.parseInt(request.getParameter("comuna"));
+            String direccion = request.getParameter("direccion");
+            String telefono = request.getParameter("telefono");
+            String correo = request.getParameter("correo");
+            String clave = request.getParameter("clave");
+
+            Cliente cliente = new Cliente(rut, nombres, apellido, correo, clave, telefono, direccion, comuna);
+
+            ClienteDAO clienteDAO = new ClienteDAO();
+            if (clienteDAO.agregar(cliente) == true) {
+                response.sendRedirect("RegistroCliente.jsp?");
+                System.out.println("Agregado");
+            } else {
+                System.out.println("no agregado");
+            }
         }
+
         
+
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorCliente</title>");            
+            out.println("<title>Servlet ControladorCliente</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ControladorCliente at " + request.getContextPath() + "</h1>");
