@@ -37,9 +37,6 @@ main {
     color: #455a64;
 }
 
-.enlace2{
-    color: #ef5350;
-}
 
 #modal-text{
     font-weight: bold;
@@ -140,7 +137,7 @@ footer{
 }
 .Info{
     
-    padding:100px
+    padding:50px
 }
 
 .corazon{
@@ -173,11 +170,24 @@ button:hover, button:focus{
 }
 
 
+
+#modal2{
+    width: 750px;
+    height: 400px;
+}
+
 .imagenmodal{
+    margin-bottom: 100px;
     float:left;
-    height: 150px;
-    width: 150px; 
-    
+    height: 250px;
+    width: 250px;     
+}
+
+#confirmar-compra{
+    margin-left: 250px;
+    width: 400px;
+    padding: 40px;
+    height: 200px;
 }
 .precio{
  float:right;
@@ -186,4 +196,10 @@ button:hover, button:focus{
 .numeracion{
  float:right;
  position:fixed;
+}
+
+fieldset{
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 400px;
 }
