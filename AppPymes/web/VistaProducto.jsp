@@ -139,10 +139,124 @@
         </header>
 
         <main>
+<<<<<<< HEAD
+            <br>
+            <div class="divider"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col s2">
+                        <a href=""><i class="material-icons">navigate_before</i></a>                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="container">
+
+                <div class="">
+                    <fieldset>
+                        <img src="Imagenes/imagen.jpg" class="imagen">
+                        <div class="Info">
+                            <div class="container">
+                                <h5>NOMBRE PRODUCTO <a class="fav right" href=""><i class="material-icons">favorite</i></a> </h5> 
+                            </div>
+
+                            <label>NOMBRE TIENDA </label>
+                            <div class="row">
+                                <div class="col s2">
+                                    <h5>$15.000</h5>                        
+                                </div>
+                                <div class="col s3 box">
+                                    <input name="cant" id="cant" value="1" type="number" class="validate"  required> 
+                                </div>
+                                <div class="col s7">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. </p>                      
+                                </div>
+                                <div class="col s7">
+                                    <a class="waves-effect  red lighten-1 btn modal-trigger white-text" href="#modal1" id="modall">COMPRAR</a>
+                                </div>
+                            </div>
 
 
+                        </div>
+
+
+
+                        <div id="modal1" class="modal">
+                            <form action="ControladorLoginCliente" method="POST">
+                                <div class="modal-content center container">
+                                    <h5 id="modal-text">CONFIRMAR COMPRA</h5>
+                                    <br>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <img src="Imagenes/imagen.jpg" class="imagenmodal">
+
+                                            <h5>NOMBRE </h5> 
+                                            <h6>NOMBRE TIENDA </h6>
+
+                                        </div>                
+                                    </div>
+                     
+                        </div>
+=======
+
+
+<<<<<<< HEAD
+=======
+            <div id="modal2" class="modal">
+                <form action="" method="POST">
+                    <div class="modal-content">
+                        <h5 id="modal-text" class="center">CONFIRMAR COMPRA</h5>
+
+
+                        <img src="Imagenes/imagen.jpg" class="imagenmodal">
+                        <div class="container" id="confirmar-compra">
+                            <div class=" left">
+                                <h5>NOMBRE PRODUCTO </h5> 
+
+                                <label class="left" id="nom">NOMBRE TIENDA </label><br>
+                                <div class="row">
+                                    <div class="col s4">
+                                        <h6>$15.000</h6>                        
+                                    </div>
+                                    <div class="col s3">
+                                        <h6 id="cantidad" type="text"></h6>
+                                    </div>
+                                    <div class="col s7 ">
+>>>>>>> c5dcf938ca228f87e5efa386d775086e73e24098
+
+                                        <h5 id="total"></h5>
+                                    </div>
+
+                                    <div class="col s7 center">
+                                        <br>
+                                        <a class="waves-effect  red lighten-1 btn modal-trigger white-text" >CONFIRMAR</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+<<<<<<< HEAD
+
+
+
+
+
+        </main>
+        <footer class="page-footer blue-grey darken-2">
+=======
+>>>>>>> 1c989ac15dabbb1576e97e5ee2babc59c63e59ba
             <br><br>
             <div class="divider"></div>
+>>>>>>> c5dcf938ca228f87e5efa386d775086e73e24098
             <div class="container">
                 <div class="row">
                     <div class="col s4 ">
