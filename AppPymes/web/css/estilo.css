@@ -199,6 +199,15 @@ button:hover, button:focus{
  position:fixed;
 }
 
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+>>>>>>> 383f9161872ef919a021d7694c40e09a3824e836
+>>>>>>> da3c75d5c0c4317aa6aaf63b951f6b5be5bdaba5
 #11{
     height:250px;
 	width: 250px;
@@ -206,11 +215,39 @@ button:hover, button:focus{
 	float:left;
     
 }
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 1c989ac15dabbb1576e97e5ee2babc59c63e59ba
+>>>>>>> 383f9161872ef919a021d7694c40e09a3824e836
+>>>>>>> da3c75d5c0c4317aa6aaf63b951f6b5be5bdaba5
 
+.Info .direccion{
+    float:right;
+    
+}
 fieldset{
     padding: 10px;
     margin-bottom: 10px;
+<<<<<<< HEAD
+    height: 400px;}
+
+    Infopersonal{
+        text-align:center;
+    }
+#menu-pymes{
+    display: block;
+    margin-left: 300px;
+}
+
+.fieldsetD{
+  border:none;
+}
+=======
     height: 400px;
 }
 #menu-pymes{
@@ -257,5 +294,14 @@ fieldset{
 #slide-out{
     margin-top: 65px;
 }
+<<<<<<< HEAD
 
 
+=======
+=======
+>>>>>>> 39a73c8d100b3527277e9567e5f51ac71d3a7eff
+}
+>>>>>>> c5dcf938ca228f87e5efa386d775086e73e24098
+>>>>>>> 1c989ac15dabbb1576e97e5ee2babc59c63e59ba
+>>>>>>> 383f9161872ef919a021d7694c40e09a3824e836
+>>>>>>> da3c75d5c0c4317aa6aaf63b951f6b5be5bdaba5
