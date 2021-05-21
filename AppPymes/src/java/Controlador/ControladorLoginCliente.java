@@ -54,6 +54,7 @@ public class ControladorLoginCliente extends HttpServlet {
 
                 sesion.setAttribute("cliente", cliente);
                 sesion.setAttribute("estadoSesion", "on");
+                sesion.setAttribute("tipo", "1");
                 response.sendRedirect("IndexCliente.jsp");
 
             } else {

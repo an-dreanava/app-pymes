@@ -56,6 +56,7 @@ public class ControladorLoginPyme extends HttpServlet {
             if (pyme != (null)) {
                 sesion.setAttribute("pyme", pyme);
                 sesion.setAttribute("estadoSesion", "on");
+                sesion.setAttribute("tipo", "2");
                 response.sendRedirect("MenuPyme.jsp");
                 System.out.println("pyme encontrada");
             }else{

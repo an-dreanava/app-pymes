@@ -1,7 +1,7 @@
 <%-- 
-    Document   : Ventana_Mensajes
-    Created on : 19-05-2021, 10:00:08
-    Author     : drean
+    Document   : CerrarSesion
+    Created on : may 20, 2021, 8:54:33 p.m.
+    Author     : AngieRiera
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -21,22 +21,23 @@
     </head>
     <body bgcolor="#e0f7fa">
         <%
-        String titulo=request.getParameter("titulo");
-        String mensaje=request.getParameter("mensaje");
-        String boton=request.getParameter("boton");        
-        String retorno=request.getParameter("retorno");    
+        HttpSession sesion = request.getSession(true);
+
+            sesion.setAttribute("cliente", null);
+            sesion.setAttribute("pyme", null);
+            sesion.setAttribute("Estado", "close");
+
+            sesion.invalidate();    
         %>
         <div class='mensaje'>
             <form action="#" method="POST">
                 <div class="modal-content center container">
                     <br>
-                    <h4 id="modal-text"><%=titulo%></h4>
+                    <h4 id="modal-text">SESIÓN FINALIZADA</h4>
                     <br>
-                        <div class="row">
-                            <h6><%=mensaje%></h6>
-                        </div>
+     
                          <div class="input-field col s6">
-                            <a href="<%=retorno%>" class="waves-effect red lighten-1 btn-large white-text"><%=boton%></a>
+                            <a href="Index.jsp" class="waves-effect red lighten-1 btn-large white-text">Volver</a>
                          </div>  
                 </div>  
             </form>

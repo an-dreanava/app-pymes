@@ -198,10 +198,7 @@ button:hover, button:focus{
  float:right;
  position:fixed;
 }
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
 #11{
     height:250px;
 	width: 250px;
@@ -209,9 +206,7 @@ button:hover, button:focus{
 	float:left;
     
 }
-=======
-<<<<<<< HEAD
->>>>>>> 1c989ac15dabbb1576e97e5ee2babc59c63e59ba
+
 
 fieldset{
     padding: 10px;
@@ -221,7 +216,6 @@ fieldset{
 #menu-pymes{
     display: block;
     margin-left: 300px;
-<<<<<<< HEAD
 
 }
 
@@ -263,8 +257,5 @@ fieldset{
 #slide-out{
     margin-top: 65px;
 }
-=======
->>>>>>> 39a73c8d100b3527277e9567e5f51ac71d3a7eff
-}
->>>>>>> c5dcf938ca228f87e5efa386d775086e73e24098
->>>>>>> 1c989ac15dabbb1576e97e5ee2babc59c63e59ba
+
+

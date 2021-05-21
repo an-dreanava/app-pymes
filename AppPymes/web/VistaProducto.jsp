@@ -34,14 +34,20 @@
         <%
             Cliente cliente = null;
             String estadoSesion = "off";
+            String tipo = "";
 
             HttpSession sesion = request.getSession(true);
 
             cliente = (Cliente) sesion.getAttribute("cliente");
             estadoSesion = (String) sesion.getAttribute("estadoSesion");
+            tipo = (String) sesion.getAttribute("tipo");
 
             if (estadoSesion == null) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+            }else{
+                if(!tipo.equals("1")){
+                    response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion como cliente para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+                }
             }
 
             String rut = cliente.getRut();
@@ -131,7 +137,9 @@
                             <li>
                                 <a class="" href=""><i class="material-icons">favorite</i></a> 
                             </li>
-
+                            <li>
+                                <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a> 
+                            </li>
                         </ul>
                     </div>
                 </nav>

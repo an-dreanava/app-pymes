@@ -37,14 +37,20 @@
         <%
             Pyme pyme = null;
             String estadoSesion = "off";
+            String tipo = "";
 
             HttpSession sesion = request.getSession(true);
 
             pyme = (Pyme) sesion.getAttribute("pyme");
             estadoSesion = (String) sesion.getAttribute("estadoSesion");
+            tipo = (String) sesion.getAttribute("tipo");
 
             if (estadoSesion == null) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=IndexPyme.jsp");
+            }else{
+                if(!tipo.equals("2")){
+                    response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion como pyme para acceder a esta seccion&boton=Volver&retorno=IndexPyme.jsp");
+                }
             } 
 
             PreparedStatement ps = null;
@@ -65,12 +71,15 @@
                             <span>Para Tiendas</span>
                         </div>                
                         <ul id="nav-mobile" class="right hide-on-med-and-down black-text">
-                            <a class="waves-effect  red lighten-1 btn modal-trigger" href="#modal1">Ingresa a tu Cuenta</a> 
+                            <li>
+                                <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a>
+                            </li>
                         </ul>
                         <ul id="slide-out" class="sidenav sidenav-fixed">
                             <li><a href="#!">First Sidebar Link</a></li>
                             <li><a href="#!">Second Sidebar Link</a></li>
                         </ul>
+                        
                         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     </div>
                 </nav>
