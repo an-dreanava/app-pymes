@@ -1,7 +1,7 @@
 <%-- 
-    Document   : RegistroPyme
-    Created on : 15-05-2021, 13:42:43
-    Author     : drean
+    Document   : VistaPedidos
+    Created on : may 20, 2021, 11:09:40 p.m.
+    Author     : AngieRiera
 --%>
 
 <%@page import="Modelo.Pyme"%>
@@ -35,6 +35,10 @@
     </head>
     <body>
         <%
+
+            String titulo = request.getParameter("titulo");
+            int estado = Integer.parseInt(request.getParameter("estado"));
+
             Pyme pyme = null;
             String estadoSesion = "off";
             String tipo = "";
@@ -54,16 +58,15 @@
                     sesion.invalidate();
                 } else {
                     pyme = (Pyme) sesion.getAttribute("usuario");
+                    int id = Integer.parseInt(request.getParameter("id"));
                     PreparedStatement ps = null;
                     ResultSet rs = null;
                     Conexion con = new Conexion();
                     com.mysql.jdbc.Connection conexion = con.getConnection();
-                    ps = conexion.prepareStatement("SELECT * FROM PYME WHERE CORREO = ? ");
-                    ps.setString(1, pyme.getCorreo());
+                    ps = conexion.prepareStatement("SELECT * FROM PEDIDOS PE INNER JOIN CLIENTE CL ON PE.RUT_CLIENTE = CL.RUT INNER JOIN PYME PY ON PE.ID_PYME = PY.ID WHERE PE.ID_PYME = ? AND PE.ID_ESTADO_PEDIDO = ?");
+                    ps.setInt(1, id);
+                    ps.setInt(2, estado);
                     rs = ps.executeQuery();
-                    while (rs.next()) {
-                        pyme.setId(rs.getInt("ID"));
-                    }
 
 
         %>
@@ -100,51 +103,40 @@
             <div id="menu-pymes" class="center">
                 <br><br>
                 <div class="container cyan lighten-5 banner-menu center">
-                    <% out.println("<h4 id='titulo_form_pymes'>" + pyme.getNombrePyme() + "</h4>");%>
+                    <h4 id="titulo_form_pymes"><%=titulo%></h4>
                 </div>
 
 
                 <div class="container center dashboard" style="padding: 20px" >
-                    <div class="row center" >
-                        <a>
-                            <div class="red boton-menu-izq">
-                                <h6>Catálogo</h6>
-                            </div>
-                        </a>
-                        <a>
-                            <div class="red boton-menu-der">
-                                <h6>Mis Datos</h6>
-                            </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "' >");
-                                
-                         %>
-                        <div class="red boton-menu-izq">
-                            <h6>Pedidos Nuevos</h6>
-                        </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "' >");
-                                
-                         %>
-                            <div class="red boton-menu-der">
-                                <h6>Pedidos Pendientes</h6>
-                            </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "' >");
-                                
-                         %>
-                            <div class="red boton-menu-izq">
-                                <h6>Pedidos Finalizados</h6>
-                            </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "' >");
+                    <table  class="striped centered" id="resultados" >
+                        <thead>
+                            <tr>
+                                <th>Número de Solicitud</th>
+                                <th>Cliente</th>
+                                <th>Fecha Pedido</th>
+                                <th>Total</th>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody id="miTabla">
+                            <%while (rs.next()) {
+                                            out.println("<tr>");
+                                            out.println("<td>" + rs.getInt("PE.BOLETA") + "</td>");
+                                            out.println("<td>" + rs.getString("CL.NOMBRES") + " " + rs.getString("CL.APELLIDOS") + "</td>");
+                                            out.println("<td>" + rs.getString("PE.FECHA") + "</td>");
+                                            out.println("<td>$" + " " + rs.getString("PE.TOTAL") + "</td>");
+                                            out.println("<td>CHAT</td>");
+                                            out.println("<td>DOCUMENTO</td>");
+
+                                        }
+                                    }
                                 }
-                         }%>
-                            <div class="red boton-menu-der">
-                                <h6>Pedidos Cancelados</h6>
-                            </div>
-                        </a>
-                    </div>
+                            %>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -183,3 +175,4 @@
     </script>
 </body>
 </html>
+

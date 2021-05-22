@@ -40,7 +40,7 @@
 
             HttpSession sesion = request.getSession(true);
 
-            cliente = (Cliente) sesion.getAttribute("cliente");
+            
             estadoSesion = (String) sesion.getAttribute("estadoSesion");
             tipo = (String) sesion.getAttribute("tipo");
 
@@ -49,7 +49,13 @@
             }else{
                 if(!tipo.equals("1")){
                     response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion como cliente para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+                    sesion.setAttribute("usuario", null);
+                    sesion.setAttribute("estadoSesion", "close");
+                    sesion.invalidate();
+                }else{
+                    cliente = (Cliente) sesion.getAttribute("usuario");
                 }
+                    
             }
             
             String id = "";

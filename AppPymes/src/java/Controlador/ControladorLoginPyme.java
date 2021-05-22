@@ -54,7 +54,7 @@ public class ControladorLoginPyme extends HttpServlet {
             Pyme pyme = PymeDAO.login(correo, clave);
 
             if (pyme != (null)) {
-                sesion.setAttribute("pyme", pyme);
+                sesion.setAttribute("usuario", pyme);
                 sesion.setAttribute("estadoSesion", "on");
                 sesion.setAttribute("tipo", "2");
                 response.sendRedirect("MenuPyme.jsp");

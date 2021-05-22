@@ -23,9 +23,8 @@
         <%
         HttpSession sesion = request.getSession(true);
 
-            sesion.setAttribute("cliente", null);
-            sesion.setAttribute("pyme", null);
-            sesion.setAttribute("Estado", "close");
+            sesion.setAttribute("usuario", null);
+            sesion.setAttribute("estadoSesion", "close");
 
             sesion.invalidate();    
         %>

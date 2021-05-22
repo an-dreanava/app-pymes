@@ -52,7 +52,7 @@ public class ControladorLoginCliente extends HttpServlet {
             
             if (dao.login(cliente) == true) {
 
-                sesion.setAttribute("cliente", cliente);
+                sesion.setAttribute("usuario", cliente);
                 sesion.setAttribute("estadoSesion", "on");
                 sesion.setAttribute("tipo", "1");
                 response.sendRedirect("IndexCliente.jsp");
