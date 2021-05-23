@@ -28,7 +28,6 @@ public class PedidoDAO {
         Connection conexion = con.getConnection();
         boolean estado = false;
 
-
         try {
             ps = conexion.prepareStatement("INSERT INTO PEDIDOS (RUT_CLIENTE, ID_PYME, ID_PRODUCTO, CANTIDAD, FECHA, TOTAL, ID_ESTADO_PEDIDO) VALUES (?,?,?,?,?,?,?)");
             ps.setString(1, pedido.getRutCliente());

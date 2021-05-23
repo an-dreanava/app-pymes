@@ -307,3 +307,15 @@ height: 400px;
     margin-top: 65px;
 }
 
+.logo-pyme{
+    max-height: 100px;
+}
+
+#catalogo{
+    margin-left: 350px;
+}
+
+#form-producto{
+    margin-left: 380px;
+    width: 900px;
+}

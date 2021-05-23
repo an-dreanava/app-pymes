@@ -63,6 +63,7 @@
                     rs = ps.executeQuery();
                     while (rs.next()) {
                         pyme.setId(rs.getInt("ID"));
+                        pyme.setLogo(rs.getString("LOGO"));
                     }
 
 
@@ -83,10 +84,24 @@
                             </li>
                         </ul>
                         <ul id="slide-out" class="sidenav sidenav-fixed">
-                            <li><a href="#!">First Sidebar Link</a></li>
-                            <li><a href="#!">Second Sidebar Link</a></li>
+                            <li>
+                                <div class="center">                                    
+                                     <% out.println("<img src='Imagenes/" + pyme.getLogo() + "' class='logo-pyme circle'>"); %>
+                                </div>
+                            </li>
+                            <li><div class="divider"></div></li>
+                            <li><a href="MenuPyme.jsp"><i class="material-icons">view_module</i>Dashboard</a></li>
+                            <li><div class="divider"></div></li>
+                            <li><a href="#!"><i class="material-icons">settings</i>Mis datos</a></li>                            
+                            <li><div class="divider"></div></li>
+                            <li><a href="#!"><i class="material-icons">shopping_cart</i>Catálogo</a></li> 
+                            <li><div class="divider"></div></li>
+                            <li><a class="waves-effect" href="#!"><i class="material-icons">description</i>Pedidos</a></li>
+                            <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "'>Pedidos Nuevos</a></li>"); %>
+                            <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "'>Pedidos Pendientes</a></li>"); %>
+                            <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "'>Pedidos Finalizados</a></li>"); %>
+                            <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "'>Pedidos Cancelados</a></li>"); %>                          
                         </ul>
-
                         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     </div>
                 </nav>
@@ -106,43 +121,50 @@
 
                 <div class="container center dashboard" style="padding: 20px" >
                     <div class="row center" >
-                        <a>
-                            <div class="red boton-menu-izq">
+                        <a href="Catalogo.jsp">
+                            <div class=" red darken-1 boton-menu-izq">
                                 <h6>Catálogo</h6>
                             </div>
                         </a>
                         <a>
-                            <div class="red boton-menu-der">
+                            <div class=" light-green darken-1 boton-menu-der">
                                 <h6>Mis Datos</h6>
                             </div>
                         </a>
                         <% out.println("<a href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "' >");
-                                
-                         %>
-                        <div class="red boton-menu-izq">
-                            <h6>Pedidos Nuevos</h6>
+
+                        %>
+                        <div class="green accent-2 white-text boton-menu-izq ">
+                            <div class="col s2">
+                                <i class="material-icons">shopping_cart</i>
+                            </div>
+                            <div class="col s10">
+                                <h4>Pedidos Nuevos</h4>
+                            </div>
+
+
                         </div>
                         </a>
                         <% out.println("<a href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "' >");
-                                
-                         %>
-                            <div class="red boton-menu-der">
-                                <h6>Pedidos Pendientes</h6>
-                            </div>
+
+                        %>
+                        <div class="orange accent-1 white-text boton-menu-der">
+                            <h5 style="font-weight: bold;">Pedidos Pendientes</h5>
+                        </div>
                         </a>
                         <% out.println("<a href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "' >");
-                                
-                         %>
-                            <div class="red boton-menu-izq">
-                                <h6>Pedidos Finalizados</h6>
-                            </div>
+
+                        %>
+                        <div class="indigo lighten-2 white-text boton-menu-izq">
+                            <h6>Pedidos Finalizados</h6>
+                        </div>
                         </a>
                         <% out.println("<a href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "' >");
                                 }
-                         }%>
-                            <div class="red boton-menu-der">
-                                <h6>Pedidos Cancelados</h6>
-                            </div>
+                            }%>
+                        <div class="purple accent-1 white-text boton-menu-der">
+                            <h6>Pedidos Cancelados</h6>
+                        </div>
                         </a>
                     </div>
                 </div>

@@ -16,17 +16,17 @@ public class Productos {
     private String foto;
     private int precio;
     private int stock;
-    private String nombrePyme;
-    private String categoria;
+    private int pyme;
+    private int categoria;
 
-    public Productos(int id, String titulo, String descripcion, String foto, int precio, int stock, String nombrePyme, String categoria) {
+    public Productos(int id, String titulo, String descripcion, String foto, int precio, int stock, int pyme, int categoria) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.foto = foto;
         this.precio = precio;
         this.stock = stock;
-        this.nombrePyme = nombrePyme;
+        this.pyme = pyme;
         this.categoria = categoria;
     }
 
@@ -78,25 +78,25 @@ public class Productos {
         this.stock = stock;
     }
 
-    public String getNombrePyme() {
-        return nombrePyme;
+    public int getPyme() {
+        return pyme;
     }
 
-    public void setNombrePyme(String nombrePyme) {
-        this.nombrePyme = nombrePyme;
+    public void setPyme(int pyme) {
+        this.pyme = pyme;
     }
 
-    public String getCategoria() {
+    public int getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
 
     @Override
     public String toString() {
-        return "Productos{" + "id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", foto=" + foto + ", precio=" + precio + ", stock=" + stock + ", nombrePyme=" + nombrePyme + ", categoria=" + categoria + '}';
+        return "Productos{" + "id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", foto=" + foto + ", precio=" + precio + ", stock=" + stock + ", pyme=" + pyme + ", categoria=" + categoria + '}';
     }
     
     
