@@ -119,14 +119,14 @@
 
                 <div class="imagen-solicitud"> 
                     <% while (rs.next()) {%>
-                    <img src="Imagenes/<%=rs.getString("PR.FOTO") %>" >
+                    <img src="Imagenes/<%=rs.getString("PR.FOTO")%>" >
                 </div>
 
                 <div class="detalle-solicitud row"> 
                     <div class="detalle-pedido col s6">
                         <div class="row">
                             <div class="col s12">
-                               
+
                                 <h5><%=rs.getString("PR.TITULO")%> </h5> 
                             </div>
                             <div class="col s12">
@@ -175,18 +175,19 @@
                             </div>
                             <br>
                             <div class="col s6">
-                                <% 
-                                ps = conexion.prepareStatement("SELECT CONCAT(D.DESCRIPCION, ', ', C.DESCRIPCION, ', ', R.DESCRIPCION) AS DIRECCION FROM CLIENTE CL INNER JOIN DIRECCION D ON CL.ID_DIRECCION = D.ID INNER JOIN COMUNA C ON D.ID_COMUNA = C.ID INNER JOIN CIUDAD CI ON C.ID_CIUDAD = CI.ID INNER JOIN REGION R ON CI.ID_REGION = R.ID WHERE CL.RUT = ?");
-                                ps.setString(1, cliente.getRut());
-                                rs = ps.executeQuery();
-                                while (rs.next()){
+                                <%
+                                    ps = conexion.prepareStatement("SELECT CONCAT(D.DESCRIPCION, ', ', C.DESCRIPCION, ', ', R.DESCRIPCION) AS DIRECCION FROM CLIENTE CL INNER JOIN DIRECCION D ON CL.ID_DIRECCION = D.ID INNER JOIN COMUNA C ON D.ID_COMUNA = C.ID INNER JOIN CIUDAD CI ON C.ID_CIUDAD = CI.ID INNER JOIN REGION R ON CI.ID_REGION = R.ID WHERE CL.RUT = ?");
+                                    ps.setString(1, cliente.getRut());
+                                    rs = ps.executeQuery();
+                                    while (rs.next()) {
                                 %>
                                 <h6>Dirección: </h6>
                             </div>
                             <div class="col s6">
-                                <h6><%=rs.getString("DIRECCION") %></h6>                      
+                                <h6><%=rs.getString("DIRECCION")%></h6>                      
                             </div>
-                            <% } }%>
+                            <% }
+                                }%>
 
                         </div>
                     </div>
@@ -254,6 +255,24 @@
                 var instances = M.Modal.init(elems);
             });
 
+        </script>
+
+        <script>
+            // función encargada de la redirección
+            function redireccion() {
+                window.location = "Index.jsp";
+            }
+
+            // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
+            var temp = setTimeout(redireccion, 5400000);
+
+            // cuando se pulse en cualquier parte del documento
+            document.addEventListener("mousemove", function () {
+                // borrar el temporizador que redireccionaba
+                clearTimeout(temp);
+                // y volver a iniciarlo
+                temp = setTimeout(redireccion, 5400000 );
+            });
         </script>
     </body>
 </body>

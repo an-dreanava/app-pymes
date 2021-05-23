@@ -45,17 +45,17 @@
 
             if (estadoSesion == null) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
-            }else{
-                if(!tipo.equals("1")){
+            } else {
+                if (!tipo.equals("1")) {
                     response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion como cliente para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
                     sesion.setAttribute("usuario", null);
                     sesion.setAttribute("estadoSesion", "close");
                     sesion.invalidate();
-                }else{
-                    cliente = (Cliente) sesion.getAttribute("usuario");                    
+                } else {
+                    cliente = (Cliente) sesion.getAttribute("usuario");
                 }
             }
-            
+
             String id = "";
             id = request.getParameter("id");
 
@@ -123,11 +123,11 @@
             <div class="container" id="">        
 
                 <div class="row">
-                    <% while (rs.next()) { 
+                    <% while (rs.next()) {
                             out.println("<div class='col 12 m3 s10'>");
                             out.println("<div class='card sticky-action tarjeta'>");
                             out.println("<div class='card-image tarjeta-imagen'>");
-                            out.println("<a href='VistaProducto.jsp?id="+ rs.getString("PR.ID") +"' >");
+                            out.println("<a href='VistaProducto.jsp?id=" + rs.getString("PR.ID") + "' >");
                             out.println("<img src='Imagenes/" + rs.getString("PR.FOTO") + "' height='200' class='responsive-img' >");
                             out.println("</a>");
                             out.println("</div>");
@@ -152,7 +152,23 @@
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="js/materialize.min.js"></script>
 
+        <script>
+            // función encargada de la redirección
+            function redireccion() {
+                window.location = "Index.jsp";
+            }
 
+            // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
+            var temp = setTimeout(redireccion, 5400000);
+
+            // cuando se pulse en cualquier parte del documento
+            document.addEventListener("mousemove", function () {
+                // borrar el temporizador que redireccionaba
+                clearTimeout(temp);
+                // y volver a iniciarlo
+                temp = setTimeout(redireccion, 5400000);
+            });
+        </script>
 
     </body>
 </html>

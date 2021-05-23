@@ -108,8 +108,8 @@
             <form action="ControladorProductos" method="POST">
                 <div class="container" id="form-producto">        
                     <div class="row">
-                        
-                            <input id="id_pyme" name="id_pyme" type="hidden" value="<%=pyme.getId()%>">
+
+                        <input id="id_pyme" name="id_pyme" type="hidden" value="<%=pyme.getId()%>">
 
 
                         <div class="col s1">
@@ -165,8 +165,8 @@
                                 <input name="foto" id="foto" class="file-path validate" type="text">
                             </div>
                         </div>
-                        
-                        
+
+
                         <br>                        
                     </div>
                 </div>
@@ -216,6 +216,24 @@
         });
 
 
+    </script>
+
+    <script>
+        // función encargada de la redirección
+        function redireccion() {
+            window.location = "Index.jsp";
+        }
+
+        // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
+        var temp = setTimeout(redireccion, 5400000);
+
+        // cuando se pulse en cualquier parte del documento
+        document.addEventListener("mousemove", function () {
+            // borrar el temporizador que redireccionaba
+            clearTimeout(temp);
+            // y volver a iniciarlo
+            temp = setTimeout(redireccion, 5400000);
+        });
     </script>
 </body>
 </html>

@@ -86,7 +86,7 @@
                         <ul id="slide-out" class="sidenav sidenav-fixed">
                             <li>
                                 <div class="center">                                    
-                                     <% out.println("<img src='Imagenes/" + pyme.getLogo() + "' class='logo-pyme circle'>"); %>
+                                    <% out.println("<img src='Imagenes/" + pyme.getLogo() + "' class='logo-pyme circle'>"); %>
                                 </div>
                             </li>
                             <li><div class="divider"></div></li>
@@ -97,10 +97,10 @@
                             <li><a href="#!"><i class="material-icons">shopping_cart</i>Catálogo</a></li> 
                             <li><div class="divider"></div></li>
                             <li><a class="waves-effect" href="#!"><i class="material-icons">description</i>Pedidos</a></li>
-                            <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "'>Pedidos Nuevos</a></li>"); %>
-                            <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "'>Pedidos Pendientes</a></li>"); %>
-                            <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "'>Pedidos Finalizados</a></li>"); %>
-                            <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "'>Pedidos Cancelados</a></li>"); %>                          
+                                <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "'>Pedidos Nuevos</a></li>"); %>
+                                <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "'>Pedidos Pendientes</a></li>"); %>
+                                <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "'>Pedidos Finalizados</a></li>"); %>
+                                <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "'>Pedidos Cancelados</a></li>"); %>                          
                         </ul>
                         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     </div>
@@ -202,6 +202,23 @@
         });
 
 
+    </script>
+    <script>
+        // función encargada de la redirección
+        function redireccion() {
+            window.location = "Index.jsp";
+        }
+
+        // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
+        var temp = setTimeout(redireccion, 5400000);
+
+        // cuando se pulse en cualquier parte del documento
+        document.addEventListener("mousemove", function () {
+            // borrar el temporizador que redireccionaba
+            clearTimeout(temp);
+            // y volver a iniciarlo
+            temp = setTimeout(redireccion, 5400000);
+        });
     </script>
 </body>
 </html>

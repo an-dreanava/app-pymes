@@ -56,8 +56,7 @@
                     ps = conexion.prepareStatement("SELECT * FROM PRODUCTOS WHERE ID = ? ");
                     ps.setInt(1, id);
                     rs = ps.executeQuery();
-                
-            
+
 
         %>
 
@@ -116,18 +115,18 @@
                 <div class="container" id="form-producto">        
                     <div class="row">
 
-                        <% while (rs.next()){ %>
+                        <% while (rs.next()) {%>
                         <div class="col s5">
-                            <input id="id_producto" name="id_producto" type="hidden" value="<%=id %>">
-                            <input id="id_pyme" name="id_pyme" type="hidden" value="<%=rs.getInt("id_pyme") %>">
-                            <img src="Imagenes/<%=rs.getString("foto") %>" class="imagen">
+                            <input id="id_producto" name="id_producto" type="hidden" value="<%=id%>">
+                            <input id="id_pyme" name="id_pyme" type="hidden" value="<%=rs.getInt("id_pyme")%>">
+                            <img src="Imagenes/<%=rs.getString("foto")%>" class="imagen">
                         </div>
 
                         <div class="col s2">
                             <h6>Titulo:</h6>                            
                         </div>
                         <div class="col s5">
-                            <input name="titulo" id="titulo" type="text" class="validate" required value="<%= rs.getString("titulo") %>"> 
+                            <input name="titulo" id="titulo" type="text" class="validate" required value="<%= rs.getString("titulo")%>"> 
                         </div>
 
                         <div class="col s2">
@@ -150,21 +149,21 @@
                             <h6>Precio:</h6>
                         </div>
                         <div class="col s2">
-                            <input name="precio" id="precio" type="number" class="validate" required value="<%= rs.getString("precio") %>">
+                            <input name="precio" id="precio" type="number" class="validate" required value="<%= rs.getString("precio")%>">
                         </div>
 
                         <div class="col s1">
                             <h6>Stock</h6>
                         </div>
                         <div class="col s2">
-                            <input name="stock" id="stock"  type="number" class='validate' required value="<%= rs.getString("stock") %>">
+                            <input name="stock" id="stock"  type="number" class='validate' required value="<%= rs.getString("stock")%>">
                         </div>
 
                         <div class="col s2">
                             <h6>Descripción:</h6>
                         </div>
                         <div class="col s5">
-                            <textarea id="descripcion" name="descripcion" class="materialize-textarea"><%= rs.getString("descripcion") %></textarea>
+                            <textarea id="descripcion" name="descripcion" class="materialize-textarea"><%= rs.getString("descripcion")%></textarea>
                         </div>
 
                         <div class="col s7 file-field input-field">
@@ -173,11 +172,13 @@
                                 <input type="file">
                             </div>
                             <div class="file-path-wrapper">
-                                <input name="foto" id="foto" class="file-path validate" type="text" value="<%= rs.getString("foto") %>">
+                                <input name="foto" id="foto" class="file-path validate" type="text" value="<%= rs.getString("foto")%>">
                             </div>
                         </div>
                         <br>
-                        <% }}} %>
+                        <% }
+                                }
+                            }%>
                     </div>
                 </div>
                 <div class="container row " id="form-producto">
@@ -234,6 +235,23 @@
         });
 
 
+    </script>
+    <script>
+        // función encargada de la redirección
+        function redireccion() {
+            window.location = "Index.jsp";
+        }
+
+        // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
+        var temp = setTimeout(redireccion, 5400000);
+
+        // cuando se pulse en cualquier parte del documento
+        document.addEventListener("mousemove", function () {
+            // borrar el temporizador que redireccionaba
+            clearTimeout(temp);
+            // y volver a iniciarlo
+            temp = setTimeout(redireccion, 5400000);
+        });
     </script>
 </body>
 </html>

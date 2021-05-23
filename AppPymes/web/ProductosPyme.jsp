@@ -161,7 +161,23 @@
 
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script>
+            // función encargada de la redirección
+            function redireccion() {
+                window.location = "Index.jsp";
+            }
 
+            // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
+            var temp = setTimeout(redireccion, 5400000);
+
+            // cuando se pulse en cualquier parte del documento
+            document.addEventListener("mousemove", function () {
+                // borrar el temporizador que redireccionaba
+                clearTimeout(temp);
+                // y volver a iniciarlo
+                temp = setTimeout(redireccion, 5400000 );
+            });
+        </script>
 
 
     </body>

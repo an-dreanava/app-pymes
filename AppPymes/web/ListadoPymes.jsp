@@ -38,24 +38,22 @@
 
             HttpSession sesion = request.getSession(true);
 
-            
             estadoSesion = (String) sesion.getAttribute("estadoSesion");
             tipo = (String) sesion.getAttribute("tipo");
 
             if (estadoSesion == null) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
-            }else{
-                if(!tipo.equals("1")){
+            } else {
+                if (!tipo.equals("1")) {
                     response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion como cliente para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
                     sesion.setAttribute("usuario", null);
                     sesion.setAttribute("estadoSesion", "close");
                     sesion.invalidate();
-                }else{
+                } else {
                     cliente = (Cliente) sesion.getAttribute("usuario");
                 }
             }
-            
-            
+
             PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion con = new Conexion();
@@ -136,7 +134,7 @@
                             out.println("<div class='col 12 m3 s10'>");
                             out.println("<div class='card-pyme'>");
                             out.println("<div class='card-image'>");
-                            out.println("<a href='ProductosPyme.jsp?id="+ rs.getString("P.ID") +"' class='card-logo'>");
+                            out.println("<a href='ProductosPyme.jsp?id=" + rs.getString("P.ID") + "' class='card-logo'>");
                             out.println("<img src='Imagenes/" + rs.getString("P.LOGO") + "' class='responsive-img circle'>");
                             out.println("</a>");
                             out.println("</div>");
@@ -194,6 +192,23 @@
             document.addEventListener('DOMContentLoaded', function () {
                 var elems = document.querySelectorAll('.slider');
                 var instances = M.Slider.init(elems, options);
+            });
+        </script>
+        <script>
+            // función encargada de la redirección
+            function redireccion() {
+                window.location = "Index.jsp";
+            }
+
+            // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
+            var temp = setTimeout(redireccion, 5400000);
+
+            // cuando se pulse en cualquier parte del documento
+            document.addEventListener("mousemove", function () {
+                // borrar el temporizador que redireccionaba
+                clearTimeout(temp);
+                // y volver a iniciarlo
+                temp = setTimeout(redireccion, 5400000);
             });
         </script>
     </body>

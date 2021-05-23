@@ -33,31 +33,30 @@
 
         <%
             Cliente cliente = null;
-            String estadoSesion = "off";            
+            String estadoSesion = "off";
 
             HttpSession sesion = request.getSession(true);
-            
-            
+
             estadoSesion = (String) sesion.getAttribute("estadoSesion");
             String tipo = (String) sesion.getAttribute("tipo");
 
             if (estadoSesion == null) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
-            }else{
-                if(!tipo.equals("1")){
+            } else {
+                if (!tipo.equals("1")) {
                     response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion como cliente para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
                     sesion.setAttribute("usuario", null);
                     sesion.setAttribute("estadoSesion", "close");
                     sesion.invalidate();
-                }else{
+                } else {
                     cliente = (Cliente) sesion.getAttribute("usuario");
-                    String rut = cliente.getRut();                     
+                    String rut = cliente.getRut();
                 }
             }
-            
+
             String id = "";
             id = request.getParameter("id");
-            
+
             PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion con = new Conexion();
@@ -114,7 +113,7 @@
 
                     let cantidadOculta = document.getElementById("cantidad-oculta");
                     cantidadOculta.value = cant;
-                    
+
                     let totalOculto = document.getElementById("total-oculto");
                     totalOculto.value = total;
                 });
@@ -151,7 +150,7 @@
         </header>
 
         <main>
-  
+
             <br><br>
             <div class="divider"></div>
             <div class="container">
@@ -309,6 +308,23 @@
                 var instances = M.Modal.init(elems);
             });
 
+</script>
+<script>
+    // función encargada de la redirección
+    function redireccion() {
+        window.location = "Index.jsp";
+    }
+
+    // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
+    var temp = setTimeout(redireccion, 5400000);
+
+    // cuando se pulse en cualquier parte del documento
+    document.addEventListener("mousemove", function () {
+        // borrar el temporizador que redireccionaba
+        clearTimeout(temp);
+        // y volver a iniciarlo
+        temp = setTimeout(redireccion, 5400000);
+    });
 </script>
 
 
