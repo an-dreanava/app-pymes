@@ -73,7 +73,7 @@ public class ProductoDAO {
         com.mysql.jdbc.Connection conexion = con.getConnection();
 
         try {
-            ps = conexion.prepareStatement("UPDATE PRODUCTO SET TITULO=?, DESCRIPCION=?, FOTO=?, PRECIO=?, STOCK=?, ID_CATEGORIA_PRODUCTO=? WHERE ID=?");
+            ps = conexion.prepareStatement("UPDATE PRODUCTOS SET TITULO=?, DESCRIPCION=?, FOTO=?, PRECIO=?, STOCK=?, ID_CATEGORIA_PRODUCTO=? WHERE ID=?");
             ps.setString(1, producto.getTitulo());
             ps.setString(2, producto.getDescripcion());
             ps.setString(3, producto.getFoto());

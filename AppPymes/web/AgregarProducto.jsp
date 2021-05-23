@@ -105,11 +105,11 @@
                 </div>
             </div>
             <br><br>
-            <form action="ControladorProductos" method="POST" enctype="multipart/form-data">
+            <form action="ControladorProductos" method="POST">
                 <div class="container" id="form-producto">        
                     <div class="row">
-
-                        <input id="id_pyme" name="id_pyme" type="hidden" >
+                        
+                            <input id="id_pyme" name="id_pyme" type="hidden" value="<%=pyme.getId()%>">
 
 
                         <div class="col s1">
@@ -173,7 +173,7 @@
                 <div class="container row " id="form-producto">
                     <div class="col s5"></div>
                     <div class="input-field col s6">
-                        <button class="btn waves-effect red lighten-1" type="submit"  id="opcion" name="opcion" value="Agregar">Agregar</button>
+                        <input class="btn waves-effect red lighten-1"  type="submit" id="opcion" name="opcion" value="Agregar">
                     </div>
                 </div>
             </form>

@@ -112,7 +112,7 @@
                 </div>
             </div>
             <br><br>
-            <form action="ControladorProductos" method="POST" enctype="multipart/form-data">
+            <form action="ControladorProductos" method="POST">
                 <div class="container" id="form-producto">        
                     <div class="row">
 
@@ -186,7 +186,7 @@
                         <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Eliminar">
                     </div> 
                     <div class="input-field col s6">
-                        <button class="btn waves-effect red lighten-1" type="submit"  id="opcion" name="opcion" value="Actualizar">Actualizar</button>
+                        <input class="btn waves-effect red lighten-1" type="submit" id="opcion" name="opcion" value="Actualizar">
                     </div>
                 </div>
             </form>

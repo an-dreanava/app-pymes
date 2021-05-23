@@ -41,7 +41,7 @@ public class ControladorProductos extends HttpServlet {
         int id, id_categoria, precio, stock, id_pyme = 0;
 
         titulo = request.getParameter("titulo");
-        id = Integer.parseInt(request.getParameter("id_producto"));
+        
         id_categoria = Integer.parseInt(request.getParameter("id_categoria"));
         precio = Integer.parseInt(request.getParameter("precio"));
         stock = Integer.parseInt(request.getParameter("stock"));
@@ -50,7 +50,7 @@ public class ControladorProductos extends HttpServlet {
         foto = request.getParameter("foto");
 
         if (opcion.equals("Agregar")) {
-            Productos producto = new Productos(0, titulo, descripcion, foto, precio, stock, id_pyme, 5);
+            Productos producto = new Productos(0, titulo, descripcion, foto, precio, stock, id_pyme, id_categoria);
 
             if (dao.agregar(producto) == true) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Correcto&mensaje=Producto agregado correctamente&boton=Aceptar&retorno=MenuPyme.jsp");
@@ -62,8 +62,9 @@ public class ControladorProductos extends HttpServlet {
 
         if (opcion.equals("Actualizar")) {
             System.out.println("entro a actualziar");
-
-            Productos producto = new Productos(1, titulo, descripcion, foto, precio, stock, id_pyme, 5);
+            id = Integer.parseInt(request.getParameter("id_producto"));
+            
+            Productos producto = new Productos(id, titulo, descripcion, foto, precio, stock, id_pyme, id_categoria);
             System.out.println("entro actualizar");
             if (dao.actualizar(producto) == true) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Correcto&mensaje=Se han actualizado correctamente los datos del producto&boton=Aceptar&retorno=MenuPyme.jsp");
