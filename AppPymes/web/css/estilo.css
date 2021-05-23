@@ -319,3 +319,22 @@ height: 400px;
     margin-left: 380px;
     width: 900px;
 }
+
+.imagen-solicitud img{
+    width: 200px;
+    float: left;
+    
+}
+
+.detalle-solicitud{
+    width: 730px;
+    float: right;
+}
+
+.detalle-pedido{
+    width: 300px;
+}
+
+.detalle-datos{
+    width: 300px;
+}

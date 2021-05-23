@@ -4,6 +4,10 @@
     Author     : Paula Poblete
 --%>
 
+<%@page import="Modelo.Conexion"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="Modelo.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,142 +31,171 @@
 
     </head>
     <body>
+        <%
+            Cliente cliente = null;
+            String estadoSesion = "off";
+
+            HttpSession sesion = request.getSession(true);
+
+            estadoSesion = (String) sesion.getAttribute("estadoSesion");
+            String tipo = (String) sesion.getAttribute("tipo");
+
+            if (estadoSesion == null) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+            } else {
+                if (!tipo.equals("1")) {
+                    response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion como cliente para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+                    sesion.setAttribute("usuario", null);
+                    sesion.setAttribute("estadoSesion", "close");
+                    sesion.invalidate();
+                } else {
+                    cliente = (Cliente) sesion.getAttribute("usuario");
+                }
+            }
+
+            String producto = request.getParameter("id");
+            String total = request.getParameter("total");
+            String cant = request.getParameter("cant");
+
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion con = new Conexion();
+            com.mysql.jdbc.Connection conexion = con.getConnection();
+            ps = conexion.prepareStatement("SELECT PR.FOTO, PR.TITULO, PY.NOMBRE_PYME, PR.DESCRIPCION FROM PRODUCTOS PR INNER JOIN PYME PY ON PR.ID_PYME = PY.ID WHERE PR.ID = ?");
+            ps.setString(1, producto);
+            rs = ps.executeQuery();
+        %>
         <header>
             <div class="navbar-fixed">
-                <nav class="white">
+                <nav class="white nav-extended">
                     <div class="nav-wrapper">
                         <ul id="nav-mobile" class="left hide-on-med-and-down black-text">
                             <li><a href="sass.html" >Sass</a></li>
                         </ul>                
                         <div class="brand-logo center" id="titulo-banner">
-                            <span href="#" >Registro</span>
+                            <span href="#" >Tiendas</span>
                         </div>                
                         <ul id="nav-mobile" class="right hide-on-med-and-down black-text">
-                            <a class="waves-effect  red lighten-1 btn modal-trigger" href="#modal1">Iniciar Sesión</a> 
-                            <a class="waves-effect blue-grey darken-2 btn" href="IndexPyme.jsp">Para tiendas</a>              
+                            <li>
+                                <a class="" href=""><i class="material-icons">account_circle</i></a>                                 
+                            </li>
+                            <li>
+                            <h7>Cuenta</h7> 
+                            </li>
+                            <li>
+                                <a class="" href=""><i class="material-icons">favorite</i></a> 
+                            </li>
+                            <li>
+                                <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a> 
+                            </li>
                         </ul>
                     </div>
                 </nav>
             </div>
         </header>
 
-        <!-- Modal Iniciar Sesión -->
-        <div id="modal1" class="modal">
-            <form action="ControladorLoginCliente" method="POST">
-                <div class="modal-content center container">
-                    <h5 id="modal-text">INICIAR SESIÓN</h5>
-                    <br>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input name="correoL" id="correoL" type="text" class="validate">
-                            <label for="correoL">Correo</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">https</i>
-                            <input name="claveL" id="claveL" type="password" class="validate">
-                            <label for="claveL">Contraseña</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar Sesion">
-                            <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
-                            <p class="center"><a href="" class="enlace">¿No estás registrado?</a></p>
-                            <p class="center"><a href="RegistroCliente.jsp" class="enlace2">Registrarse</a></p>
-                        </div>
-                    </div>                
-                </div>
-            </form>
-        </div>
-
 
         <main>
             <div class="container" style="" >
                 <div class="row " >
+                    <br><br>
                     <div >
-                        <h6 class="col s9">TU SOLICITUD DE COMPRA SE HA RECIBIDO CON EXITO</h6>
+                        <label class="col s9" style="font-weight: bold; font-size: 20px; color: black;">TU SOLICITUD DE COMPRA SE HA RECIBIDO CON EXITO</label>
                     </div>
                     <div class="col s3">
                         <a class="waves-effect  red lighten-1 btn modal-trigger white-text">IR AL CHAT</a>
                     </div>
-
-                    <h6 class="col s12">Detalles de tu compra</h6>
+                    <div class="col s7">
+                        <h5 >Detalles de tu compra</h5>
+                    </div>
+                    <div class="col s5 ">
+                        <div class="container left ">
+                            <h5>Tus datos</h5>                           
+                        </div>                        
+                    </div>                    
                 </div>
 
 
-                <div class="Info"> 
-                    <img src="Imagenes/imagen.jpg" class="imagensolicitud" id="11">
-                    <div class="container">
-                        <h5>NOMBRE PRODUCTO </h5> 
-                    </div>
-                    
-                    <label>NOMBRE TIENDA </label>
-                    <div class="row">
-                        <div class="col s6">
-                            <div class="col s">
-                                <h5>$15.000</h5>                        
-                            </div>
-                            <div class="col s">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. </p>                      
-                            </div>
-                            <div class="col s">
-                                <a class="waves-effect  red lighten-1 btn modal-trigger white-text" href="#modal1" id="modall">COMPRAR</a>
-                            </div>
 
-                        </div>
-                        <div class="cols6">
-                            <h5>Tus Datos</h5>
-                            <div class= "col ">
-                                <p>Nombres: zzzzzzzzzzzzzzz</p>
-
-                            </div>
-
-                            <div class="col ">
-                                <p>Documento: 999999999</p>                            
-                            </div>  <br>     
-                            <div class="col ">
-                                <p>Correo: 999999999</p>                            
-                            </div>    
-                            <div class="col ">
-                                <p>telefono 999999999</p>                            
-                            </div>   
-                            <div class="col ">
-                                <p>Direccion : ZZZZZZZZZZZZZ</p>                            
-                            </div> 
-                        </div>
-
-                    </div>
+                <div class="imagen-solicitud"> 
+                    <% while (rs.next()) {%>
+                    <img src="Imagenes/<%=rs.getString("PR.FOTO") %>" >
                 </div>
 
+                <div class="detalle-solicitud row"> 
+                    <div class="detalle-pedido col s6">
+                        <div class="row">
+                            <div class="col s12">
+                               
+                                <h5><%=rs.getString("PR.TITULO")%> </h5> 
+                            </div>
+                            <div class="col s12">
+                                <label style="font-size: 20px;"><%=rs.getString("PY.NOMBRE_PYME")%></label>
+                            </div>
+                            <div class="col s5">
+                                <h5>$ <%=total%></h5>                        
+                            </div>
+                            <div class="col s6">
+                                <h5><%=cant%> Unid.</h5>                        
+                            </div>
+                            <div class="col s12">
+                                <p><%=rs.getString("PR.DESCRIPCION")%></p> 
+                            </div>
+                        </div>
+                    </div>
 
-                <div id="modal1" class="modal">
-                    <form action="ControladorLoginCliente" method="POST">
-                        <div class="modal-content center container">
-                            <h5 id="modal-text">CONFIRMAR COMPRA</h5>
+                    <div class="detalle-datos col s6">
+                        <div class="row">
+                            <div class="col s6">
+                                <h6>Nombre: </h6>
+                            </div>
+                            <div class="col s6">
+                                <h6><%=cliente.getNombre() + " " + cliente.getApellido()%></h6>                      
+                            </div>
                             <br>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <img src="Imagenes/imagen.jpg" class="imagenmodal">
-
-                                    <h5>NOMBRE </h5> 
-                                    <h6>NOMBRE TIENDA </h6>
-                                    <br><br>
-
-
-
-                                </div>                
+                            <div class="col s6">
+                                <h6>Documento: </h6>
                             </div>
+                            <div class="col s6">
+                                <h6><%=cliente.getRut()%> </h6>                      
+                            </div>
+                            <br>
+                            <div class="col s6">
+                                <h6>Correo: </h6>
+                            </div>
+                            <div class="col s6">
+                                <h6><%=cliente.getCorreo()%></h6>                      
+                            </div>
+                            <br>
+                            <div class="col s6">
+                                <h6>Teléfono: </h6>
+                            </div>
+                            <div class="col s6">
+                                <h6><%=cliente.getTelefono()%></h6>                      
+                            </div>
+                            <br>
+                            <div class="col s6">
+                                <% 
+                                ps = conexion.prepareStatement("SELECT CONCAT(D.DESCRIPCION, ', ', C.DESCRIPCION, ', ', R.DESCRIPCION) AS DIRECCION FROM CLIENTE CL INNER JOIN DIRECCION D ON CL.ID_DIRECCION = D.ID INNER JOIN COMUNA C ON D.ID_COMUNA = C.ID INNER JOIN CIUDAD CI ON C.ID_CIUDAD = CI.ID INNER JOIN REGION R ON CI.ID_REGION = R.ID WHERE CL.RUT = ?");
+                                ps.setString(1, cliente.getRut());
+                                rs = ps.executeQuery();
+                                while (rs.next()){
+                                %>
+                                <h6>Dirección: </h6>
+                            </div>
+                            <div class="col s6">
+                                <h6><%=rs.getString("DIRECCION") %></h6>                      
+                            </div>
+                            <% } }%>
 
                         </div>
+                    </div>
+                </div>
 
-                        </fieldset>
+            </div>
 
 
-                </div>  
 
-            </div>    
         </main>
 
 

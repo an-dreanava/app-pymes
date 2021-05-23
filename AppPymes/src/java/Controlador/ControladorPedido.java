@@ -54,7 +54,7 @@ public class ControladorPedido extends HttpServlet {
             PedidoDAO pedidoDAO = new PedidoDAO();
             
             if (pedidoDAO.agregar(pedido) == true) {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Solicitud de compra recibidad&mensaje=Se ha ingresado correctamente su pedido, contacte al vendedor para concretar la compra&boton=Volver&retorno=Index.jsp");
+                response.sendRedirect("SolicitudCompra.jsp?id="+producto+"&total="+total+"&cant="+cantidad);
                 System.out.println("Agregado");
             } else {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al enviar su solicitud de compra&mensaje=Se produjo un error al ingresar su solicitud de compra, por favor intente de nuevo&boton=Volver&retorno=Index.jsp");

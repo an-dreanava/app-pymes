@@ -53,24 +53,34 @@ public class ControladorProductos extends HttpServlet {
             Productos producto = new Productos(0, titulo, descripcion, foto, precio, stock, id_pyme, id_categoria);
 
             if (dao.agregar(producto) == true) {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Correcto&mensaje=Producto agregado correctamente&boton=Aceptar&retorno=MenuPyme.jsp");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Agregado&mensaje=Producto agregado correctamente&boton=Aceptar&retorno=MenuPyme.jsp");
             } else {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error&mensaje=No se ha agregado correctamente el producto&boton=Aceptar&retorno=MenuPyme.jsp");
             }
 
         }
 
-        if (opcion.equals("Actualizar")) {
-            System.out.println("entro a actualziar");
+        if (opcion.equals("Actualizar")) {            
             id = Integer.parseInt(request.getParameter("id_producto"));
             
             Productos producto = new Productos(id, titulo, descripcion, foto, precio, stock, id_pyme, id_categoria);
             System.out.println("entro actualizar");
             if (dao.actualizar(producto) == true) {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Correcto&mensaje=Se han actualizado correctamente los datos del producto&boton=Aceptar&retorno=MenuPyme.jsp");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Actualizado&mensaje=Se han actualizado correctamente los datos del producto&boton=Aceptar&retorno=MenuPyme.jsp");
             } else {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error&mensaje=No se han actualizado correctamente los datos del producto&boton=Aceptar&retorno=MenuPyme.jsp");
             }
+        }
+        
+        if (opcion.equals("Eliminar")) {
+            id = Integer.parseInt(request.getParameter("id_producto"));
+            
+            if (dao.eliminar(id) == true) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Eliminado&mensaje=Se ha eliminado correctamente el producto&boton=Aceptar&retorno=MenuPyme.jsp");
+            } else {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error&mensaje=No se ha eliminadoel producto&boton=Aceptar&retorno=MenuPyme.jsp");
+            }
+
         }
 
         try (PrintWriter out = response.getWriter()) {

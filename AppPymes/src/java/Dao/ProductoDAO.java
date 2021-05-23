@@ -101,4 +101,32 @@ public class ProductoDAO {
             }
         }
     }
+     
+     public boolean eliminar(int id) {
+        Conexion con = new Conexion();
+        com.mysql.jdbc.Connection conexion = con.getConnection();
+
+        try {
+            ps = conexion.prepareStatement("DELETE FROM PRODUCTOS WHERE ID=?");
+            ps.setInt(1, id);
+
+            int r = ps.executeUpdate();
+
+            if (r > 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception ex) {
+            System.err.println("Error, " + ex);
+            return false;
+        } finally {
+            try {
+                conexion.close();
+            } catch (Exception ex) {
+                System.err.println("Error, " + ex);
+            }
+        }
+    }
 }
