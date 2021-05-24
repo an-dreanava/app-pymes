@@ -135,7 +135,7 @@
                                     <h6>Teléfono: </h6>
                                 </div>
                                 <div class="col s6">
-                                    <h6><%=cliente.getTelefono()%></h6>                      
+                                    <h6><%=cliente.getTelefono()%> </h6>                      
                                 </div>                                
                                 <br>
                             </div>

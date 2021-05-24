@@ -4,6 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/Index.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/CerrarSesion.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/Catalogo.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/DatosPyme.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/IndexCliente.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/AgregarProducto.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/DetallePedido.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/EditarProducto.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/IndexPyme.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/DetalleVenta.jsp</file>
+            <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/EditarDatosCliente.jsp</file>
+=======
+<<<<<<< HEAD
             <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/MenuPyme.jsp</file>
             <file>file:/C:/Users/drean/Desktop/AppPymes/app-pymes/AppPymes/web/css/estilo.css</file>
 =======
@@ -13,6 +26,7 @@
             <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/IndexPyme.jsp</file>
             <file>file:/C:/Users/angie_yuixay4/OneDrive/Escritorio/Git/app-pymes/AppPymes/web/VistaProducto.jsp</file>
 >>>>>>> 60c26aad71bb86e2ca41928ac200e6a19497b334
+>>>>>>> b1c50f8f2637fb0229d04338b146a5d0865e4716
         </group>
     </open-files>
 </project-private>
