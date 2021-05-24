@@ -65,8 +65,12 @@ public class ControladorProductos extends HttpServlet {
             
             Productos producto = new Productos(id, titulo, descripcion, foto, precio, stock, id_pyme, id_categoria);
             System.out.println("entro actualizar");
+            System.out.println("ControladorProductos Producto dentro de la opción Actualizar:");
+            System.out.println(producto);
             if (dao.actualizar(producto) == true) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Actualizado&mensaje=Se han actualizado correctamente los datos del producto&boton=Aceptar&retorno=MenuPyme.jsp");
+                System.out.println("ControladorProductos dentro del true Actualizar");
+                System.out.println(producto);
             } else {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error&mensaje=No se han actualizado correctamente los datos del producto&boton=Aceptar&retorno=MenuPyme.jsp");
             }
