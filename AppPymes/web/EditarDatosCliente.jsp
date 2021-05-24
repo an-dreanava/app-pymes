@@ -181,7 +181,8 @@
                                             %>
                                         </select>     
                                     </div>
-                                    <%                                        ps = conexion.prepareStatement("SELECT D.DESCRIPCION FROM CLIENTE CL INNER JOIN DIRECCION D ON CL.ID_DIRECCION = D.ID WHERE CL.RUT = ?");
+                                    <%                                        
+                                        ps = conexion.prepareStatement("SELECT D.DESCRIPCION FROM CLIENTE CL INNER JOIN DIRECCION D ON CL.ID_DIRECCION = D.ID WHERE CL.RUT = ?");
                                         ps.setString(1, cliente.getRut());
                                         rs = ps.executeQuery();
                                         while (rs.next()) {

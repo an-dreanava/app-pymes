@@ -117,7 +117,7 @@
                             <p>Región:</p>                            
                         </div>
                         <div class="col s4">
-                            <select name="region" id="region" required>
+                            <select name="region" id="region" onchange="cambiar_comuna()" required>
                                 <option value="" disabled selected>Seleccione Region</option>
                                 <%  ps = conexion.prepareStatement("SELECT ID, DESCRIPCION FROM REGION ");
                                     rs = ps.executeQuery();
@@ -247,22 +247,22 @@
         </script>
         <script src="https://unpkg.com/imask"></script>
         <script>
-            var phoneMask = IMask(
-                    document.getElementById('telefono'), {
-                mask: '(+56) 9 0000 0000'
-            });
-            var dynamicMask = IMask(
-              document.getElementById('rut'),
-              {
-                mask: [
-                  {
-                    mask: '0.000.000-0'
-                  },
-                  {
-                    mask: '00.000.000-0'
-                  }
-                ]
-              });
+                                var phoneMask = IMask(
+                                        document.getElementById('telefono'), {
+                                    mask: '(+56) 9 0000 0000'
+                                });
+                                var dynamicMask = IMask(
+                                        document.getElementById('rut'),
+                                        {
+                                            mask: [
+                                                {
+                                                    mask: '0.000.000-0'
+                                                },
+                                                {
+                                                    mask: '00.000.000-0'
+                                                }
+                                            ]
+                                        });
         </script>
 
 
@@ -365,5 +365,7 @@
                 return true;
             }
         </script>
+
+
     </body>
 </html>
