@@ -4,6 +4,7 @@
     Author     : AngieRiera
 --%>
 
+<%@page import="Dao.PymeDAO"%>
 <%@page import="Modelo.Categoria"%>
 <%@page import="Dao.ProductoDAO"%>
 <%@page import="Modelo.Conexion"%>
@@ -29,6 +30,7 @@
     </head>
     <body>
         <%
+            PymeDAO PymeDAO=new PymeDAO();
             Pyme pyme = null;
             String estadoSesion = "off";
             String tipo = "";
@@ -134,7 +136,7 @@
                         </div>
                         <div class="col s5">
                             <select name="id_categoria" id="id_categoria" required>
-                                <option value="" disabled selected>Seleccione Categoria:</option>
+                                <option value="<%=rs.getInt("id_categoria_producto")%>"><%=PymeDAO.Des_Categoria(rs.getInt("id_categoria_producto"))%></option>
                                 <%
                                     ProductoDAO ProductoDAO = new ProductoDAO();
                                     for (Categoria categoria : ProductoDAO.Categoria()) {

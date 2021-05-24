@@ -145,7 +145,7 @@
                                     <br>
                                 </div>
                                     
-                                    <%-- OBTENER DIRECCION, COMUNA Y REGION DEL CLIENTE --%>
+                                    <%-- OBTENER COMUNA Y REGION DEL CLIENTE --%>
                                     <%      int id_comuna,id_region=0;
                                             String des_comuna,des_region="";
                                             ps = conexion.prepareStatement("SELECT d.id_comuna, co.descripcion, ci.id, r.id, r.descripcion "
