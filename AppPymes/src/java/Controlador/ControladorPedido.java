@@ -5,10 +5,13 @@
  */
 package Controlador;
 
-import Dao.ClienteDAO;
-import Modelo.Cliente;
+import Dao.PedidoDAO;
+import Modelo.Pedido;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author AngieRiera
  */
-public class ControladorCliente extends HttpServlet {
+public class ControladorPedido extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,42 +38,39 @@ public class ControladorCliente extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String opcion = request.getParameter("opcion");
+        PedidoDAO pedidoDAO = new PedidoDAO();
+        
+        if (opcion.equals("Confirmar")) {
+            String cliente = request.getParameter("cliente");
+            int pyme = Integer.parseInt(request.getParameter("pyme"));
+            int producto = Integer.parseInt(request.getParameter("producto"));
+            int cantidad = Integer.parseInt(request.getParameter("cantidad-oculta"));
+            int total = Integer.parseInt(request.getParameter("total-oculto"));
 
-        String rut = request.getParameter("rut");
-        String nombres = request.getParameter("nombres");
-        String apellido = request.getParameter("apellidos");
-        int comuna = Integer.parseInt(request.getParameter("comuna"));
-        String direccion = request.getParameter("direccion");
-        String telefono = request.getParameter("telefono");
-        String correo = request.getParameter("correo");
-
-        if (opcion.equals("Registrar")) {
-            String clave = request.getParameter("clave");
-
-            Cliente cliente = new Cliente(rut, nombres, apellido, correo, clave, telefono, direccion, comuna);
-
-            ClienteDAO clienteDAO = new ClienteDAO();
-            if (clienteDAO.agregar(cliente) == true) {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Registro correcto&mensaje=Se ha registrado correctamente, verifique su correo electronico e inicie sesion&boton=Volver&retorno=Index.jsp");
-                System.out.println("Agregado");
+            java.util.Date date = new Date();
+            SimpleDateFormat formateador = new SimpleDateFormat("hh:mm a");
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String fecha = dateFormat.format(date) + " " + formateador.format(date);
+            System.out.println(cliente + pyme + producto + "1" + fecha + "2000");
+            Pedido pedido = new Pedido(cliente, pyme, producto, cantidad, fecha, total, 1);            
+            
+            if (pedidoDAO.agregar(pedido) == true) {
+                response.sendRedirect("SolicitudCompra.jsp?id="+producto+"&total="+total+"&cant="+cantidad);
             } else {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al registrar&mensaje=El correo ingresado ya posee una cuenta, inicie sesion o recupere clave&boton=Volver&retorno=Index.jsp");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al enviar su solicitud de compra&mensaje=Se produjo un error al ingresar su solicitud de compra, por favor intente de nuevo&boton=Volver&retorno=Index.jsp");
             }
         }
-
-        if (opcion.equals("Actualizar")) {
-            Cliente cliente = new Cliente(rut, nombres, apellido, correo, "0", telefono, direccion, comuna);
-            System.out.println(rut + nombres + apellido + correo + telefono + direccion + comuna);
-            ClienteDAO clienteDAO = new ClienteDAO();
-            if (clienteDAO.modificar(cliente) == true) {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Datos Actualizados&mensaje=Se han actualizado correctamente los datos&boton=Volver&retorno=DetallesCuenta.jsp");
-                HttpSession sesion = request.getSession(true);
-                sesion.setAttribute("usuario", cliente);
-            } else {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al actualizar&mensaje=No se ha podido actualizar los datos, por favor intente de nuevo&boton=Volver&retorno=DetallesCuenta.jsp");
-                HttpSession sesion = request.getSession(true);
-                sesion.setAttribute("usuario", cliente);
+        
+        if (opcion.equals("Cambiar")){
+            int boleta = Integer.parseInt(request.getParameter("boleta"));
+            int estado = Integer.parseInt(request.getParameter("estado"));
+            
+            if(pedidoDAO.cambiarEstado(boleta, estado) == true){
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Estado Actualizado&mensaje=Se actualizo correctamente el estado del pedido&boton=Volver&retorno=MenuPyme.jsp");
+            }else{
+                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error&mensaje=No se actualizo el estado del pedido, por favor intente de nuevo&boton=Volver&retorno=MenuPyme.jsp");
             }
+            
         }
 
         try (PrintWriter out = response.getWriter()) {
@@ -78,10 +78,10 @@ public class ControladorCliente extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorCliente</title>");
+            out.println("<title>Servlet ControladorPedido</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControladorCliente at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControladorPedido at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

@@ -5,21 +5,21 @@
  */
 package Controlador;
 
-import Dao.ClienteDAO;
-import Modelo.Cliente;
+import Dao.ProductoDAO;
+import Modelo.Productos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author AngieRiera
  */
-public class ControladorCliente extends HttpServlet {
+public class ControladorProductos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,41 +36,51 @@ public class ControladorCliente extends HttpServlet {
 
         String opcion = request.getParameter("opcion");
 
-        String rut = request.getParameter("rut");
-        String nombres = request.getParameter("nombres");
-        String apellido = request.getParameter("apellidos");
-        int comuna = Integer.parseInt(request.getParameter("comuna"));
-        String direccion = request.getParameter("direccion");
-        String telefono = request.getParameter("telefono");
-        String correo = request.getParameter("correo");
+        ProductoDAO dao = new ProductoDAO();
+        String titulo, descripcion, foto = "";
+        int id, id_categoria, precio, stock, id_pyme = 0;
 
-        if (opcion.equals("Registrar")) {
-            String clave = request.getParameter("clave");
+        titulo = request.getParameter("titulo");
+        
+        id_categoria = Integer.parseInt(request.getParameter("id_categoria"));
+        precio = Integer.parseInt(request.getParameter("precio"));
+        stock = Integer.parseInt(request.getParameter("stock"));
+        id_pyme = Integer.parseInt(request.getParameter("id_pyme"));
+        descripcion = request.getParameter("descripcion");
+        foto = request.getParameter("foto");
 
-            Cliente cliente = new Cliente(rut, nombres, apellido, correo, clave, telefono, direccion, comuna);
+        if (opcion.equals("Agregar")) {
+            Productos producto = new Productos(0, titulo, descripcion, foto, precio, stock, id_pyme, id_categoria);
 
-            ClienteDAO clienteDAO = new ClienteDAO();
-            if (clienteDAO.agregar(cliente) == true) {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Registro correcto&mensaje=Se ha registrado correctamente, verifique su correo electronico e inicie sesion&boton=Volver&retorno=Index.jsp");
-                System.out.println("Agregado");
+            if (dao.agregar(producto) == true) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Agregado&mensaje=Producto agregado correctamente&boton=Aceptar&retorno=MenuPyme.jsp");
             } else {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al registrar&mensaje=El correo ingresado ya posee una cuenta, inicie sesion o recupere clave&boton=Volver&retorno=Index.jsp");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error&mensaje=No se ha agregado correctamente el producto&boton=Aceptar&retorno=MenuPyme.jsp");
             }
+
         }
 
-        if (opcion.equals("Actualizar")) {
-            Cliente cliente = new Cliente(rut, nombres, apellido, correo, "0", telefono, direccion, comuna);
-            System.out.println(rut + nombres + apellido + correo + telefono + direccion + comuna);
-            ClienteDAO clienteDAO = new ClienteDAO();
-            if (clienteDAO.modificar(cliente) == true) {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Datos Actualizados&mensaje=Se han actualizado correctamente los datos&boton=Volver&retorno=DetallesCuenta.jsp");
-                HttpSession sesion = request.getSession(true);
-                sesion.setAttribute("usuario", cliente);
+        if (opcion.equals("Actualizar")) {            
+            id = Integer.parseInt(request.getParameter("id_producto"));
+            
+            Productos producto = new Productos(id, titulo, descripcion, foto, precio, stock, id_pyme, id_categoria);
+            System.out.println("entro actualizar");
+            if (dao.actualizar(producto) == true) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Actualizado&mensaje=Se han actualizado correctamente los datos del producto&boton=Aceptar&retorno=MenuPyme.jsp");
             } else {
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al actualizar&mensaje=No se ha podido actualizar los datos, por favor intente de nuevo&boton=Volver&retorno=DetallesCuenta.jsp");
-                HttpSession sesion = request.getSession(true);
-                sesion.setAttribute("usuario", cliente);
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error&mensaje=No se han actualizado correctamente los datos del producto&boton=Aceptar&retorno=MenuPyme.jsp");
             }
+        }
+        
+        if (opcion.equals("Eliminar")) {
+            id = Integer.parseInt(request.getParameter("id_producto"));
+            
+            if (dao.eliminar(id) == true) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Eliminado&mensaje=Se ha eliminado correctamente el producto&boton=Aceptar&retorno=MenuPyme.jsp");
+            } else {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error&mensaje=No se ha eliminadoel producto&boton=Aceptar&retorno=MenuPyme.jsp");
+            }
+
         }
 
         try (PrintWriter out = response.getWriter()) {
@@ -78,10 +88,10 @@ public class ControladorCliente extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorCliente</title>");
+            out.println("<title>Servlet ControladorProductos</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControladorCliente at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControladorProductos at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

@@ -4,6 +4,7 @@
     Author     : Paula Poblete
 --%>
 
+<%@page import="Modelo.Cliente"%>
 <%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -33,6 +34,28 @@
 
     <body>
         <%
+            Cliente cliente = null;
+            String estadoSesion = "off";
+            String tipo = "";
+
+            HttpSession sesion = request.getSession(true);
+
+            estadoSesion = (String) sesion.getAttribute("estadoSesion");
+            tipo = (String) sesion.getAttribute("tipo");
+
+            if (estadoSesion == null) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+            } else {
+                if (!tipo.equals("1")) {
+                    response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion como cliente para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
+                    sesion.setAttribute("usuario", null);
+                    sesion.setAttribute("estadoSesion", "close");
+                    sesion.invalidate();
+                } else {
+                    cliente = (Cliente) sesion.getAttribute("usuario");
+                }
+            }
+
             String id = "";
             id = request.getParameter("id");
 
@@ -59,14 +82,17 @@
                         </div>                
                         <ul id="nav-mobile" class="right hide-on-med-and-down black-text">
                             <li>
-                                <a class="" href=""><i class="material-icons">account_circle</i></a>                                 
+                                <a class="" href="DetallesCuenta.jsp"><i class="material-icons">account_circle</i></a>                                 
                             </li>
                             <li>
                             <h7>Cuenta</h7> 
                             </li>
                             <li>
                                 <a class="" href=""><i class="material-icons">favorite</i></a> 
-                            </li>          
+                            </li> 
+                            <li>
+                                <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a> 
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -87,22 +113,21 @@
                     <div class="col s4 ">
                         <a href="IndexCliente.jsp">
                             <i class="material-icons left" >navigate_before</i>
-                            <h6 color="#fafafa">VOLVER</h6>  
+                            <label class="label-volver">VOLVER</label>  
                         </a>
                     </div>
                 </div>
             </div>
-
-            <div class="divider"></div><br>
+            <div class="divider separador"></div>
 
             <div class="container" id="">        
 
                 <div class="row">
-                    <% while (rs.next()) { 
+                    <% while (rs.next()) {
                             out.println("<div class='col 12 m3 s10'>");
                             out.println("<div class='card sticky-action tarjeta'>");
                             out.println("<div class='card-image tarjeta-imagen'>");
-                            out.println("<a href='' >");
+                            out.println("<a href='VistaProducto.jsp?id=" + rs.getString("PR.ID") + "' >");
                             out.println("<img src='Imagenes/" + rs.getString("PR.FOTO") + "' height='200' class='responsive-img' >");
                             out.println("</a>");
                             out.println("</div>");
@@ -110,7 +135,8 @@
                             out.println("<label class='left'>" + rs.getString("PY.NOMBRE_PYME") + "</label> <br>");
                             out.println("<a class='right' href=''><i class='material-icons'>favorite_border</i></a>");
                             out.println("<p class='center'>" + rs.getString("PR.TITULO") + "</p>");
-                            out.println("<p class='center' style='font-size: large;'>" + rs.getString("PR.PRECIO") + "</p>");
+                            out.println("<label class='label-precio2'>$</label>");
+                            out.println("<label class='center label-precio2'>" + rs.getString("PR.PRECIO") + "</label>");
 
                             out.println("</div>");
 
@@ -126,7 +152,23 @@
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="js/materialize.min.js"></script>
 
+        <script>
+            // función encargada de la redirección
+            function redireccion() {
+                window.location = "Index.jsp";
+            }
 
+            // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
+            var temp = setTimeout(redireccion, 5400000);
+
+            // cuando se pulse en cualquier parte del documento
+            document.addEventListener("mousemove", function () {
+                // borrar el temporizador que redireccionaba
+                clearTimeout(temp);
+                // y volver a iniciarlo
+                temp = setTimeout(redireccion, 5400000);
+            });
+        </script>
 
     </body>
 </html>

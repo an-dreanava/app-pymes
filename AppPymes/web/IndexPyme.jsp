@@ -35,16 +35,16 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
-                            <input name="correo" id="correo" type="text" class="validate">
-                            <label for="correo">Correo</label>
+                            <input name="correoL" id="correoL" type="text" class="validate">
+                            <label for="correoL">Correo</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">https</i>
-                            <input name="clave" id="clave" type="password" class="validate">
-                            <label for="clave">Contraseña</label>
+                            <input name="claveL" id="claveL" type="password" class="validate">
+                            <label for="claveL">Contraseña</label>
                         </div>
                         <div class="input-field col s12">
-                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="IniciarSesion">
+                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar">
                             <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
                         </div>
                     </div>                
@@ -67,11 +67,11 @@
                                         <form action="" method="POST">
 
                                             <div class="input-field col s6">
-                                                <a class="waves-effect  red lighten-1 btn-large modal-trigger" href="#modal1">Iniciar Sesión</a> 
+                                                <a class="waves-effect  red lighten-1 btn-large modal-trigger white-text" href="#modal1">Iniciar Sesión</a> 
                                             </div>
 
                                             <div class="input-field col s6">
-                                                <a href="RegistroPyme.jsp" class="waves-effect blue-grey darken-2 btn-large">Registrarse</a>
+                                                <a href="RegistroPyme.jsp" class="waves-effect blue-grey darken-2 btn-large white-text">Registrarse</a>
                                             </div>  
 
                                         </form>

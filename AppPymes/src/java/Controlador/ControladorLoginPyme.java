@@ -41,14 +41,14 @@ public class ControladorLoginPyme extends HttpServlet {
         String opcion = "";
 
         opcion = request.getParameter("opcion");
-        clave = request.getParameter("clave");
-        correo = request.getParameter("correo");
+        clave = request.getParameter("claveL");
+        correo = request.getParameter("correoL");
 
-        if (opcion.equals("IniciarSesion")) {
+        if (opcion.equals("Iniciar")) {
 
             HttpSession sesion = request.getSession(true);
 
-            sesion.setAttribute("usuario", null);
+            sesion.setAttribute("pyme", null);
             sesion.setAttribute("estadoSesion", "off");
 
             Pyme pyme = PymeDAO.login(correo, clave);
@@ -56,15 +56,14 @@ public class ControladorLoginPyme extends HttpServlet {
             if (pyme != (null)) {
                 sesion.setAttribute("usuario", pyme);
                 sesion.setAttribute("estadoSesion", "on");
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Aceptado&mensaje=Sus datos han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=IndexPyme.jsp");
+                sesion.setAttribute("tipo", "2");
+                response.sendRedirect("MenuPyme.jsp");
                 System.out.println("pyme encontrada");
             }else{
-                System.out.println("pyme null");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Sus datos NO han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=RegistroPyme.jsp");
             }
 
-        } else {
-            response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Sus datos NO han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=IndexPyme.jsp");
-        }
+        } 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");

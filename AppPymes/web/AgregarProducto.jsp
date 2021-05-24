@@ -1,24 +1,18 @@
 <%-- 
-    Document   : RegistroPyme
-    Created on : 15-05-2021, 13:42:43
-    Author     : drean
+    Document   : EditarProducto
+    Created on : may 22, 2021, 4:32:05 p.m.
+    Author     : AngieRiera
 --%>
 
-<%@page import="Modelo.Pyme"%>
-<%@page import="Dao.PymeDAO"%>
 <%@page import="Modelo.Categoria"%>
-<%@page import="Modelo.Comuna"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Modelo.Region"%>
-<%@page import="Dao.DireccionDAO"%>
+<%@page import="Dao.ProductoDAO"%>
+<%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="Modelo.Conexion"%>
+<%@page import="Modelo.Pyme"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -54,20 +48,12 @@
                     sesion.invalidate();
                 } else {
                     pyme = (Pyme) sesion.getAttribute("usuario");
-                    PreparedStatement ps = null;
-                    ResultSet rs = null;
-                    Conexion con = new Conexion();
-                    com.mysql.jdbc.Connection conexion = con.getConnection();
-                    ps = conexion.prepareStatement("SELECT * FROM PYME WHERE CORREO = ? ");
-                    ps.setString(1, pyme.getCorreo());
-                    rs = ps.executeQuery();
-                    while (rs.next()) {
-                        pyme.setId(rs.getInt("ID"));
-                        pyme.setLogo(rs.getString("LOGO"));
-                    }
+                }
+            }
 
 
         %>
+
         <header>
             <div class="navbar-fixed">
                 <nav class="white">
@@ -100,71 +86,101 @@
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "'>Pedidos Nuevos</a></li>"); %>
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "'>Pedidos Pendientes</a></li>"); %>
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "'>Pedidos Finalizados</a></li>"); %>
-                                <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "'>Pedidos Cancelados</a></li>"); %>                          
+                                <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "'>Pedidos Cancelados</a></li>");%>                          
                         </ul>
+
                         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     </div>
                 </nav>
             </div>
         </header>
 
+
         <main>
-
-
 
             <div id="menu-pymes" class="center">
                 <br><br>
                 <div class="container cyan lighten-5 banner-menu center">
-                    <% out.println("<h4 id='titulo_form_pymes'>" + pyme.getNombrePyme() + "</h4>");%>
-                </div>
-
-
-                <div class="container center dashboard" style="padding: 20px" >
-                    <div class="row center" >
-                        <a href="Catalogo.jsp">
-                            <div class=" red darken-1 boton-menu-izq">
-                                <h5 style="font-weight: bold;">Catálogo</h5>
-                            </div>
-                        </a>
-                        <a href="DatosPyme.jsp">
-                            <div class=" light-green darken-1 boton-menu-der">
-                                <h5 style="font-weight: bold;">Mis Datos</h5>
-                            </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "' >");
-
-                        %>
-                        <div class="green accent-2 white-text boton-menu-izq ">
-                            <h5 style="font-weight: bold;">Pedidos Nuevos</h5>    
-                        </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "' >");
-
-                        %>
-                        <div class="orange accent-1 white-text boton-menu-der">
-                            <h5 style="font-weight: bold;">Pedidos Pendientes</h5>
-                        </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "' >");
-
-                        %>
-                        <div class="indigo lighten-2 white-text boton-menu-izq">
-                            <h5 style="font-weight: bold;">Pedidos Finalizados</h5>
-                        </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "' >");
-                                }
-                            }%>
-                        <div class="purple accent-1 white-text boton-menu-der">
-                            <h5 style="font-weight: bold;">Pedidos Cancelados</h5>
-                        </div>
-                        </a>
-                    </div>
+                    <h4 id="titulo_form_pymes">Agregar Producto</h4>
                 </div>
             </div>
-        </div>
-    </main>
+            <br><br>
+            <form action="ControladorProductos" method="POST">
+                <div class="container" id="form-producto">        
+                    <div class="row">
 
+                        <input id="id_pyme" name="id_pyme" type="hidden" value="<%=pyme.getId()%>">
+
+
+                        <div class="col s1">
+                            <h6>Titulo:</h6>                            
+                        </div>
+                        <div class="col s5">
+                            <input name="titulo" id="titulo" type="text" class="validate" required> 
+                        </div>
+
+                        <div class="col s2">
+                            <h6>Categoría:</h6>                            
+                        </div>
+                        <div class="col s4">
+                            <select name="id_categoria" id="id_categoria" required>
+                                <option value="" disabled selected>Seleccione Categoria:</option>
+                                <%
+                                    ProductoDAO ProductoDAO = new ProductoDAO();
+                                    for (Categoria categoria : ProductoDAO.Categoria()) {
+                                %>
+                                <option value="<%=categoria.getId_categoria()%>"><%=categoria.getDescripcion()%></option>
+                                <% }
+                                %>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="col s1">
+                            <h6>Precio:</h6>
+                        </div>
+                        <div class="col s5">
+                            <input name="precio" id="precio" type="number" class="validate" required>
+                        </div>
+
+                        <div class="col s2">
+                            <h6>Stock</h6>
+                        </div>
+                        <div class="col s4">
+                            <input name="stock" id="stock"  type="number" class='validate' required >
+                        </div>
+
+                        <div class="col s1">
+                            <h6>Descripción:</h6>
+                        </div>
+                        <div class="col s5">
+                            <textarea id="descripcion" name="descripcion" class="materialize-textarea"></textarea>
+                        </div>
+
+                        <div class="col s6 file-field input-field">
+                            <div class="btn">
+                                <span>Subir</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input name="foto" id="foto" class="file-path validate" type="text">
+                            </div>
+                        </div>
+
+
+                        <br>                        
+                    </div>
+                </div>
+                <div class="container row " id="form-producto">
+                    <div class="col s5"></div>
+                    <div class="input-field col s6">
+                        <input class="btn waves-effect red lighten-1"  type="submit" id="opcion" name="opcion" value="Agregar">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </main>
 
 
     <!--JavaScript at end of body for optimized loading-->
@@ -172,6 +188,11 @@
     <script>
         $(document).ready(function () {
             $('select').formSelect();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, options);
         });
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -196,6 +217,7 @@
 
 
     </script>
+
     <script>
         // función encargada de la redirección
         function redireccion() {

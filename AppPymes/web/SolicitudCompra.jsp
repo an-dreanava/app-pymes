@@ -1,13 +1,13 @@
 <%-- 
-    Document   : InicioCliente
-    Created on : may 17, 2021, 5:27:53 p.m.
-    Author     : AngieRiera
+    Document   : SolicitudCompra
+    Created on : 19-05-2021, 19:16:20
+    Author     : Paula Poblete
 --%>
 
-<%@page import="Modelo.Cliente"%>
 <%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
+<%@page import="Modelo.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,49 +17,52 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/jquery.nice-number.css" rel="stylesheet">
 
-        <link type="text/css" rel="stylesheet" href="css/estilo.css" />
 
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+        <link type="text/css" rel="stylesheet" href="css/estilo.css" />
 
     </head>
     <body>
         <%
             Cliente cliente = null;
             String estadoSesion = "off";
-            String tipo = "";
 
             HttpSession sesion = request.getSession(true);
-            
+
             estadoSesion = (String) sesion.getAttribute("estadoSesion");
-            tipo = (String) sesion.getAttribute("tipo");
+            String tipo = (String) sesion.getAttribute("tipo");
 
             if (estadoSesion == null) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
-            }else{
-                if(!tipo.equals("1")){
+            } else {
+                if (!tipo.equals("1")) {
                     response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion como cliente para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
                     sesion.setAttribute("usuario", null);
                     sesion.setAttribute("estadoSesion", "close");
                     sesion.invalidate();
-                }else{
+                } else {
                     cliente = (Cliente) sesion.getAttribute("usuario");
                 }
             }
- 
+
+            String producto = request.getParameter("id");
+            String total = request.getParameter("total");
+            String cant = request.getParameter("cant");
 
             PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion con = new Conexion();
             com.mysql.jdbc.Connection conexion = con.getConnection();
-            ps = conexion.prepareStatement("SELECT * FROM PYME P INNER JOIN CATEGORIA_PYME C ON P.ID_CATEGORIA_PYME = C.ID WHERE P.ID_ESTADO=2 ORDER BY RAND() LIMIT 4");
+            ps = conexion.prepareStatement("SELECT PR.FOTO, PR.TITULO, PY.NOMBRE_PYME, PR.DESCRIPCION FROM PRODUCTOS PR INNER JOIN PYME PY ON PR.ID_PYME = PY.ID WHERE PR.ID = ?");
+            ps.setString(1, producto);
             rs = ps.executeQuery();
         %>
         <header>
@@ -85,96 +88,120 @@
                             <li>
                                 <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a> 
                             </li>
-
                         </ul>
                     </div>
                 </nav>
             </div>
         </header>
 
+
         <main>
-
-            <div class="slider">
-                <ul class="slides">
-                    <li>
-                        <img src="Imagenes/oferta1.png">
-                    </li>
-                    <li>
-                        <img src="Imagenes/oferta2.png"> 
-                    </li>
-                    <li>
-                        <img src="Imagenes/oferta3.png"> 
-                    </li>
-                    <li>
-                        <img src="Imagenes/oferta4.png"> 
-                    </li>
-                    <li>
-                        <img src="Imagenes/oferta5.png"> 
-                    </li>
-                </ul>
-            </div>
-
-            <br>
-            <div class="divider"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col s10">
-                        <h6>PYMES DESTACADAS</h6>
+            <div class="container" style="" >
+                <div class="row " >
+                    <br><br>
+                    <div >
+                        <label class="col s9" style="font-weight: bold; font-size: 20px; color: black;">TU SOLICITUD DE COMPRA SE HA RECIBIDO CON EXITO</label>
                     </div>
-                    <div class="col s2">
-                        <a href="ListadoPymes.jsp">                            
-                            <label class="label-volver">VER TODAS</label> 
-                            <i class="material-icons right" >navigate_next</i>                             
-                        </a>                        
+                    <div class="col s3">
+                        <a class="waves-effect  red lighten-1 btn modal-trigger white-text">IR AL CHAT</a>
+                    </div>
+                    <div class="col s7">
+                        <h5 >Detalles de tu compra</h5>
+                    </div>
+                    <div class="col s5 ">
+                        <div class="container left ">
+                            <h5>Tus datos</h5>                           
+                        </div>                        
+                    </div>                    
+                </div>
+
+
+
+                <div class="imagen-solicitud"> 
+                    <% while (rs.next()) {%>
+                    <img src="Imagenes/<%=rs.getString("PR.FOTO")%>" >
+                </div>
+
+                <div class="detalle-solicitud row"> 
+                    <div class="detalle-pedido col s6">
+                        <div class="row">
+                            <div class="col s12">
+
+                                <h5><%=rs.getString("PR.TITULO")%> </h5> 
+                            </div>
+                            <div class="col s12">
+                                <label style="font-size: 20px;"><%=rs.getString("PY.NOMBRE_PYME")%></label>
+                            </div>
+                            <div class="col s5">
+                                <h5>$ <%=total%></h5>                        
+                            </div>
+                            <div class="col s6">
+                                <h5><%=cant%> Unid.</h5>                        
+                            </div>
+                            <div class="col s12">
+                                <p><%=rs.getString("PR.DESCRIPCION")%></p> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detalle-datos col s6">
+                        <div class="row">
+                            <div class="col s6">
+                                <h6>Nombre: </h6>
+                            </div>
+                            <div class="col s6">
+                                <h6><%=cliente.getNombre() + " " + cliente.getApellido()%></h6>                      
+                            </div>
+                            <br>
+                            <div class="col s6">
+                                <h6>Documento: </h6>
+                            </div>
+                            <div class="col s6">
+                                <h6><%=cliente.getRut()%> </h6>                      
+                            </div>
+                            <br>
+                            <div class="col s6">
+                                <h6>Correo: </h6>
+                            </div>
+                            <div class="col s6">
+                                <h6><%=cliente.getCorreo()%></h6>                      
+                            </div>
+                            <br>
+                            <div class="col s6">
+                                <h6>Teléfono: </h6>
+                            </div>
+                            <div class="col s6">
+                                <h6><%=cliente.getTelefono()%></h6>                      
+                            </div>
+                            <br>
+                            <div class="col s6">
+                                <%
+                                    ps = conexion.prepareStatement("SELECT CONCAT(D.DESCRIPCION, ', ', C.DESCRIPCION, ', ', R.DESCRIPCION) AS DIRECCION FROM CLIENTE CL INNER JOIN DIRECCION D ON CL.ID_DIRECCION = D.ID INNER JOIN COMUNA C ON D.ID_COMUNA = C.ID INNER JOIN CIUDAD CI ON C.ID_CIUDAD = CI.ID INNER JOIN REGION R ON CI.ID_REGION = R.ID WHERE CL.RUT = ?");
+                                    ps.setString(1, cliente.getRut());
+                                    rs = ps.executeQuery();
+                                    while (rs.next()) {
+                                %>
+                                <h6>Dirección: </h6>
+                            </div>
+                            <div class="col s6">
+                                <h6><%=rs.getString("DIRECCION")%></h6>                      
+                            </div>
+                            <% }
+                                }%>
+
+                        </div>
                     </div>
                 </div>
 
             </div>
-            <div class="divider separador"></div><br>
-
-            <div class="container">
-                <div class="row">
-                    <% while (rs.next()) {
-                            out.println("<div class='col 12 m3 s10'>");
-                            out.println("<div class='card-pyme'>");
-                            out.println("<div class='card-image'>");
-                            out.println("<a href='ProductosPyme.jsp?id=" + rs.getString("P.ID") + "' class='card-logo'>");
-                            out.println("<img src='Imagenes/" + rs.getString("P.LOGO") + "' class='responsive-img circle'>");
-                            out.println("</a>");
-                            out.println("</div>");
-                            out.println("<div class='card-content center'>");
-                            out.println("<h5 class='centrado bold'>" + rs.getString("P.NOMBRE_PYME") + "</h5>");
-                            out.println("<span class='card-title'>" + rs.getString("C.DESCRIPCION") + "</span>");
-                            out.println("</div>");
-                            out.println("</div>");
-                            out.println("</div>");
-                        }%>
-
-                </div>
-            </div>
-
-            <div class="divider"></div>
-            <div class="container">
-                <h6 color="#fafafa">CATEGORÍAS</h6>
-            </div>
-            <div class="divider"></div><br>
-
-            <div class="container">
-                <div class="row grid">
-                    <a href="ProductosCategoria.jsp?id=1"><div class="col s4   cyan lighten-5 center"><span class="flow-text"><br><br>VESTUARIO HOMBRE<br><br><br></span></div></a>
-                    <a href="ProductosCategoria.jsp?id=5"><div class="col s4  teal lighten-5 center"><span class="flow-text"><br>TECNOLOGÍA<br><br></span></div></a>
-                    <a href="ProductosCategoria.jsp?id=4"><div class="col s4 cyan lighten-5 center"><span class="flow-text"><br>HOGAR<br><br></span></div></a>
-
-                    <a href="ProductosCategoria.jsp?id=6"><div class="col s4  light-blue lighten-5 center"><span class="flow-text"><br>PAPELERÍA<br></span></div></a>
-                    <a href=""><div class="col s4  teal lighten-5 center"><span class="flow-text"><br><br></span></div></a>
-                    <a href="ProductosCategoria.jsp?id=2"><div class="col s8   blue lighten-5 center"><span class="flow-text"><br><br>VESTUARIO MUJER<br><br><br></span></div></a>
-                    <a href="ProductosCategoria.jsp?id=3"><div class="col s4  teal lighten-5 center"><span class="flow-text"><br>VESTUARIO INFANTIL<br><br><br><br></span></div></a>
 
 
-                </div>
-            </div>
 
         </main>
+
+
+
+
 
         <footer class="page-footer blue-grey darken-2">
             <div class="container">
@@ -209,18 +236,27 @@
             </div>
         </footer>
 
-
-        <!--JavaScript at end of body for optimized loading-->
-        <script type="text/javascript" src="js/materialize.min.js"></script>
-        <script >
-            var options = {};
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('.slider');
-                var instances = M.Slider.init(elems, options);
+        <script>
+            $(function () {
+                $('input[type="number"]').niceNumber();
             });
+
+            $(document).ready(function () {
+                $('select').formSelect();
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('select');
+                var instances = M.FormSelect.init(elems, options);
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.modal');
+                var instances = M.Modal.init(elems);
+            });
+
         </script>
-        
-        
+
         <script>
             // función encargada de la redirección
             function redireccion() {
@@ -239,4 +275,5 @@
             });
         </script>
     </body>
+</body>
 </html>

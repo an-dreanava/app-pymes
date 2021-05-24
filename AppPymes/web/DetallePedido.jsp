@@ -1,13 +1,13 @@
 <%-- 
-    Document   : ListadoPymes
-    Created on : may 18, 2021, 8:19:57 p.m.
+    Document   : DetallePedido
+    Created on : may 23, 2021, 11:15:43 p.m.
     Author     : AngieRiera
 --%>
 
-<%@page import="Modelo.Cliente"%>
 <%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
+<%@page import="Modelo.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,29 +17,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/jquery.nice-number.css" rel="stylesheet">
 
-        <link type="text/css" rel="stylesheet" href="css/estilo.css" />
 
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
+        <link type="text/css" rel="stylesheet" href="css/estilo.css" />
     </head>
     <body>
         <%
             Cliente cliente = null;
             String estadoSesion = "off";
-            String tipo = "";
 
             HttpSession sesion = request.getSession(true);
 
             estadoSesion = (String) sesion.getAttribute("estadoSesion");
-            tipo = (String) sesion.getAttribute("tipo");
+            String tipo = (String) sesion.getAttribute("tipo");
 
             if (estadoSesion == null) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
@@ -51,16 +49,23 @@
                     sesion.invalidate();
                 } else {
                     cliente = (Cliente) sesion.getAttribute("usuario");
+                    String rut = cliente.getRut();
                 }
             }
+
+            String id = "";
+            id = request.getParameter("id");
 
             PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion con = new Conexion();
             com.mysql.jdbc.Connection conexion = con.getConnection();
-            ps = conexion.prepareStatement("SELECT * FROM PYME P INNER JOIN CATEGORIA_PYME C ON P.ID_CATEGORIA_PYME = C.ID WHERE P.ID_ESTADO=2");
+            ps = conexion.prepareStatement("SELECT * FROM PEDIDOS PE INNER JOIN CLIENTE C ON PE.RUT_CLIENTE = C.RUT INNER JOIN PRODUCTOS PR ON PE.ID_PRODUCTO = PR.ID INNER JOIN ESTADO_PEDIDO E ON PE.ID_ESTADO_PEDIDO = E.ID INNER JOIN DIRECCION D ON C.ID_DIRECCION = D.ID INNER JOIN COMUNA CO ON D.ID_COMUNA = CO.ID INNER JOIN CIUDAD CI ON CO.ID_CIUDAD = CI.ID INNER JOIN REGION RE ON CI.ID_REGION = RE.ID INNER JOIN PYME PY ON PR.ID_PYME = PY.ID WHERE PE.BOLETA = ? ");
+            ps.setString(1, id);
             rs = ps.executeQuery();
+
         %>
+
         <header>
             <div class="navbar-fixed">
                 <nav class="white nav-extended">
@@ -82,9 +87,8 @@
                                 <a class="" href=""><i class="material-icons">favorite</i></a> 
                             </li>
                             <li>
-                                <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a>
+                                <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a> 
                             </li>
-
                         </ul>
                     </div>
                 </nav>
@@ -92,33 +96,13 @@
         </header>
 
         <main>
-
-            <div class="slider">
-                <ul class="slides">
-                    <li>
-                        <img src="Imagenes/oferta1.png">
-                    </li>
-                    <li>
-                        <img src="Imagenes/oferta2.png"> 
-                    </li>
-                    <li>
-                        <img src="Imagenes/oferta3.png"> 
-                    </li>
-                    <li>
-                        <img src="Imagenes/oferta4.png"> 
-                    </li>
-                    <li>
-                        <img src="Imagenes/oferta5.png"> 
-                    </li>
-                </ul>
-            </div>
-
-            <br>
+            
+            <br><br>
             <div class="divider"></div>
             <div class="container">
                 <div class="row">
                     <div class="col s4 ">
-                        <a href="IndexCliente.jsp">
+                        <a href="DetallesCuenta.jsp">
                             <i class="material-icons left" >navigate_before</i>
                             <label class="label-volver">VOLVER</label>  
                         </a>
@@ -126,30 +110,99 @@
                 </div>
             </div>
             <div class="divider separador"></div>
-            <br>
-
-            <div class="container">
+            
+            <div class="container center dashboard" style="padding: 20px" >
+                <% while (rs.next()) {%>
                 <div class="row">
-                    <% while (rs.next()) {
-                            out.println("<div class='col 12 m3 s10'>");
-                            out.println("<div class='card-pyme'>");
-                            out.println("<div class='card-image'>");
-                            out.println("<a href='ProductosPyme.jsp?id=" + rs.getString("P.ID") + "' class='card-logo'>");
-                            out.println("<img src='Imagenes/" + rs.getString("P.LOGO") + "' class='responsive-img circle'>");
-                            out.println("</a>");
-                            out.println("</div>");
-                            out.println("<div class='card-content center'>");
-                            out.println("<h5 class='centrado bold'>" + rs.getString("P.NOMBRE_PYME") + "</h5>");
-                            out.println("<span class='card-title'>" + rs.getString("C.DESCRIPCION") + "</span>");
-                            out.println("</div>");
-                            out.println("</div>");
-                            out.println("</div>");
-                        }%>
+                    <div class="col s6 ">
+                        <div class="col s6  left-align">
+                            <h5 style="font-weight: bold;">Boleta N°<%=rs.getString("PE.BOLETA")%> </h5>
+                        </div>
 
+                        <div class="col s12  left-align">
+                            <label style="font-size: 15px;"><%=rs.getString("PE.FECHA")%> </label>
+                        </div>
+                        <div class="col s12 left">
+                            <img src="Imagenes/<%=rs.getString("PR.FOTO")%>" style="height: 300px;" class="left">
+                        </div>
+
+                        <div class="col s12 left-align">
+                            <h6 style="font-weight: bold; font-size: 20px;"><%=rs.getString("PR.TITULO")%></h6>
+                        </div>
+                        <div class="col s12 left-align">
+                            <label style="font-size: 20px;"><%=rs.getString("PY.NOMBRE_PYME")%></label>
+                        </div>
+                        <div class="col s6 left-align">
+                            <h6 style="font-size: 18px;">Precio $<%=rs.getString("PR.PRECIO")%></h6>
+                        </div>
+                        <div class="col s6 left-align">                                
+                            <h6 style="font-size: 18px;"><%=rs.getString("PE.CANTIDAD")%> Unid.</h6>
+                        </div>
+                        <div class="col s12 left-align">
+                            <h6 style="font-weight: bold; font-size: 20px;">Total: $<%=rs.getString("PE.TOTAL")%></h6>
+                        </div>
+
+                    </div>
+
+                    <div class="col s6">      
+                        <br><br>
+                        <div class="col s3 left-align">
+                            <h6 style="font-size: 18px;">Estado:</h6>
+                        </div>
+                        <div class="col s6 left-align">
+                            <h6 style="font-size: 18px; color: green;"><%=rs.getString("E.DESCRIPCION")%></h6>
+                        </div>
+                        <br><br>
+                        <div class="col s12 left-align">
+                            <h5 style="font-weight: bold;">Tus Datos </h5>
+                        </div>
+                        <div class="col s5 left-align">
+                            <h6>Nombre: </h6>
+                        </div>
+                        <div class="col s6 left-align">
+                            <h6><%=rs.getString("C.NOMBRES") + " " + rs.getString("C.APELLIDOS")%></h6>
+                            <br>
+                        </div>
+
+                        <div class="col s5 left-align">
+                            <h6>Rut: </h6>
+                        </div>
+                        <div class="col s6 left-align">                                    
+                            <h6><%=rs.getString("C.RUT")%> </h6>
+                            <br>
+                        </div>
+
+                        <div class="col s5 left-align">
+                            <h6>Correo: </h6>
+                        </div>
+                        <div class="col s6 left-align">
+                            <h6><%=rs.getString("C.CORREO")%></h6>   
+                            <br>
+                        </div>
+
+                        <div class="col s5 left-align">
+                            <h6>Teléfono: </h6>
+                        </div>
+                        <div class="col s6 left-align">
+                            <h6><%=rs.getString("C.TELEFONO")%></h6>     
+                            <br>
+                        </div>
+                        <div class="col s12 left-align">
+                            <h6>Dirección: </h6>
+                        </div>
+                        <div class="col s12 left-align">
+                            <h6><%=rs.getString("D.DESCRIPCION") + ", " + rs.getString("CO.DESCRIPCION") + ", " + rs.getString("RE.DESCRIPCION")%></h6>
+                        </div>
+
+                        <% } %>
+
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </main>
+
+
 
         <footer class="page-footer blue-grey darken-2">
             <div class="container">
@@ -185,14 +238,13 @@
         </footer>
 
 
+
+
         <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="js/materialize.min.js"></script>
-        <script >
-            var options = {};
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('.slider');
-                var instances = M.Slider.init(elems, options);
-            });
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+                integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+                crossorigin="anonymous">
         </script>
         <script>
             // función encargada de la redirección
@@ -212,5 +264,7 @@
             });
         </script>
     </body>
-</html>
 
+
+
+</html>

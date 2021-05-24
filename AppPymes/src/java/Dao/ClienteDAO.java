@@ -75,6 +75,33 @@ public class ClienteDAO {
         }
         return estado;
     }
+    
+    public boolean modificar(Cliente cliente) {
+        Conexion con = new Conexion();
+        Connection conexion = con.getConnection();
+        boolean estado = false;
+
+        try {
+            ps = conexion.prepareStatement("CALL SP_MODIFICAR_CLIENTE (?,?,?,?,?,?,?)");
+            ps.setString(1, cliente.getRut());
+            ps.setString(2, cliente.getNombre());
+            ps.setString(3, cliente.getApellido());
+            ps.setString(4, cliente.getTelefono());
+            ps.setString(5, cliente.getCorreo());
+            ps.setString(6, cliente.getDireccion());
+            ps.setInt(7, cliente.getComuna());
+
+            int resultado = ps.executeUpdate();
+
+            conexion.close();
+            estado = true;
+
+        } catch (Exception ex) {
+            System.err.println("Error, " + ex);
+            estado = false;
+        }
+        return estado;
+    }
 
     public boolean login(Cliente cliente) {
         Conexion con = new Conexion();

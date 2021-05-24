@@ -1,24 +1,16 @@
 <%-- 
-    Document   : RegistroPyme
-    Created on : 15-05-2021, 13:42:43
-    Author     : drean
+    Document   : Catalogo
+    Created on : may 22, 2021, 2:33:28 p.m.
+    Author     : AngieRiera
 --%>
 
-<%@page import="Modelo.Pyme"%>
-<%@page import="Dao.PymeDAO"%>
-<%@page import="Modelo.Categoria"%>
-<%@page import="Modelo.Comuna"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Modelo.Region"%>
-<%@page import="Dao.DireccionDAO"%>
+<%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="Modelo.Conexion"%>
+<%@page import="Modelo.Pyme"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -58,16 +50,13 @@
                     ResultSet rs = null;
                     Conexion con = new Conexion();
                     com.mysql.jdbc.Connection conexion = con.getConnection();
-                    ps = conexion.prepareStatement("SELECT * FROM PYME WHERE CORREO = ? ");
-                    ps.setString(1, pyme.getCorreo());
+                    ps = conexion.prepareStatement("SELECT * FROM PRODUCTOS WHERE ID_PYME = ? ");
+                    ps.setInt(1, pyme.getId());
                     rs = ps.executeQuery();
-                    while (rs.next()) {
-                        pyme.setId(rs.getInt("ID"));
-                        pyme.setLogo(rs.getString("LOGO"));
-                    }
 
 
         %>
+
         <header>
             <div class="navbar-fixed">
                 <nav class="white">
@@ -100,118 +89,112 @@
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "'>Pedidos Nuevos</a></li>"); %>
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "'>Pedidos Pendientes</a></li>"); %>
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "'>Pedidos Finalizados</a></li>"); %>
-                                <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "'>Pedidos Cancelados</a></li>"); %>                          
+                                <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "'>Pedidos Cancelados</a></li>");%>                          
                         </ul>
+
                         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     </div>
                 </nav>
             </div>
         </header>
 
+
         <main>
-
-
 
             <div id="menu-pymes" class="center">
                 <br><br>
                 <div class="container cyan lighten-5 banner-menu center">
-                    <% out.println("<h4 id='titulo_form_pymes'>" + pyme.getNombrePyme() + "</h4>");%>
-                </div>
-
-
-                <div class="container center dashboard" style="padding: 20px" >
-                    <div class="row center" >
-                        <a href="Catalogo.jsp">
-                            <div class=" red darken-1 boton-menu-izq">
-                                <h5 style="font-weight: bold;">Catálogo</h5>
-                            </div>
-                        </a>
-                        <a href="DatosPyme.jsp">
-                            <div class=" light-green darken-1 boton-menu-der">
-                                <h5 style="font-weight: bold;">Mis Datos</h5>
-                            </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "' >");
-
-                        %>
-                        <div class="green accent-2 white-text boton-menu-izq ">
-                            <h5 style="font-weight: bold;">Pedidos Nuevos</h5>    
-                        </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "' >");
-
-                        %>
-                        <div class="orange accent-1 white-text boton-menu-der">
-                            <h5 style="font-weight: bold;">Pedidos Pendientes</h5>
-                        </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "' >");
-
-                        %>
-                        <div class="indigo lighten-2 white-text boton-menu-izq">
-                            <h5 style="font-weight: bold;">Pedidos Finalizados</h5>
-                        </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "' >");
-                                }
-                            }%>
-                        <div class="purple accent-1 white-text boton-menu-der">
-                            <h5 style="font-weight: bold;">Pedidos Cancelados</h5>
-                        </div>
-                        </a>
-                    </div>
+                    <h4 id="titulo_form_pymes">Catálogo</h4>
                 </div>
             </div>
-        </div>
-    </main>
+            <br><br>
+
+            <div class="container" id="catalogo">        
+                <div class="row">
+                    <% while (rs.next()) {
+                                    out.println("<div class='col 12 m3 s8'>");
+                                    out.println("<div class='card sticky-action tarjeta'>");
+                                    out.println("<div class='card-image tarjeta-imagen'>");
+                                    out.println("<a href='' >");
+                                    out.println("<img src='Imagenes/" + rs.getString("FOTO") + "' height='200' class='responsive-img' >");
+                                    out.println("</a>");
+                                    out.println("</div>");
+                                    out.println("<div class='card-content tarjeta-contenido'>");
+                                    out.println("<a class='right' href='EditarProducto.jsp?id=" + rs.getString("ID") + "'><i class='material-icons'>create</i></a>");
+                                    out.println("<p class='center'>" + rs.getString("TITULO") + "</p>");
+                                    out.println("<label class='label-precio2'>$</label>");
+                                    out.println("<label class='center label-precio2'>" + rs.getString("PRECIO") + "</label>");
+
+                                    out.println("</div>");
+
+                                    out.println("</div>");
+                                    out.println("</div>");
+                                }
+                            }
+                        }%>
+                </div>
+            </div>
+
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large red" href="AgregarProducto.jsp">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+
+        </main>
 
 
-
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('select').formSelect();
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems, options);
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems, options);
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.modal');
-            var instances = M.Modal.init(elems);
-        });
-
-        $(document).ready(function () {
-            $('.sidenav').sidenav({
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('select').formSelect();
             });
-        });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.fixed-action-btn');
+                var instances = M.FloatingActionButton.init(elems, options);
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('select');
+                var instances = M.FormSelect.init(elems, options);
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.sidenav');
+                var instances = M.Sidenav.init(elems, options);
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.modal');
+                var instances = M.Modal.init(elems);
+            });
+
+            $(document).ready(function () {
+                $('.sidenav').sidenav({
+                });
+            });
 
 
-    </script>
-    <script>
-        // función encargada de la redirección
-        function redireccion() {
-            window.location = "Index.jsp";
-        }
+        </script>
 
-        // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
-        var temp = setTimeout(redireccion, 5400000);
+        <script>
+            // función encargada de la redirección
+            function redireccion() {
+                window.location = "Index.jsp";
+            }
 
-        // cuando se pulse en cualquier parte del documento
-        document.addEventListener("mousemove", function () {
-            // borrar el temporizador que redireccionaba
-            clearTimeout(temp);
-            // y volver a iniciarlo
-            temp = setTimeout(redireccion, 5400000);
-        });
-    </script>
-</body>
+            // se llamará a la función que redirecciona después de 90 minutos (5400000 milisegundos)
+            var temp = setTimeout(redireccion, 5400000);
+
+            // cuando se pulse en cualquier parte del documento
+            document.addEventListener("mousemove", function () {
+                // borrar el temporizador que redireccionaba
+                clearTimeout(temp);
+                // y volver a iniciarlo
+                temp = setTimeout(redireccion, 5400000);
+            });
+        </script>
+    </body>
 </html>

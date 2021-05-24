@@ -17,7 +17,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -49,40 +49,38 @@
                 </div>
             </nav>
         </div>
-        
+
         <div class="container">
             <h5 id="titulo_form_pymes">Formulario de Inscripción</h5>           
         </div>
-        
-      
+
+
         <!-- Modal Iniciar Sesión -->
         <div id="modal1" class="modal">
-            <form action="" method="POST">
+            <form action="ControladorLoginPyme" name="login" method="POST">
                 <div class="modal-content center container">
                     <h5 id="modal-text">INICIAR SESIÓN</h5>
                     <br>
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
-                            <input name="correo" id="correo" type="text" class="validate">
-                            <label for="correo">Correo</label>
+                            <input name="correoL" id="correoL" type="text" class="validate">
+                            <label for="correoL">Correo</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">https</i>
-                            <input name="contraseña" id="cotraseña" type="password" class="validate">
-                            <label for="contraseña">Contraseña</label>
+                            <input name="claveL" id="claveL" type="password" class="validate">
+                            <label for="claveL">Contraseña</label>
                         </div>
                         <div class="input-field col s12">
-                            <button class="btn waves-effect blue-grey darken-2" type="submit" name="action">Iniciar Sesión</button>
+                            <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar">
                             <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
-                            <p class="center"><a href="" class="enlace">¿No estás registrado?</a></p>
-                            <p class="center"><a href="" class="enlace2">Registrarse</a></p>
                         </div>
                     </div>                
                 </div>
             </form>
         </div>
-      
+
         <div class="container" style="padding: 20px" >
             <div class="row" >
                 <form action="ControladorPyme" method="POST">
@@ -123,10 +121,10 @@
                         <select name="id_region" id="id_region" required>
                             <option value="" disabled selected>Seleccione Región</option>
                             <%
-                                  DireccionDAO DireccionDAO=new DireccionDAO();
-                                  for( Region region : DireccionDAO.Regiones()){                            
+                                DireccionDAO DireccionDAO = new DireccionDAO();
+                                for (Region region : DireccionDAO.Regiones()) {
                             %>
-                             <option value="<%=region.getId()%>"><%=region.getName()%></option>
+                            <option value="<%=region.getId()%>"><%=region.getName()%></option>
                             <% }
                             %>
                         </select>                     
@@ -138,10 +136,10 @@
                     <div class="col s4">
                         <select name="id_comuna" id="id_comuna" required>
                             <option value="" disabled selected>Seleccione Comuna:</option>
-                           <%
-                               for( Comuna comuna : DireccionDAO.Comunas()){                            
+                            <%
+                                for (Comuna comuna : DireccionDAO.Comunas()) {
                             %>
-                             <option value="<%=comuna.getId()%>"><%=comuna.getName()%></option>
+                            <option value="<%=comuna.getId()%>"><%=comuna.getName()%></option>
                             <% }
                             %>
                         </select>                     
@@ -175,27 +173,36 @@
                         <input name="contrasena" id="contrasena" type="password" class="validate"  required> 
                         <p></p>
                     </div>
-                        
-                         <div class="col s2">
+
+                    <div class="col s2">
                         <p>Categoria:</p>                            
                     </div>
                     <div class="col s4">
                         <select name="id_categoria" id="id_categoria" required>
                             <option value="" disabled selected>Seleccione Categoria:</option>
-                           <%
-                               PymeDAO PymeDAO=new PymeDAO();
-                               for( Categoria categoria : PymeDAO.Categoria()){                            
+                            <%
+                                PymeDAO PymeDAO = new PymeDAO();
+                                for (Categoria categoria : PymeDAO.Categoria()) {
                             %>
-                             <option value="<%=categoria.getId_categoria()%>"><%=categoria.getDescripcion()%></option>
+                            <option value="<%=categoria.getId_categoria()%>"><%=categoria.getDescripcion()%></option>
                             <% }
                             %>
                         </select>                     
                     </div>
+                    <div class="col s6 file-field input-field">
+                        <div class="btn">
+                            <span>Subir</span>
+                            <input type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input name="foto" id="foto" class="file-path validate" type="text">
+                        </div>
+                    </div>
 
                     <div class="center">
-                       <button class="btn waves-effect red lighten-1" type="submit"  id="opcion" name="opcion" value="Agregar">Registrarse</button>
+                        <button class="btn waves-effect red lighten-1" type="submit" onclick="return validar()" id="opcion" name="opcion" value="Agregar">Registrarse</button>
                     </div>   
-                        
+
                 </form>
             </div>
         </div>
@@ -250,12 +257,159 @@
                 var elems = document.querySelectorAll('.sidenav');
                 var instances = M.Sidenav.init(elems, options);
             });
-            
+
             document.addEventListener('DOMContentLoaded', function () {
                 var elems = document.querySelectorAll('.modal');
                 var instances = M.Modal.init(elems);
             });
 
+        </script>
+               <script src="https://unpkg.com/imask"></script>
+        <script>
+            var phoneMask = IMask(
+                    document.getElementById('telefono'), {
+                mask: '(+56) 9 0000 0000'
+            });
+            var dynamicMask = IMask(
+              document.getElementById('rut'),
+              {
+                mask: [
+                  {
+                    mask: '0.000.000-0'
+                  },
+                  {
+                    mask: '00.000.000-0'
+                  }
+                ]
+              });
+        </script>
+
+
+        <script>
+            var rut = document.getElementById('rut');
+            var nombre_pyme = document.getElementById('nombre_pyme');
+            var nombre = document.getElementById('nombre');
+            var apellido = document.getElementById('apellido');
+            var correo = document.getElementById('correo');
+            var contrasena = document.getElementById('contrasena');
+            var des_direccion = document.getElementById('des_direccion');
+            var id_comuna = document.getElementById('id_comuna');
+            var id_categoria = document.getElementById('id_categoria');
+            var telefono = document.getElementById('telefono');
+            var foto = document.getElementById('foto');
+
+
+            function validar() {
+
+                var letras = /[A-Za-zÑñÁÉÍÓÚáéíóú\s]$/;
+                var email = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+                var alfanum = /^[\w\s]+$/;
+
+
+                if (rut.value === '') {
+                    alert('Rut es obligatorio');
+                    rut.focus();
+                    return false;
+                }
+                
+                if (rut.value.length < 11) {
+                    alert('Ingrese un rut válido');
+                    rut.focus();
+                    return false;
+                }
+
+                
+                if (nombre_pyme.value === '') {
+                    alert('Nombre de tienda es obligatorio');
+                    nombre_pyme.focus();
+                    return false;
+                }
+
+                if (nombre.value === '') {
+                    alert('Nombre titular es obligatorio');
+                    nombre.focus();
+                    return false;
+                }
+
+                if (!letras.test(nombre.value)) {
+                    alert('Nombre solo admite letras y espacios');
+                    nombre.focus();
+                    return false;
+                }
+
+                if (apellido.value === '') {
+                    alert('Apellido titular es obligatorio');
+                    apellido.focus();
+                    return false;
+                }               
+
+                if (!letras.test(apellido.value)) {
+                    alert('Apellidos solo admite letras y espacios');
+                    apellido.focus();
+                    return false;
+                }
+
+                if (id_comuna.selectedIndex === 0) {
+                    alert('Seleccione comuna');
+                    return false;
+                }
+
+                if (des_direccion.value === '') {
+                    alert('Dirección es obligatorio');
+                    des_direccion.focus();
+                    return false;
+                }
+
+                if (!alfanum.test(des_direccion.value)) {
+                    alert('Dirección solo admite letras y números');
+                    des_direccion.focus();
+                    return false;
+                }
+
+
+                if (telefono.value === '') {
+                    alert('Teléfono es obligatorio');
+                    telefono.focus();
+                    return false;
+                }
+
+                if (telefono.value.length < 17) {
+                    alert('Ingrese un telefono válido');
+                    telefono.focus();
+                    return false;
+                }
+
+                if (correo.value === '') {
+                    alert('Correo es obligatorio');
+                    correo.focus();
+                    return false;
+                }
+
+                if (!email.test(correo.value)) {
+                    alert('Correo no es válido');
+                    correo.focus();
+                    return false;
+                }
+
+                if (contrasena.value === '') {
+                    alert('Clave es obligatorio');
+                    contrasena.focus();
+                    return false;
+                }
+                
+                if (id_categoria.selectedIndex === 0) {
+                    alert('Seleccione categoria');
+                    return false;
+                }
+                
+                if (foto.value === '') {
+                    alert('Foto es obligatorio');
+                    foto.focus();
+                    return false;
+                }
+
+                return true;
+            }
         </script>
     </body>
 </html>

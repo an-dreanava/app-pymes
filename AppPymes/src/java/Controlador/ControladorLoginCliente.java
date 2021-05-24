@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,6 +36,10 @@ public class ControladorLoginCliente extends HttpServlet {
         
         String opcion = request.getParameter("opcion");
         
+        HttpSession sesion = request.getSession(true);
+        sesion.setAttribute("cliente", null);
+        sesion.setAttribute("estadoSesion", "off");
+        
         if (opcion.equals("Iniciar")) {
             String correoL = request.getParameter("correoL");
             String claveL = request.getParameter("claveL");
@@ -44,15 +49,16 @@ public class ControladorLoginCliente extends HttpServlet {
 
             cliente.setCorreo(correoL);
             cliente.setContraseña(claveL);
-            System.out.println("entro login");
+            
             if (dao.login(cliente) == true) {
 
-                //sesion.setAttribute("usuario", cliente);
-                //sesion.setAttribute("estadoSesion", "on");
+                sesion.setAttribute("usuario", cliente);
+                sesion.setAttribute("estadoSesion", "on");
+                sesion.setAttribute("tipo", "1");
                 response.sendRedirect("IndexCliente.jsp");
 
             } else {
-                response.sendRedirect("MensajeError.jsp?mensaje=" + correoL + claveL);
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Sus datos NO han sido encontrados en nuestra base de datos, debe registrarse primero.&boton=Registrarse&retorno=RegistroCliente.jsp");
                 System.out.println("error login");
             }
         }

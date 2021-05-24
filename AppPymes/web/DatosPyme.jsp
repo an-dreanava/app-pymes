@@ -1,24 +1,17 @@
 <%-- 
-    Document   : RegistroPyme
-    Created on : 15-05-2021, 13:42:43
-    Author     : drean
+    Document   : DatosPyme
+    Created on : may 23, 2021, 10:49:01 p.m.
+    Author     : AngieRiera
 --%>
-
-<%@page import="Modelo.Pyme"%>
-<%@page import="Dao.PymeDAO"%>
 <%@page import="Modelo.Categoria"%>
-<%@page import="Modelo.Comuna"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Modelo.Region"%>
-<%@page import="Dao.DireccionDAO"%>
+<%@page import="Dao.ProductoDAO"%>
+<%@page import="Modelo.Conexion"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="Modelo.Conexion"%>
+<%@page import="Modelo.Pyme"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -58,16 +51,13 @@
                     ResultSet rs = null;
                     Conexion con = new Conexion();
                     com.mysql.jdbc.Connection conexion = con.getConnection();
-                    ps = conexion.prepareStatement("SELECT * FROM PYME WHERE CORREO = ? ");
+                    ps = conexion.prepareStatement("SELECT * FROM DIRECCION D INNER JOIN COMUNA CO ON D.ID_COMUNA = CO.ID INNER JOIN CIUDAD CI ON CO.ID_CIUDAD = CI.ID INNER JOIN REGION R ON CI.ID_REGION = R.ID INNER JOIN PYME P ON D.ID = P.ID_DIRECCION INNER JOIN CATEGORIA_PYME CA ON P.ID_CATEGORIA_PYME = CA.ID WHERE P.CORREO = ? ");
                     ps.setString(1, pyme.getCorreo());
                     rs = ps.executeQuery();
-                    while (rs.next()) {
-                        pyme.setId(rs.getInt("ID"));
-                        pyme.setLogo(rs.getString("LOGO"));
-                    }
 
 
         %>
+
         <header>
             <div class="navbar-fixed">
                 <nav class="white">
@@ -100,71 +90,86 @@
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "'>Pedidos Nuevos</a></li>"); %>
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "'>Pedidos Pendientes</a></li>"); %>
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "'>Pedidos Finalizados</a></li>"); %>
-                                <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "'>Pedidos Cancelados</a></li>"); %>                          
+                                <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "'>Pedidos Cancelados</a></li>");%>                          
                         </ul>
+
                         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     </div>
                 </nav>
             </div>
         </header>
 
+
         <main>
-
-
 
             <div id="menu-pymes" class="center">
                 <br><br>
                 <div class="container cyan lighten-5 banner-menu center">
-                    <% out.println("<h4 id='titulo_form_pymes'>" + pyme.getNombrePyme() + "</h4>");%>
-                </div>
-
-
-                <div class="container center dashboard" style="padding: 20px" >
-                    <div class="row center" >
-                        <a href="Catalogo.jsp">
-                            <div class=" red darken-1 boton-menu-izq">
-                                <h5 style="font-weight: bold;">Catálogo</h5>
-                            </div>
-                        </a>
-                        <a href="DatosPyme.jsp">
-                            <div class=" light-green darken-1 boton-menu-der">
-                                <h5 style="font-weight: bold;">Mis Datos</h5>
-                            </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "' >");
-
-                        %>
-                        <div class="green accent-2 white-text boton-menu-izq ">
-                            <h5 style="font-weight: bold;">Pedidos Nuevos</h5>    
-                        </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "' >");
-
-                        %>
-                        <div class="orange accent-1 white-text boton-menu-der">
-                            <h5 style="font-weight: bold;">Pedidos Pendientes</h5>
-                        </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=3&titulo=Pedidos Finalizados&id=" + pyme.getId() + "' >");
-
-                        %>
-                        <div class="indigo lighten-2 white-text boton-menu-izq">
-                            <h5 style="font-weight: bold;">Pedidos Finalizados</h5>
-                        </div>
-                        </a>
-                        <% out.println("<a href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "' >");
-                                }
-                            }%>
-                        <div class="purple accent-1 white-text boton-menu-der">
-                            <h5 style="font-weight: bold;">Pedidos Cancelados</h5>
-                        </div>
-                        </a>
-                    </div>
+                    <h4 id="titulo_form_pymes"><%=pyme.getNombrePyme()%></h4>
                 </div>
             </div>
-        </div>
-    </main>
+            <br><br>
+            <form action="ControladorProductos" method="POST">
+                <div class="container" id="form-producto">        
+                    <div class="row">
 
+                        <% while (rs.next()) {%>
+                        <div class="col s5">
+                            <img src="Imagenes/<%=pyme.getLogo()%>" class="imagen circle">
+                        </div>
+                        <br>
+                        <div class="col s2 left-align">
+                            <h6 style="font-size: 18px;">Titular:</h6>
+                        </div>
+                        <div class="col s5 left-align">
+                            <h6 style="font-size: 18px;"><%=pyme.getNombre()+ " "+ pyme.getApellido() %></h6><br>
+                        </div>
+                        
+                        <div class="col s2 left-align">
+                            <h6 style="font-size: 18px;">Rut:</h6>
+                        </div>
+                        <div class="col s5 left-align">
+                            <h6 style="font-size: 18px;"><%=pyme.getRut() %></h6><br>
+                        </div>
+                        
+                        <div class="col s2 left-align">
+                            <h6 style="font-size: 18px;">Correo:</h6>
+                        </div>
+                        <div class="col s5 left-align">
+                            <h6 style="font-size: 18px;"><%=pyme.getCorreo() %></h6><br>
+                        </div>
+                        
+                        <div class="col s2 left-align">
+                            <h6 style="font-size: 18px;">Teléfono:</h6>
+                        </div>
+                        <div class="col s5 left-align">
+                            <h6 style="font-size: 18px;"><%=pyme.getTelefono() %></h6><br>
+                        </div>
+                        
+                        <div class="col s2 left-align">
+                            <h6 style="font-size: 18px;">Categoría:</h6>
+                        </div>
+                        <div class="col s5 left-align">
+                            <h6 style="font-size: 18px;"><%=rs.getString("CA.DESCRIPCION")%></h6><br>
+                        </div>
+                        <br>
+                        <div class="col s2 left-align">
+                            <h6 style="font-size: 18px;">Dirección:</h6>
+                        </div>
+                        <div class="col s5 left-align">
+                            <h6 style="font-size: 18px;"><%=rs.getString("D.DESCRIPCION") + ", " + rs.getString("CO.DESCRIPCION") + ", " + rs.getString("R.DESCRIPCION")%></h6>
+                        </div>
+
+
+                        
+                        <% }
+                                }
+                            }%>
+                    </div>
+                </div>
+            </form>
+
+    </main>
 
 
     <!--JavaScript at end of body for optimized loading-->
@@ -172,6 +177,11 @@
     <script>
         $(document).ready(function () {
             $('select').formSelect();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, options);
         });
 
         document.addEventListener('DOMContentLoaded', function () {

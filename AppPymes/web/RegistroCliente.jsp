@@ -76,7 +76,7 @@
                             <input class="btn waves-effect blue-grey darken-2" type="submit" id="opcion" name="opcion" value="Iniciar">
                             <p class="center"><a href="" class="enlace">¿Olvidaste tu contraseña?</a></p>
                             <p class="center"><a href="" class="enlace">¿No estás registrado?</a></p>
-                            <p class="center"><a href="RegistroCliente.jsp" class="enlace2">Registrarse</a></p>
+                            <p class="center"><a href="RegistroCliente.jsp" class="red-text">Registrarse</a></p>
                         </div>
                     </div>                
                 </div>
@@ -95,7 +95,7 @@
                             <p>Rut:</p>                            
                         </div>
                         <div class="col s4">
-                            <input name="rut" id="rut" type="text" class="validate"  required> 
+                            <input name="rut" id="rut" type="text" class="validate" placeholder="Si termina en K reemplace por 0" required> 
                         </div>
 
                         <div class= "col s2">
@@ -245,11 +245,26 @@
                                 });
 
         </script>
-
+        <script src="https://unpkg.com/imask"></script>
         <script>
-            string mensaje = "";
-            M.toast({html: mensaje});
+            var phoneMask = IMask(
+                    document.getElementById('telefono'), {
+                mask: '(+56) 9 0000 0000'
+            });
+            var dynamicMask = IMask(
+              document.getElementById('rut'),
+              {
+                mask: [
+                  {
+                    mask: '0.000.000-0'
+                  },
+                  {
+                    mask: '00.000.000-0'
+                  }
+                ]
+              });
         </script>
+
 
         <script>
             var rut = document.getElementById('rut');
@@ -323,24 +338,23 @@
                     return false;
                 }
 
-                if (telefono.value.length < 16) {
+                if (telefono.value.length < 17) {
                     alert('Ingrese un telefono válido');
                     telefono.focus();
                     return false;
                 }
 
-               // if (correo.value === '') {
-                   // alert('Correo es obligatorio');
-                   // correo.focus();
-                  //  return false;
-              //  }
+                if (correo.value === '') {
+                    alert('Correo es obligatorio');
+                    correo.focus();
+                    return false;
+                }
 
-                //if (!email.test(correo.value)) {
-                 //   alert('Correo no es válido');
-                   // correo.focus();
-                    //return false;
-                //}
-
+                if (!email.test(correo.value)) {
+                    alert('Correo no es válido');
+                    correo.focus();
+                    return false;
+                }
 
                 if (clave.value === '') {
                     alert('Clave es obligatorio');

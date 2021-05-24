@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-05-2021 a las 04:53:55
+-- Tiempo de generación: 24-05-2021 a las 04:29:55
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -37,6 +37,16 @@ insert into cliente values (vRut, vNombres, vApellidos, vTelefono, vCorreo, vCon
 
 end$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_modificar_cliente`(IN `vRut` VARCHAR(20), IN `vNombres` VARCHAR(40), IN `vApellidos` VARCHAR(40), IN `vTelefono` VARCHAR(20), IN `vCorreo` VARCHAR(40), IN `vDireccion` VARCHAR(30), IN `vComuna` INT)
+    NO SQL
+begin
+
+SELECT @id := D.ID FROM DIRECCION D INNER JOIN CLIENTE C ON D.ID = C.ID_DIRECCION WHERE C.RUT = vRut;
+
+UPDATE DIRECCION SET DESCRIPCION = vDireccion, ID_COMUNA = vComuna WHERE ID = @id;
+UPDATE CLIENTE SET NOMBRES = vNombres, APELLIDOS = vApellidos, TELEFONO = vTelefono, CORREO = vCorreo WHERE RUT = vRut;
+end$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -51,6 +61,18 @@ CREATE TABLE IF NOT EXISTS `categoria_producto` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `categoria_producto`
+--
+
+INSERT INTO `categoria_producto` (`id`, `descripcion`) VALUES
+(1, 'Vestuario Hombre'),
+(2, 'Vestuario Mujer'),
+(3, 'Vestuario Infantil'),
+(4, 'Hogar'),
+(5, 'Tecnología'),
+(6, 'Papelería');
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +84,18 @@ CREATE TABLE IF NOT EXISTS `categoria_pyme` (
   `descripcion` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categoria_pyme`
+--
+
+INSERT INTO `categoria_pyme` (`id`, `descripcion`) VALUES
+(1, 'Vestuario '),
+(2, 'Calzado'),
+(3, 'Papelería'),
+(4, 'Hogar'),
+(5, 'Infantil'),
+(6, 'Tecnología');
 
 -- --------------------------------------------------------
 
@@ -108,8 +142,20 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `contrasena` varchar(20) NOT NULL,
   `id_direccion` int(11) DEFAULT NULL,
   PRIMARY KEY (`rut`),
+  UNIQUE KEY `correo` (`correo`),
   KEY `id_direccion` (`id_direccion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`rut`, `nombres`, `apellidos`, `telefono`, `correo`, `contrasena`, `id_direccion`) VALUES
+('1', 'Angie', 'Riera', '(+56) 9 3013 0211', 'prueba', '123', 13),
+('123', 'Eleana', 'Riera', '(+56) 9 3013 0211', 'eleana', '123', 12),
+('1234', 'Angie', 'Riera', '(+56) 9 3013 0211', 'cansada', '12345', 14),
+('20746217', 'Angie', 'Riera', '(+56) 9 3013 0211', 'eleanarb@gmail.cl', '123', 4),
+('26.638.804-7', 'Angie', 'Riera', '(+56) 9 3013 0211', 'angie@gmail.com', '12345', 2);
 
 -- --------------------------------------------------------
 
@@ -175,7 +221,32 @@ CREATE TABLE IF NOT EXISTS `direccion` (
   `id_comuna` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `direccion_fk_comuna` (`id_comuna`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Volcado de datos para la tabla `direccion`
+--
+
+INSERT INTO `direccion` (`id`, `descripcion`, `id_comuna`) VALUES
+(1, 'Efeso 3396', 13),
+(2, 'Siria 3396', 13),
+(3, 'Siria 3396', 13),
+(4, 'Efeso 420', 30),
+(5, 'Siria', 4),
+(6, 'Siria', 4),
+(7, 'Siria', 4),
+(8, 'Siria', 4),
+(9, 'Siria', 4),
+(10, 'Siria', 4),
+(11, 'Siria 3396', 13),
+(12, 'prueba direccon', 4),
+(13, 'Siria 3396', 13),
+(14, 'Siria 3396', 13),
+(15, 'siria', 2),
+(16, 'Siria 3396', 13),
+(17, 'siria', 7),
+(18, 'efeso 420', 7),
+(19, 'siria', 3);
 
 -- --------------------------------------------------------
 
@@ -189,6 +260,14 @@ CREATE TABLE IF NOT EXISTS `estado` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `estado`
+--
+
+INSERT INTO `estado` (`id`, `descripcion`) VALUES
+(1, 'Activo'),
+(2, 'Inactivo');
+
 -- --------------------------------------------------------
 
 --
@@ -201,6 +280,16 @@ CREATE TABLE IF NOT EXISTS `estado_pedido` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `estado_pedido`
+--
+
+INSERT INTO `estado_pedido` (`id`, `descripcion`) VALUES
+(1, 'Ingresada'),
+(2, 'Pagada'),
+(3, 'Finalizada'),
+(4, 'Cancelada');
+
 -- --------------------------------------------------------
 
 --
@@ -208,12 +297,12 @@ CREATE TABLE IF NOT EXISTS `estado_pedido` (
 --
 
 CREATE TABLE IF NOT EXISTS `pedidos` (
-  `boleta` int(11) NOT NULL,
+  `boleta` int(11) NOT NULL AUTO_INCREMENT,
   `rut_cliente` varchar(20) NOT NULL,
   `id_pyme` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `fecha` varchar(20) NOT NULL,
+  `fecha` varchar(35) NOT NULL,
   `total` int(11) NOT NULL,
   `id_estado_pedido` int(11) NOT NULL,
   PRIMARY KEY (`boleta`),
@@ -221,7 +310,21 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   KEY `pedidos_fk_cliente` (`rut_cliente`),
   KEY `pedidos_fk_estado_pedido` (`id_estado_pedido`),
   KEY `pedidos_fk_productos` (`id_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`boleta`, `rut_cliente`, `id_pyme`, `id_producto`, `cantidad`, `fecha`, `total`, `id_estado_pedido`) VALUES
+(1, '1', 1, 1, 1, '20/05/202103:10 p.m.', 30000, 1),
+(2, '20746217', 1, 2, 1, '20/05/2021 03:41 p.m.', 50000, 2),
+(3, '20746217', 1, 2, 4, '20/05/2021 03:54 p.m.', 50000, 3),
+(4, '20746217', 1, 2, 4, '20/05/2021 03:56 p.m.', 121960, 4),
+(5, '20746217', 1, 2, 2, '22/05/2021 08:13 p.m.', 60980, 1),
+(6, '20746217', 1, 2, 2, '23/05/2021 12:45 a.m.', 160000, 1),
+(7, '123', 1, 3, 4, '23/05/2021 01:04 a.m.', 48000, 3),
+(8, '123', 1, 6, 4, '23/05/2021 11:14 p.m.', 48000, 1);
 
 -- --------------------------------------------------------
 
@@ -230,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
 --
 
 CREATE TABLE IF NOT EXISTS `productos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(20) NOT NULL,
   `descripcion` varchar(250) NOT NULL,
   `foto` varchar(20) NOT NULL,
@@ -241,7 +344,21 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`id`),
   KEY `productos_fk_pyme` (`id_pyme`),
   KEY `productos_fk_categoria_producto` (`id_categoria_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `titulo`, `descripcion`, `foto`, `precio`, `stock`, `id_pyme`, `id_categoria_producto`) VALUES
+(1, 'Silla rosa', 'chaqueta hermosa rosa ', 'producto1.jpg', 1000, 12, 1, 4),
+(2, 'Silla Gamer', 'Silla gamer negra, eco cuero', 'producto1.jpg', 80000, 12, 1, 5),
+(3, 'chaqueta verde', 'chaqueta verde', 'imagen.jpg', 12000, 12, 1, 1),
+(4, 'Chaqueta  morada', 'Chaqueta morada', 'imagen.jpg', 10200, 12, 1, 2),
+(5, 'Chaqueta chiquita', 'chaqueta chiquita', 'imagen.jpg', 5000, 12, 1, 2),
+(6, 'Chaqueton', 'Chaquetonnn', 'imagen.jpg', 12000, 12, 1, 1),
+(7, 'Chaquetote', 'chaquetote', 'imagen.jpg', 12000, 12, 1, 1),
+(8, 'Chaquetonazo', 'chaquetonazo', 'imagen.jpg', 12000, 12, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -250,7 +367,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
 --
 
 CREATE TABLE IF NOT EXISTS `pyme` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombres` varchar(30) NOT NULL,
   `apellidos` varchar(30) NOT NULL,
   `rut` varchar(20) NOT NULL,
@@ -261,12 +378,28 @@ CREATE TABLE IF NOT EXISTS `pyme` (
   `id_categoria_pyme` int(11) NOT NULL,
   `id_direccion` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
-  `logo` varchar(30) DEFAULT NULL,
+  `logo` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `correo` (`correo`),
   KEY `pyme_fk_categoria_pyme` (`id_categoria_pyme`),
   KEY `pyme_fk_direccion` (`id_direccion`),
   KEY `pyme_fk_estado` (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Volcado de datos para la tabla `pyme`
+--
+
+INSERT INTO `pyme` (`id`, `nombres`, `apellidos`, `rut`, `nombre_pyme`, `correo`, `contrasena`, `telefono`, `id_categoria_pyme`, `id_direccion`, `id_estado`, `logo`) VALUES
+(1, 'Francisco', 'Poblete', '207462179', 'Krasna', 'krasna', '12345', '123456789', 1, 1, 2, 'imagen.jpg'),
+(2, 'Angie Eleana', 'Riera Bolivar', '26.638.804-7', 'Monstera', 'angie1', '12345', '930130211', 1, 6, 2, 'imagen.jpg'),
+(3, 'Angie Eleana', 'Riera Bolivar', '26.638.804-8', 'Lunera', 'angie2', '12345', '930130211', 1, 7, 2, 'imagen.jpg'),
+(4, 'Angie Eleana', 'Riera Bolivar', '26.638.804-9', 'Pau Sport', 'angie3', '12345', '930130211', 1, 8, 2, 'imagen.jpg'),
+(5, 'Angie Eleana', 'Riera Bolivar', '26.638.804-9', 'Modelandola', 'angie4', '12345', '930130211', 1, 9, 2, 'imagen.jpg'),
+(6, 'Angie Eleana', 'Riera Bolivar', '26.638.804-2', 'Vaiem', 'angie', '12345', '930130211', 1, 10, 2, 'imagen.jpg'),
+(7, 'genyis', 'bolivar', '45', 'mode', 'mode', '123', '+56930130211', 6, 17, 2, ' '),
+(8, 'Manuel', 'Riera', '26.911.022-8', 'prueba', 'manuel', '12345', '930130211', 6, 18, 2, 'producto1.jpg'),
+(9, 'angie', 'bolivar', '26.638.804-7', 'aburrida', 'pau@gmail.com', '123', '(+56) 9 3013 0211', 6, 19, 2, 'producto1.jpg');
 
 -- --------------------------------------------------------
 

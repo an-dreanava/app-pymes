@@ -12,6 +12,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    color:#263238;
 }
 
 main {
@@ -37,9 +38,6 @@ main {
     color: #455a64;
 }
 
-.enlace2{
-    color: #ef5350;
-}
 
 #modal-text{
     font-weight: bold;
@@ -51,7 +49,10 @@ main {
     height: 550px;
     overflow: hidden;
 }
-
+#modal2{
+    width: 100px;
+    height: 100px;
+}
 #inicio-sesion{
     display: block;
     margin-left: auto;
@@ -78,6 +79,40 @@ nav ul li a{
     width: 400px;
     background-color: #e0f7fa;
     color: #455a64;
+}
+
+.dashboard{
+    justify-content: center;
+}
+.banner-menu{
+    background-color: #e0f7fa;
+    color: #455a64;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton-menu-izq{
+    height: 100px;
+    width: 350px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float:left;
+    margin-bottom: 25px;
+}
+
+.boton-menu-der{
+    height: 100px;
+    width: 350px;
+    color: white;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    float: right;
+    margin-bottom: 25px;
 }
 
 .card-pyme{
@@ -132,20 +167,20 @@ footer{
     text-align: initial;
 }
 .imagen{
-        height:350px;
-	width: 350px;
-	padding:10px;
-	margin: 10px;
-	float:left;
+    height:350px;
+    width: 350px;
+    padding:10px;
+    margin: 10px;
+    float:left;
 }
 .Info{
-    
-    padding:100px
+
+    padding:50px
 }
 
 .corazon{
     float:right; padding:50px;
-    
+
 }
 
 .box input{
@@ -164,7 +199,7 @@ button{
     outline: none;
     padding: 0 10px;
     border-radius: 5px;
-    
+
 }
 
 button:hover, button:focus{
@@ -173,21 +208,160 @@ button:hover, button:focus{
 }
 
 
+
+#modal2{
+    width: 750px;
+    height: 400px;
+}
+
 .imagenmodal{
+    margin-bottom: 100px;
     float:left;
-    height: 150px;
-    width: 150px; 
-    
+    height: 250px;
+    width: 250px;     
+}
+
+#confirmar-compra{
+    margin-left: 250px;
+    width: 400px;
+    padding: 40px;
+    height: 200px;
 }
 .precio{
- float:right;
- 
+    float:right;
+
 }
 .numeracion{
- float:right;
- position:fixed;
+    float:right;
+    position:fixed;
+}
+
+#11{
+    height:250px;
+    width: 250px;
+
+    float:left;
+
+}
+
+.Info .direccion{
+    float:right;
+
+}
+fieldset{
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 400px;}
+
+Infopersonal{
+    text-align:center;
 }
 #menu-pymes{
     display: block;
     margin-left: 300px;
 }
+
+.fieldsetD{
+    border:none;
+    height: 400px;
+}
+#menu-pymes{
+    display: block;
+    margin-left: 300px;
+
+}
+
+.label-volver{
+    color: black;
+    margin-bottom: 0;
+    margin:-2.5% 0;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.label-precio{
+    color: black;
+    font-size: 25px;
+}
+
+.label-precio2{
+    color: black;
+    font-size: 20px;
+}
+
+.label-producto{
+    color: black;
+    font-size: 25px;
+}
+.label-total{
+    color: black;
+    font-size: 25px;
+}
+
+.separador{
+    margin-top: -1.2%;
+}
+
+.mensaje{
+    margin: auto;
+}
+
+#slide-out{
+    margin-top: 65px;
+}
+
+.logo-pyme{
+    max-height: 100px;
+}
+
+#catalogo{
+    margin-left: 350px;
+}
+
+#form-producto{
+    margin-left: 380px;
+    width: 900px;
+}
+
+.imagen-solicitud img{
+    width: 200px;
+    float: left;
+
+}
+
+.detalle-solicitud{
+    width: 730px;
+    float: right;
+}
+
+.detalle-pedido{
+    width: 300px;
+}
+
+.detalle-datos{
+    width: 300px;
+}
+
+.tabs .tab a{
+    color:#000;
+}
+
+.tabs .tab a:hover {
+    background-color: #fafafa ;
+    color:#000;
+} 
+
+.tabs .tab a.active {
+    background-color: #e0f7fa ;
+    color:#000;
+}
+
+.tabs .tab a:focus.active {
+  color:#000;
+  background-color: #e0f7fa ;
+}
+
+.tabs .indicator {
+    background-color:#000;
+} 
+
