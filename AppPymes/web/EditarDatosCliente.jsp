@@ -144,6 +144,21 @@
                                     </div>                                
                                     <br>
                                 </div>
+                                    
+                                    <%-- OBTENER DIRECCION, COMUNA Y REGION DEL CLIENTE --%>
+                                    <%      int id_comuna,id_region=0;
+                                            String des_comuna,des_region="";
+                                            ps = conexion.prepareStatement("SELECT d.id_comuna, co.descripcion, ci.id, r.id, r.descripcion "
+                                            + "FROM direccion d INNER JOIN comuna co ON d.id_comuna = co.id INNER JOIN ciudad ci ON co.id_ciudad = ci.id "
+                                            + "INNER JOIN region r ON r.id = ci.id_region WHERE d.id =(SELECT id_direccion FROM cliente WHERE rut=?)");
+                                            ps.setString(1, cliente.getRut());
+                                            rs = ps.executeQuery();
+                                            while (rs.next()) {
+                                            id_comuna=rs.getInt("d.id_comuna");
+                                            des_comuna=rs.getString("co.descripcion");
+                                            id_region=rs.getInt("r.id");
+                                            des_region=rs.getString("r.descripcion");
+                                    %>
 
                                 <div class="col s6">
                                     <div class="col s5">
@@ -151,7 +166,7 @@
                                     </div>
                                     <div class="col s6">
                                         <select name="region" id="region" required>
-                                            <option value="" disabled selected>Seleccione Region</option>
+                                            <option value="<%=id_region%>"><%=des_region%></option>
                                             <%  ps = conexion.prepareStatement("SELECT ID, DESCRIPCION FROM REGION ");
                                                 rs = ps.executeQuery();
 
@@ -170,7 +185,7 @@
                                     </div>
                                     <div class="col s6">
                                         <select name="comuna" id="comuna" required>
-                                            <option value="" disabled selected>Seleccione Comuna:</option>
+                                            <option value="<%=id_comuna%>"><%=des_comuna%></option>
                                             <% ps = conexion.prepareStatement("SELECT ID, DESCRIPCION FROM COMUNA ");
                                                 rs = ps.executeQuery();
 
@@ -200,7 +215,7 @@
                                             <input class="btn waves-effect red lighten-1" type="submit" id="opcion" name="opcion" value="Actualizar">
                                         </div> 
                                     </div>
-                                    <% }%>
+                                    <% }}%>
                                 </div>
                             </form>
                         </div>
