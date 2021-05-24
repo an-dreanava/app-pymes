@@ -129,4 +129,22 @@ public class ProductoDAO {
             }
         }
     }
+     
+         
+    public String Des_Categoria(int id_categoria){
+        String des_categoria="";
+        Conexion con = new Conexion();
+        Connection conexion = con.getConnection();
+        try {
+            ps = conexion.prepareStatement("SELECT descripcion FROM categoria_producto WHERE id=?");
+            ps.setInt(1,id_categoria);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                des_categoria= rs.getString(1);
+            }
+        } catch (Exception ex) {
+            System.err.println("Error, " + ex);
+        }
+        return des_categoria;
+    }
 }

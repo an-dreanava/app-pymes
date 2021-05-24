@@ -29,8 +29,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     </head>
     <body>
-        <%
-            PymeDAO PymeDAO=new PymeDAO();
+        <%  ProductoDAO ProductoDAO = new ProductoDAO();
             Pyme pyme = null;
             String estadoSesion = "off";
             String tipo = "";
@@ -136,14 +135,12 @@
                         </div>
                         <div class="col s5">
                             <select name="id_categoria" id="id_categoria" required>
-                                <option value="<%=rs.getInt("id_categoria_producto")%>"><%=PymeDAO.Des_Categoria(rs.getInt("id_categoria_producto"))%></option>
+                                <option value="<%=rs.getInt("id_categoria_producto")%>"><%=ProductoDAO.Des_Categoria(rs.getInt("id_categoria_producto"))%></option>
                                 <%
-                                    ProductoDAO ProductoDAO = new ProductoDAO();
                                     for (Categoria categoria : ProductoDAO.Categoria()) {
                                 %>
                                 <option value="<%=categoria.getId_categoria()%>"><%=categoria.getDescripcion()%></option>
-                                <% }
-                                %>
+                                <%}%>
                             </select>
                         </div>
                         <br>
