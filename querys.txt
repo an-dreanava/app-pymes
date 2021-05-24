@@ -1,0 +1,9 @@
+SELECT p.id,p.nombres,p.apellidos,p.rut,p.nombre_pyme,p.correo,p.contrasena,p.telefono,
+p.id_categoria_pyme,d.descripcion,d.id_comuna,co.id_ciudad, ci.id_region, p.id_estado,p.logo FROM pyme p INNER JOIN direccion d ON p.id_direccion=d.id INNER JOIN comuna co ON d.id_comuna=co.id INNER JOIN ciudad ci ON co.id_ciudad=ci.id_region;
+
+SELECT `pyme`.`id` , `pyme`.`nombres` , `pyme`.`apellidos` , `pyme`.`rut` , `pyme`.`nombre_pyme` , `pyme`.`telefono` , `pyme`.`id_categoria_pyme` , `direccion`.`descripcion` , `direccion`.`id_comuna` , `ciudad`.`id_region` , `pyme`.`id_direccion` , `pyme`.`id_estado`
+FROM pyme, direccion, ciudad 
+
+SELECT `pyme`.`id` , `pyme`.`nombres` , `pyme`.`apellidos` , `pyme`.`rut` , `pyme`.`nombre_pyme` , `pyme`.`telefono` , `pyme`.`id_categoria_pyme` , `direccion`.`descripcion` , `direccion`.`id_comuna` , `ciudad`.`id_region` , `pyme`.`id_direccion` , `pyme`.`id_estado`
+FROM pyme, direccion, ciudad
+WHERE `pyme`.`correo` = 'pablo@gmail.com'
