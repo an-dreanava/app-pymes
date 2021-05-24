@@ -132,7 +132,7 @@
                         </div>                
                         <ul id="nav-mobile" class="right hide-on-med-and-down black-text">
                             <li>
-                                <a class="" href=""><i class="material-icons">account_circle</i></a>                                 
+                                <a class="" href="DetallesCuenta.jsp"><i class="material-icons">account_circle</i></a>                                 
                             </li>
                             <li>
                             <h7>Cuenta</h7> 

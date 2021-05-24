@@ -35,10 +35,7 @@
     </head>
     <body>
         <%
-
-            String titulo = request.getParameter("titulo");
-            int estado = Integer.parseInt(request.getParameter("estado"));
-
+            
             Pyme pyme = null;
             String estadoSesion = "off";
             String tipo = "";
@@ -58,12 +55,14 @@
                     sesion.invalidate();
                 } else {
                     pyme = (Pyme) sesion.getAttribute("usuario");
-                    int id = Integer.parseInt(request.getParameter("id"));
+                    int id = Integer.parseInt(request.getParameter("id"));                    
+                    int estado = Integer.parseInt(request.getParameter("estado"));
+                    String titulo = request.getParameter("titulo");
                     PreparedStatement ps = null;
                     ResultSet rs = null;
                     Conexion con = new Conexion();
                     com.mysql.jdbc.Connection conexion = con.getConnection();
-                    ps = conexion.prepareStatement("SELECT * FROM PEDIDOS PE INNER JOIN CLIENTE CL ON PE.RUT_CLIENTE = CL.RUT INNER JOIN PYME PY ON PE.ID_PYME = PY.ID WHERE PE.ID_PYME = ? AND PE.ID_ESTADO_PEDIDO = ?");
+                    ps = conexion.prepareStatement("SELECT * FROM PEDIDOS PE INNER JOIN CLIENTE CL ON PE.RUT_CLIENTE = CL.RUT INNER JOIN PYME PY ON PE.ID_PYME = PY.ID WHERE PE.ID_PYME = ? AND PE.ID_ESTADO_PEDIDO = ? ORDER BY PE.BOLETA DESC");
                     ps.setInt(1, id);
                     ps.setInt(2, estado);
                     rs = ps.executeQuery();
@@ -94,9 +93,9 @@
                             <li><div class="divider"></div></li>
                             <li><a href="MenuPyme.jsp"><i class="material-icons">view_module</i>Dashboard</a></li>
                             <li><div class="divider"></div></li>
-                            <li><a href="#!"><i class="material-icons">settings</i>Mis datos</a></li>                            
+                            <li><a href="DatosPyme.jsp"><i class="material-icons">settings</i>Mis datos</a></li>                            
                             <li><div class="divider"></div></li>
-                            <li><a href="#!"><i class="material-icons">shopping_cart</i>Catálogo</a></li> 
+                            <li><a href="Catalogo.jsp"><i class="material-icons">shopping_cart</i>Catálogo</a></li> 
                             <li><div class="divider"></div></li>
                             <li><a class="waves-effect" href="#!"><i class="material-icons">description</i>Pedidos</a></li>
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "'>Pedidos Nuevos</a></li>"); %>
@@ -143,8 +142,8 @@
                                             out.println("<td>" + rs.getString("CL.NOMBRES") + " " + rs.getString("CL.APELLIDOS") + "</td>");
                                             out.println("<td>" + rs.getString("PE.FECHA") + "</td>");
                                             out.println("<td>$" + " " + rs.getString("PE.TOTAL") + "</td>");
-                                            out.println("<td>CHAT</td>");
-                                            out.println("<td>DOCUMENTO</td>");
+                                            out.println("<td><a href=''><i class='material-icons'>chat</i></a></td>");
+                                            out.println("<td><a href='DetalleVenta.jsp?id="+ rs.getInt("PE.BOLETA") +"'><i class='material-icons'>insert_drive_file</i></a></td>");
 
                                         }
                                     }

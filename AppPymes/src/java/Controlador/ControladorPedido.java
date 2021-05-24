@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,7 +38,8 @@ public class ControladorPedido extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String opcion = request.getParameter("opcion");
-
+        PedidoDAO pedidoDAO = new PedidoDAO();
+        
         if (opcion.equals("Confirmar")) {
             String cliente = request.getParameter("cliente");
             int pyme = Integer.parseInt(request.getParameter("pyme"));
@@ -50,15 +52,25 @@ public class ControladorPedido extends HttpServlet {
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String fecha = dateFormat.format(date) + " " + formateador.format(date);
             System.out.println(cliente + pyme + producto + "1" + fecha + "2000");
-            Pedido pedido = new Pedido(cliente, pyme, producto, cantidad, fecha, total, 1);
-            PedidoDAO pedidoDAO = new PedidoDAO();
+            Pedido pedido = new Pedido(cliente, pyme, producto, cantidad, fecha, total, 1);            
             
             if (pedidoDAO.agregar(pedido) == true) {
                 response.sendRedirect("SolicitudCompra.jsp?id="+producto+"&total="+total+"&cant="+cantidad);
-                System.out.println("Agregado");
             } else {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al enviar su solicitud de compra&mensaje=Se produjo un error al ingresar su solicitud de compra, por favor intente de nuevo&boton=Volver&retorno=Index.jsp");
             }
+        }
+        
+        if (opcion.equals("Cambiar")){
+            int boleta = Integer.parseInt(request.getParameter("boleta"));
+            int estado = Integer.parseInt(request.getParameter("estado"));
+            
+            if(pedidoDAO.cambiarEstado(boleta, estado) == true){
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Estado Actualizado&mensaje=Se actualizo correctamente el estado del pedido&boton=Volver&retorno=MenuPyme.jsp");
+            }else{
+                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error&mensaje=No se actualizo el estado del pedido, por favor intente de nuevo&boton=Volver&retorno=MenuPyme.jsp");
+            }
+            
         }
 
         try (PrintWriter out = response.getWriter()) {

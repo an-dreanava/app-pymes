@@ -34,7 +34,7 @@ public class ControladorPyme extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String rut,nombre_pyme,nombre,apellido,des_direccion,telefono,correo,contrasena,opcion="";
+        String rut,nombre_pyme,nombre,apellido,des_direccion,telefono,correo,contrasena,opcion, foto="";
         int id_region=0,id_comuna=0,id_categoria=0;
         
         rut = request.getParameter("rut");
@@ -46,16 +46,17 @@ public class ControladorPyme extends HttpServlet {
         des_direccion = request.getParameter("des_direccion");
         telefono = request.getParameter("telefono");
         correo = request.getParameter("correo");
+        foto = request.getParameter("foto");
         contrasena = request.getParameter("contrasena");
         id_categoria = Integer.parseInt(request.getParameter("id_categoria"));
         opcion = request.getParameter("opcion");
         
         if(opcion.equals("Agregar")){
             try{
-                Pyme pyme=new Pyme(0,nombre,apellido,rut,nombre_pyme,correo,contrasena,telefono,id_categoria,0,2," ");           
+                Pyme pyme=new Pyme(0,nombre,apellido,rut,nombre_pyme,correo,contrasena,telefono,id_categoria,0,2,foto);           
             PymeDAO PymeDAO=new PymeDAO();
             if(PymeDAO.AgregarPyme(pyme, des_direccion, id_comuna)==true){
-                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Solicitud Ingresada&mensaje=Sus datos han sido recepcionados con exito,en cuanto la validación este completada podra iniciar sesion sin problemas.&boton=Aceptar&retorno=IndexPyme.jsp");
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Solicitud Ingresada&mensaje=Sus datos han sido recepcionados con exito,en cuanto la validacion este completada podra iniciar sesion sin problemas.&boton=Aceptar&retorno=IndexPyme.jsp");
             }else{
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al registrar&mensaje=El correo ingresado ya posee una cuenta, inicie sesion o recupere clave&boton=Volver&retorno=IndexPyme.jsp");
             }

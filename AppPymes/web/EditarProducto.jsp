@@ -84,9 +84,9 @@
                             <li><div class="divider"></div></li>
                             <li><a href="MenuPyme.jsp"><i class="material-icons">view_module</i>Dashboard</a></li>
                             <li><div class="divider"></div></li>
-                            <li><a href="#!"><i class="material-icons">settings</i>Mis datos</a></li>                            
+                            <li><a href="DatosPyme.jsp"><i class="material-icons">settings</i>Mis datos</a></li>                            
                             <li><div class="divider"></div></li>
-                            <li><a href="#!"><i class="material-icons">shopping_cart</i>Catálogo</a></li> 
+                            <li><a href="Catalogo.jsp"><i class="material-icons">shopping_cart</i>Catálogo</a></li> 
                             <li><div class="divider"></div></li>
                             <li><a class="waves-effect" href="#!"><i class="material-icons">description</i>Pedidos</a></li>
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "'>Pedidos Nuevos</a></li>"); %>

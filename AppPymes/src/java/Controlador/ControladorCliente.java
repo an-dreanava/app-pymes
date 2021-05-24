@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,14 +36,15 @@ public class ControladorCliente extends HttpServlet {
 
         String opcion = request.getParameter("opcion");
 
+        String rut = request.getParameter("rut");
+        String nombres = request.getParameter("nombres");
+        String apellido = request.getParameter("apellidos");
+        int comuna = Integer.parseInt(request.getParameter("comuna"));
+        String direccion = request.getParameter("direccion");
+        String telefono = request.getParameter("telefono");
+        String correo = request.getParameter("correo");
+
         if (opcion.equals("Registrar")) {
-            String rut = request.getParameter("rut");
-            String nombres = request.getParameter("nombres");
-            String apellido = request.getParameter("apellidos");
-            int comuna = Integer.parseInt(request.getParameter("comuna"));
-            String direccion = request.getParameter("direccion");
-            String telefono = request.getParameter("telefono");
-            String correo = request.getParameter("correo");
             String clave = request.getParameter("clave");
 
             Cliente cliente = new Cliente(rut, nombres, apellido, correo, clave, telefono, direccion, comuna);
@@ -56,7 +58,20 @@ public class ControladorCliente extends HttpServlet {
             }
         }
 
-        
+        if (opcion.equals("Actualizar")) {
+            Cliente cliente = new Cliente(rut, nombres, apellido, correo, "0", telefono, direccion, comuna);
+            System.out.println(rut + nombres + apellido + correo + telefono + direccion + comuna);
+            ClienteDAO clienteDAO = new ClienteDAO();
+            if (clienteDAO.modificar(cliente) == true) {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Datos Actualizados&mensaje=Se han actualizado correctamente los datos&boton=Volver&retorno=DetallesCuenta.jsp");
+                HttpSession sesion = request.getSession(true);
+                sesion.setAttribute("usuario", cliente);
+            } else {
+                response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al actualizar&mensaje=No se ha podido actualizar los datos, por favor intente de nuevo&boton=Volver&retorno=DetallesCuenta.jsp");
+                HttpSession sesion = request.getSession(true);
+                sesion.setAttribute("usuario", cliente);
+            }
+        }
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */

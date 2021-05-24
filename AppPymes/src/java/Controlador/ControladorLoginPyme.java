@@ -41,8 +41,8 @@ public class ControladorLoginPyme extends HttpServlet {
         String opcion = "";
 
         opcion = request.getParameter("opcion");
-        clave = request.getParameter("clave");
-        correo = request.getParameter("correo");
+        clave = request.getParameter("claveL");
+        correo = request.getParameter("correoL");
 
         if (opcion.equals("Iniciar")) {
 

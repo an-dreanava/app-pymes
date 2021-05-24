@@ -49,5 +49,27 @@ public class PedidoDAO {
         }
         return estado;
     }
+    
+    public boolean cambiarEstado(int id, int estado_pedido){
+        Conexion con = new Conexion();
+        Connection conexion = con.getConnection();
+        boolean estado = false;
+        
+        try {
+            ps = conexion.prepareStatement("UPDATE PEDIDOS SET ID_ESTADO_PEDIDO = ? WHERE BOLETA = ?");
+            ps.setInt(1, estado_pedido);
+            ps.setInt(2, id);           
+
+            int resultado = ps.executeUpdate();
+
+            conexion.close();
+            estado = true;
+
+        } catch (Exception ex) {
+            System.err.println("Error, " + ex);
+            estado = false;
+        }
+        return estado;
+    }
 
 }

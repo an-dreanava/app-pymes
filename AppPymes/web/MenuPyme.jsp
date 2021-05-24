@@ -92,9 +92,9 @@
                             <li><div class="divider"></div></li>
                             <li><a href="MenuPyme.jsp"><i class="material-icons">view_module</i>Dashboard</a></li>
                             <li><div class="divider"></div></li>
-                            <li><a href="#!"><i class="material-icons">settings</i>Mis datos</a></li>                            
+                            <li><a href="DatosPyme.jsp"><i class="material-icons">settings</i>Mis datos</a></li>                            
                             <li><div class="divider"></div></li>
-                            <li><a href="#!"><i class="material-icons">shopping_cart</i>Catálogo</a></li> 
+                            <li><a href="Catalogo.jsp"><i class="material-icons">shopping_cart</i>Catálogo</a></li> 
                             <li><div class="divider"></div></li>
                             <li><a class="waves-effect" href="#!"><i class="material-icons">description</i>Pedidos</a></li>
                                 <% out.println("<li><a style='color:#9e9e9e;' class='' href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "'>Pedidos Nuevos</a></li>"); %>
@@ -123,26 +123,19 @@
                     <div class="row center" >
                         <a href="Catalogo.jsp">
                             <div class=" red darken-1 boton-menu-izq">
-                                <h6>Catálogo</h6>
+                                <h5 style="font-weight: bold;">Catálogo</h5>
                             </div>
                         </a>
-                        <a>
+                        <a href="DatosPyme.jsp">
                             <div class=" light-green darken-1 boton-menu-der">
-                                <h6>Mis Datos</h6>
+                                <h5 style="font-weight: bold;">Mis Datos</h5>
                             </div>
                         </a>
                         <% out.println("<a href='VistaPedidos.jsp?estado=1&titulo=Pedidos Nuevos&id=" + pyme.getId() + "' >");
 
                         %>
                         <div class="green accent-2 white-text boton-menu-izq ">
-                            <div class="col s2">
-                                <i class="material-icons">shopping_cart</i>
-                            </div>
-                            <div class="col s10">
-                                <h4>Pedidos Nuevos</h4>
-                            </div>
-
-
+                            <h5 style="font-weight: bold;">Pedidos Nuevos</h5>    
                         </div>
                         </a>
                         <% out.println("<a href='VistaPedidos.jsp?estado=2&titulo=Pedidos Pendientes&id=" + pyme.getId() + "' >");
@@ -156,14 +149,14 @@
 
                         %>
                         <div class="indigo lighten-2 white-text boton-menu-izq">
-                            <h6>Pedidos Finalizados</h6>
+                            <h5 style="font-weight: bold;">Pedidos Finalizados</h5>
                         </div>
                         </a>
                         <% out.println("<a href='VistaPedidos.jsp?estado=4&titulo=Pedidos Cancelados&id=" + pyme.getId() + "' >");
                                 }
                             }%>
                         <div class="purple accent-1 white-text boton-menu-der">
-                            <h6>Pedidos Cancelados</h6>
+                            <h5 style="font-weight: bold;">Pedidos Cancelados</h5>
                         </div>
                         </a>
                     </div>

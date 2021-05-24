@@ -49,7 +49,10 @@ main {
     height: 550px;
     overflow: hidden;
 }
-
+#modal2{
+    width: 100px;
+    height: 100px;
+}
 #inicio-sesion{
     display: block;
     margin-left: auto;
@@ -260,7 +263,7 @@ Infopersonal{
 
 .fieldsetD{
     border:none;
-height: 400px;
+    height: 400px;
 }
 #menu-pymes{
     display: block;
@@ -323,7 +326,7 @@ height: 400px;
 .imagen-solicitud img{
     width: 200px;
     float: left;
-    
+
 }
 
 .detalle-solicitud{
@@ -338,3 +341,27 @@ height: 400px;
 .detalle-datos{
     width: 300px;
 }
+
+.tabs .tab a{
+    color:#000;
+}
+
+.tabs .tab a:hover {
+    background-color: #fafafa ;
+    color:#000;
+} 
+
+.tabs .tab a.active {
+    background-color: #e0f7fa ;
+    color:#000;
+}
+
+.tabs .tab a:focus.active {
+  color:#000;
+  background-color: #e0f7fa ;
+}
+
+.tabs .indicator {
+    background-color:#000;
+} 
+
