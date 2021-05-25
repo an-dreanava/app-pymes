@@ -53,7 +53,6 @@ public class ControladorCliente extends HttpServlet {
             ClienteDAO clienteDAO = new ClienteDAO();
             if (clienteDAO.agregar(cliente) == true) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Registro correcto&mensaje=Se ha registrado correctamente, verifique su correo electronico e inicie sesion&boton=Volver&retorno=Index.jsp");
-                System.out.println("Agregado");
             } else {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Error al registrar&mensaje=El correo ingresado ya posee una cuenta, inicie sesion o recupere clave&boton=Volver&retorno=Index.jsp");
             }
@@ -61,7 +60,7 @@ public class ControladorCliente extends HttpServlet {
 
         if (opcion.equals("Actualizar")) {
             Cliente cliente = new Cliente(rut, nombres, apellido, correo, "0", telefono, direccion, comuna);
-            System.out.println(rut + nombres + apellido + correo + telefono + direccion + comuna);
+          
             ClienteDAO clienteDAO = new ClienteDAO();
             if (clienteDAO.modificar(cliente) == true) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Datos Actualizados&mensaje=Se han actualizado correctamente los datos&boton=Volver&retorno=DetallesCuenta.jsp");
