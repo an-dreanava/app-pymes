@@ -56,7 +56,7 @@
             <div class="contenedor">
                 <div class="container center" >
                     <br><br>
-                    <h3>Nombre</h3>
+                    <h3><img  src="Imagenes/logo.png"></h3>
                     <div class="container" >
                         <h3 class="left-align" id="banner-text">TU PORTAL DE EXPOSICIÓN,<BR> MAYOR VENTAS, <BR> MENOR GASTO</h3>
 

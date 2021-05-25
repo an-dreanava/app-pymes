@@ -73,8 +73,8 @@
                 <nav class="white">
                     <div class="nav-wrapper">
                         <ul id="nav-mobile" class="left hide-on-med-and-down black-text">
-                            <li><a href="sass.html" >Nombre</a></li>
-                        </ul>                
+                            <li><a href="IndexCliente.jsp" class="logo-banner" ><img  src="Imagenes/logo.png"></a></li>
+                        </ul>                 
                         <div class="brand-logo center" id="titulo-banner">
                             <% if (rs.next()) {
                                     out.println("<span href=''>" + rs.getString("CA.DESCRIPCION") + "</span>");
@@ -102,7 +102,7 @@
 
         <main>
             <div class="banner">
-                <img src="Imagenes/oferta1.png" class="responsive-img">
+                <img src="Imagenes/banner.png" class="responsive-img">
 
             </div>
             <br>

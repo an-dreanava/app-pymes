@@ -125,8 +125,8 @@
                 <nav class="white nav-extended">
                     <div class="nav-wrapper">
                         <ul id="nav-mobile" class="left hide-on-med-and-down black-text">
-                            <li><a href="sass.html" >Sass</a></li>
-                        </ul>                
+                            <li><a href="IndexCliente.jsp" class="logo-banner" ><img  src="Imagenes/logo.png"></a></li>
+                        </ul>                 
                         <div class="brand-logo center" id="titulo-banner">
                             <span href="#" >Tiendas</span>
                         </div>                
@@ -208,7 +208,7 @@
     <form action="ControladorPedido" method="POST">
         <div class="modal-content">
             <h5 id="modal-text" class="center">CONFIRMAR COMPRA</h5>
-            <img src="Imagenes/imagen.jpg" class="imagenmodal">
+            <img src="Imagenes/<%=rs.getString("PR.FOTO") %>" class="imagenmodal">
             <div class="container" id="confirmar-compra">
                 <div class=" left">
                     <h5 id="productoModal"></h5> 

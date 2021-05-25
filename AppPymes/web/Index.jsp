@@ -65,7 +65,7 @@
         <main>
             <div class="contenedor">
                 <div class="container center" >
-                    <h3>Nombre</h3>
+                    <h3><img  src="Imagenes/logo.png"></h3>
                     <div class="container" >
                         <h3 class="left-align" id="banner-text">TODO LO QUE NECESITES,<BR> EN UN SOLO LUGAR</h3>
 
