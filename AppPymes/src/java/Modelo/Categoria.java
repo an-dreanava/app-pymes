@@ -25,7 +25,7 @@ public class Categoria {
     }
 
     /**
-     *
+     *Accesador del Identificador de la categoría.
      * @return Accesador al identificador de la categoria.
      */
     public int getId_categoria() {
@@ -41,7 +41,7 @@ public class Categoria {
     }
 
     /**
-     *
+     *Accsesador de la definición de la categoría.
      * @return Accesador a la definición de la categoria.
      */
     public String getDescripcion() {
