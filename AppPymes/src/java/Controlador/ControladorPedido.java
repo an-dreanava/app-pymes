@@ -52,7 +52,7 @@ public class ControladorPedido extends HttpServlet {
             SimpleDateFormat formateador = new SimpleDateFormat("hh:mm a");
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String fecha = dateFormat.format(date) + " " + formateador.format(date);
-            System.out.println(cliente + pyme + producto + "1" + fecha + "2000");
+            
             Pedido pedido = new Pedido(cliente, pyme, producto, cantidad, fecha, total, 1);            
             
             if (pedidoDAO.agregar(pedido) == true) {
