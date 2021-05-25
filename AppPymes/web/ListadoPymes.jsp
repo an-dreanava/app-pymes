@@ -79,7 +79,7 @@
                             <h7>Cuenta</h7> 
                             </li>
                             <li>
-                                <a class="" href=""><i class="material-icons">favorite</i></a> 
+                                <a class="" href="ListaDeFavoritos.jsp"><i class="material-icons">favorite</i></a> 
                             </li>
                             <li>
                                 <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a>

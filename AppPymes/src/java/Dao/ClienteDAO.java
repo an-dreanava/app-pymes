@@ -12,7 +12,8 @@ import Modelo.Conexion;
 import Modelo.Cliente;
 
 /**
- *
+ * Clases que contiene los métodos que gestionan la inserción, modificación y
+ * búsqueda del cliente
  * @author AngieRiera
  */
 public class ClienteDAO {
@@ -20,34 +21,11 @@ public class ClienteDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public boolean buscar(Cliente cliente) {
-        Conexion con = new Conexion();
-        Connection conexion = con.getConnection();
-        try {
-            ps = conexion.prepareStatement("SELECT C.RUT, C.NOMBRES, C.APELLIDOS, C.TELEFONO,  "
-                    + "C.CORREO, C.CONTRASENA, C.ID_DIRECCION, D. FROM CLIENTE C INNER JOIN DIRECCION D ON C.ID_DIRECCION=D.ID WHERE C.RUT=?");
-            ps.setString(1, cliente.getRut());
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                cliente.setRut(rs.getString("RUT"));
-                cliente.setNombre(rs.getString("NOMBRES"));
-                cliente.setApellido(rs.getString("APELLIDOS"));
-                cliente.setTelefono(rs.getString("TELEFONO"));
-                cliente.setCorreo(rs.getString("CORREO"));
-                cliente.setContraseña(rs.getString("CONTRASENA"));
-                //cliente.setDireccion;
-                ;
-                return true;
-            }
-            conexion.close();
-        } catch (Exception ex) {
-            System.err.println("Error, " + ex);
-            return false;
-        }
-        return false;
-    }
-
+    /**
+     * Método que inserta un cliente nuevo en la base de datos
+     * @param cliente Cliente nuevo que se va a insertar en la base de datos
+     * @return Confirmación de la inserción del cliente en la base de datos
+     */
     public boolean agregar(Cliente cliente) {
         Conexion con = new Conexion();
         Connection conexion = con.getConnection();
@@ -76,6 +54,11 @@ public class ClienteDAO {
         return estado;
     }
     
+    /**
+     * Método que modifica los datos que de un cliente en la base de datos
+     * @param cliente Cliente con los datos respectivamente modificados
+     * @return Confirmación de la modificación en la base de datos
+     */
     public boolean modificar(Cliente cliente) {
         Conexion con = new Conexion();
         Connection conexion = con.getConnection();
@@ -103,6 +86,12 @@ public class ClienteDAO {
         return estado;
     }
 
+    /**
+     * Método que busca a un cliente en la base de datos a partir de su correo
+     * electrónico y lo valida con la contraseña
+     * @param cliente Cliente a buscar
+     * @return Confirmación de la búsqueda exitosa
+     */
     public boolean login(Cliente cliente) {
         Conexion con = new Conexion();
         com.mysql.jdbc.Connection conexion = con.getConnection();
@@ -120,7 +109,6 @@ public class ClienteDAO {
                     cliente.setTelefono(rs.getString("TELEFONO"));
                     cliente.setCorreo(rs.getString("CORREO"));
                     cliente.setContraseña(rs.getString("CONTRASENA"));
-                    //cliente.setDireccion(rs.getString("D.DESCRIPCION + CO.DESCRIPCION "));
                     return true;
                 } else {
                     return false;

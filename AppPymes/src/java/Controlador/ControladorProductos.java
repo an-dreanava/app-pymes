@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Controlador que gestiona los métodos y redireccionamientos a las vistas 
+ * de los productos.
  * @author AngieRiera
  */
 public class ControladorProductos extends HttpServlet {

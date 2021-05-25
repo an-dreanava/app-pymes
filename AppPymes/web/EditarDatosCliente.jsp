@@ -108,8 +108,6 @@
                                     <div class="col s12">
                                         <input hidden  name="rut" id="rut" type="text" class="validate"  required value="<%=cliente.getRut()%> ">                                                          
                                     </div>
-
-
                                     <div class="col s5">
                                         <h6>Nombres: </h6>
                                     </div>

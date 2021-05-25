@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 /**
- *
+ * Clase que contiene los métodos con los cuales se gestionan los datos de Pymes.
  * @author drean
  */
 public class PymeDAO {
@@ -25,6 +25,13 @@ public class PymeDAO {
     ResultSet rs = null;
     Connection con;
 
+    /**
+     *Método para agregar una pyme a la base de datos
+     * @param pyme Objeto Pyme
+     * @param des_direccion Descripción de la dirección (calle y número)
+     * @param id_comuna Identificador de la comuna de la dirección
+     * @return Confirmación de la inserción de la pyme en la base de datos
+     */
     public boolean AgregarPyme(Pyme pyme, String des_direccion, int id_comuna) {
         int i = 0;
         boolean estado = false;
@@ -49,6 +56,13 @@ public class PymeDAO {
         return estado;
     }
 
+    /**
+     *Método que genera el identificador de la nueva dirección a agregar y
+     *posteriormente inserta los datos en la tabla dirección
+     * @param des_direccion Descripción de la dirección (calle y número)
+     * @param id_comuna Identificador de la comuna de la dirección
+     * @return Identificador de la nueva dirección agregada.
+     */
     public int Id_Direccion(String des_direccion, int id_comuna) {
         int id_direccion = 0;
         Conexion con = new Conexion();
@@ -76,6 +90,13 @@ public class PymeDAO {
         return (id_direccion);
     }
 
+    /**
+     *Método que busca la pyme a partir del correo electrónico y la contraseña
+     * de ingreso a la plataforma
+     * @param correo Correo electrónico de la pyme
+     * @param contrasena Contraseña de la pyme
+     * @return Pyme encontrada
+     */
     public Pyme login(String correo, String contrasena) {
         Conexion con = new Conexion();
         com.mysql.jdbc.Connection conexion = con.getConnection();
@@ -106,6 +127,10 @@ public class PymeDAO {
         return pyme;
     }
 
+    /**
+     *Método que recolecta todas las categorías de las pymes
+     * @return Colección de categorías de pymes
+     */
     public ArrayList<Categoria> Categoria() {
         ArrayList<Categoria> categorias = new ArrayList();
         Conexion con = new Conexion();

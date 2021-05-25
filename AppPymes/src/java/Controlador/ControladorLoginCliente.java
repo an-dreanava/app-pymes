@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ *Controlador que gestiona los métodos y redireccionamientos de la validación
+ * del acceso a la página como cliente.
  * @author AngieRiera
  */
 public class ControladorLoginCliente extends HttpServlet {

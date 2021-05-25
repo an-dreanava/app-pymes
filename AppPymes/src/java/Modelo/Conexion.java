@@ -9,14 +9,30 @@ import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 
 /**
- *
+ *Clase con la cual se realiza la conexión a la base de datos.
  * @author AngieRiera
  */
 public class Conexion {
-        public static final String URL = "jdbc:mysql://localhost:3306/apppymes";
+
+    /**
+     *URL de la base de datos
+     */
+    public static final String URL = "jdbc:mysql://localhost:3306/apppymes";
+
+    /**
+     *Usuario de la base de datos
+     */
     public static final String usuario = "root";
+
+    /**
+     *Contraseña del usuario de la base de datos
+     */
     public static final String contraseña = "";
 
+    /**
+     *Método de conexión a la base de datos.
+     * @return Conexión a la base de datos.
+     */
     public Connection getConnection() {
         Connection conexion = null;
 
