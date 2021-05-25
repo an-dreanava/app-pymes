@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>One Place</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -88,8 +88,8 @@
                             <h7>Cuenta</h7> 
                             </li>
                             <li>
-                                <a class="" href=""><i class="material-icons">favorite</i></a> 
-                            </li> 
+                                <a class="" href="ListaDeFavoritos.jsp"><i class="material-icons">favorite</i></a> 
+                            </li>
                             <li>
                                 <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a> 
                             </li>

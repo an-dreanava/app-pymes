@@ -372,3 +372,12 @@ Infopersonal{
     padding-bottom: 0%;
     height: 64px;
 }
+
+.img-lista{
+    height: 100px;
+    max-width: 100px;
+}
+
+.producto{
+    width: 200px;
+}
