@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>One Place</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -65,7 +65,7 @@
         <main>
             <div class="contenedor">
                 <div class="container center" >
-                    <h3>Nombre</h3>
+                    <h3><img  src="Imagenes/logo.png"></h3>
                     <div class="container" >
                         <h3 class="left-align" id="banner-text">TODO LO QUE NECESITES,<BR> EN UN SOLO LUGAR</h3>
 

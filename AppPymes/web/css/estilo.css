@@ -145,7 +145,7 @@ footer{
 }
 
 .tarjeta-imagen img{
-    height: 200px;
+    max-height: 220px;
     width: 160px;
 }
 
@@ -157,6 +157,7 @@ footer{
 
 .tarjeta{
     height: 100%;
+    height: 330px;
     max-width: 100%;
     width: 220px;
     text-align: center;
@@ -365,3 +366,18 @@ Infopersonal{
     background-color:#000;
 } 
 
+
+.logo-banner{
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+    height: 64px;
+}
+
+.img-lista{
+    height: 100px;
+    max-width: 100px;
+}
+
+.producto{
+    width: 200px;
+}

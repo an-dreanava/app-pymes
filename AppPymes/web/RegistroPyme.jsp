@@ -19,7 +19,7 @@
 <html>
 
     <head>
-        <title>TODO supply a title</title>
+        <title>One Place</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -38,8 +38,8 @@
             <nav class="white">
                 <div class="nav-wrapper">
                     <ul id="nav-mobile" class="left hide-on-med-and-down black-text">
-                        <li><a href="sass.html" >Sass</a></li>
-                    </ul>                
+                            <li><a href="Index.jsp" class="logo-banner" ><img  src="Imagenes/logo.png"></a></li>
+                        </ul>               
                     <div class="brand-logo center" id="titulo-banner">
                         <span>Para Tiendas</span>
                     </div>                
@@ -89,7 +89,7 @@
                         <p>Rut:</p>                            
                     </div>
                     <div class="col s4">
-                        <input name="rut" id="rut" type="text" class="validate"  required> 
+                        <input name="rut" id="rut" type="text" class="validate" placeholder="Si termina en K reemplace por 0" required> 
                     </div>
 
                     <div class="col s2">

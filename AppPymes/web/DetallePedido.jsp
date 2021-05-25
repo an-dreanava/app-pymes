@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>One Place</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -71,8 +71,8 @@
                 <nav class="white nav-extended">
                     <div class="nav-wrapper">
                         <ul id="nav-mobile" class="left hide-on-med-and-down black-text">
-                            <li><a href="sass.html" >Sass</a></li>
-                        </ul>                
+                            <li><a href="IndexCliente.jsp" class="logo-banner" ><img  src="Imagenes/logo.png"></a></li>
+                        </ul>                 
                         <div class="brand-logo center" id="titulo-banner">
                             <span href="#" >Tiendas</span>
                         </div>                
@@ -84,7 +84,7 @@
                             <h7>Cuenta</h7> 
                             </li>
                             <li>
-                                <a class="" href=""><i class="material-icons">favorite</i></a> 
+                                <a class="" href="ListaDeFavoritos.jsp"><i class="material-icons">favorite</i></a> 
                             </li>
                             <li>
                                 <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a> 

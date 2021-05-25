@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>One Place</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -59,8 +59,8 @@
                 <nav class="white nav-extended">
                     <div class="nav-wrapper">
                         <ul id="nav-mobile" class="left hide-on-med-and-down black-text">
-                            <li><a href="sass.html" >Sass</a></li>
-                        </ul>                
+                            <li><a href="IndexCliente.jsp" class="logo-banner" ><img  src="Imagenes/logo.png"></a></li>
+                        </ul>                 
                         <div class="brand-logo center" id="titulo-banner">
                             <span href="#" >Tiendas</span>
                         </div>                
@@ -72,12 +72,11 @@
                             <h7>Cuenta</h7> 
                             </li>
                             <li>
-                                <a class="" href=""><i class="material-icons">favorite</i></a> 
+                                <a class="" href="ListaDeFavoritos.jsp"><i class="material-icons">favorite</i></a> 
                             </li>
                             <li>
-                                <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a>
+                                <a class="" href="CerrarSesion.jsp"><i class="material-icons">exit_to_app</i></a> 
                             </li>
-
                         </ul>
                     </div>
                 </nav>
@@ -86,7 +85,7 @@
 
 
         <main>
-
+            <div class="container">
  
                 <br><br>
                 <div class="container cyan lighten-5 banner-menu center">
@@ -95,7 +94,8 @@
             <br><br>
                    <table border="1">  
             <tr>
-                <th>Producto
+                <th></th>
+                <th class="producto">Producto
                 <th>Descripcion
                 <th>Precio
                 <th>
@@ -106,7 +106,7 @@
             ResultSet rs = null;
             Conexion con = new Conexion();
             com.mysql.jdbc.Connection conexion = con.getConnection();
-            ps = conexion.prepareStatement("SELECT p.titulo, p.descripcion,p.precio "
+            ps = conexion.prepareStatement("SELECT p.titulo, p.descripcion,p.precio, p.foto, p.id "
                     + "FROM productos p INNER JOIN favoritos f "
                     + "ON p.id=f.id_producto INNER JOIN cliente c "
                     + "ON f.rut_cliente=c.rut "
@@ -115,7 +115,8 @@
             rs = ps.executeQuery();
             while(rs.next()){
               out.println("<tr>");  
-              out.println("<td>" + rs.getString("p.titulo") + "</td>");
+              out.println("<td><img src='Imagenes/" + rs.getString("p.foto") + "' class='img-lista'></td>");
+              out.println("<td class='producto'><a href='VistaProducto.jsp?id=" + rs.getString("p.id") + "' >" + rs.getString("p.titulo") + "</a></td>");
                         out.println("<td>" + rs.getString("p.descripcion") + "</td>");
                         out.println("<td>" + rs.getInt("p.precio") + "</td>");
                         out.println("<td>Quitar</td>");
@@ -123,7 +124,7 @@
             }
             %>
             </table>
-
+            </div>
         </main>
 
 
