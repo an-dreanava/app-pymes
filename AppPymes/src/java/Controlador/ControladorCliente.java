@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ *Controlador que gestiona los métodos y redireccionamientos de las vistas del
+ * cliente.
  * @author AngieRiera
  */
 public class ControladorCliente extends HttpServlet {

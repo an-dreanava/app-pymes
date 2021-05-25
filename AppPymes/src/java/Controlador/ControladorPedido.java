@@ -19,7 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ *Controlador que gestiona los redireccionamientos y métodos de los pedidos 
+ * generados
  * @author AngieRiera
  */
 public class ControladorPedido extends HttpServlet {

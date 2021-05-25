@@ -15,7 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- *
+ *Clase que contiene los métodos que gestionan el registro y cambio de
+ * estado de los pedidos
  * @author AngieRiera
  */
 public class PedidoDAO {
@@ -23,6 +24,11 @@ public class PedidoDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
+    /**
+     * Método que registra un pedido en la base de datos
+     * @param pedido Pedido nuevo a ser ingresado
+     * @return Confirmación de la inserción del pedido en la base de datos
+     */
     public boolean agregar(Pedido pedido) {
         Conexion con = new Conexion();
         Connection conexion = con.getConnection();
@@ -50,6 +56,12 @@ public class PedidoDAO {
         return estado;
     }
     
+    /**
+     * Método que cambia el estado en el que se encuentra el proceso del pedido
+     * @param id Identificador de la boleta del pedido
+     * @param estado_pedido Estado en el que se encuentra el pedido actualmente
+     * @return Confirmación del cambio del estado en la base de datos
+     */
     public boolean cambiarEstado(int id, int estado_pedido){
         Conexion con = new Conexion();
         Connection conexion = con.getConnection();

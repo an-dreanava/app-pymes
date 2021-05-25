@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
- *
+ *Clase que contiene los métodos de gestionamiento de los productos.
  * @author AngieRiera
  */
 public class ProductoDAO {
@@ -22,6 +22,10 @@ public class ProductoDAO {
     ResultSet rs = null;
     Connection con;
     
+    /**
+     * Método que recolecta las categorías de los productos
+     * @return Colección de las categorías de los productos
+     */
     public ArrayList<Categoria> Categoria() {
         ArrayList<Categoria> categorias = new ArrayList();
         Conexion con = new Conexion();
@@ -40,6 +44,11 @@ public class ProductoDAO {
         return categorias;
     }
     
+    /**
+     *Método para insertar un producto en la base de datos.
+     * @param producto Producto que se va a insertar
+     * @return Confirmación de la inserción en la base de datos.
+     */
     public boolean agregar(Productos producto) {
         Conexion con = new Conexion();
         Connection conexion = con.getConnection();
@@ -67,8 +76,12 @@ public class ProductoDAO {
         return estado;
     }
     
-    
-     public boolean actualizar(Productos producto) {
+    /**
+     *Método para modificar los datos del producto en la base de datos
+     * @param producto Producto con los respectivos campos modificados
+     * @return Confirmación de la modificación del producto
+     */
+    public boolean actualizar(Productos producto) {
         Conexion con = new Conexion();
         com.mysql.jdbc.Connection conexion = con.getConnection();
 
@@ -102,7 +115,12 @@ public class ProductoDAO {
         }
     }
      
-     public boolean eliminar(int id) {
+    /**
+     * Método para eliminar un producto de la base de datos
+     * @param id Identificador del producto que se va a eliminar
+     * @return Confirmación de la eliminación del producto
+     */
+    public boolean eliminar(int id) {
         Conexion con = new Conexion();
         com.mysql.jdbc.Connection conexion = con.getConnection();
 
@@ -130,7 +148,12 @@ public class ProductoDAO {
         }
     }
      
-         
+    /**
+     * Método que extrae la descripción o nombre de la categoría a la cual 
+     * pertenece el producto
+     * @param id_categoria Identificador de la categoria que se buscará
+     * @return Descripción de la categoría
+     */
     public String Des_Categoria(int id_categoria){
         String des_categoria="";
         Conexion con = new Conexion();

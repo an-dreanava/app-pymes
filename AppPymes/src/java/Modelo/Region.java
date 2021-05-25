@@ -13,24 +13,44 @@ public class Region {
     int id;
     String name;
     
-
+    /**
+     * Referencia a la región de la dirección del cliente.
+     * @param id Identificador de la región
+     * @param name Nombre de la región
+     */
     public Region(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    /**
+     * Accesador
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Mutador
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Accesador
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Mutador
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }

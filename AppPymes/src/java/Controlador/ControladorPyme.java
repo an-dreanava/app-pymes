@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Controlador del gestionamiento de los métodos y redireccionamientos a las
+ * respectivas vistas de pyme.
  * @author drean
  */
 public class ControladorPyme extends HttpServlet {
