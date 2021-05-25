@@ -186,7 +186,7 @@
                                 out.println("<label id='precio' class='label-precio'>" + rs.getInt("PR.PRECIO") + "</label>");
                                 out.println("</div>");
                                 out.println("<div class='col s3 box'>");
-                                out.println("<input name='cant' id='cant' value='1' type='number' class='validate'  required>");
+                                out.println("<input name='cant' id='cant' value='1' min='1' type='number' class='validate'  required>");
                                 out.println("</div>");
                                 out.println("<div class='col s7'>");
                                 out.println("<p>" + rs.getString("PR.DESCRIPCION") + "</p>");

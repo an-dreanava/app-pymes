@@ -139,14 +139,14 @@
                             <h6>Precio:</h6>
                         </div>
                         <div class="col s5">
-                            <input name="precio" id="precio" type="number" class="validate" required>
+                            <input name="precio" id="precio" type="number" class="validate" min="1" required>
                         </div>
 
                         <div class="col s2">
                             <h6>Stock</h6>
                         </div>
                         <div class="col s4">
-                            <input name="stock" id="stock"  type="number" class='validate' required >
+                            <input name="stock" id="stock"  type="number" class='validate' min="1" required >
                         </div>
 
                         <div class="col s1">

@@ -148,14 +148,14 @@
                             <h6>Precio:</h6>
                         </div>
                         <div class="col s2">
-                            <input name="precio" id="precio" type="number" class="validate" required value="<%= rs.getString("precio")%>">
+                            <input name="precio" id="precio" type="number" class="validate" min="1" required value="<%= rs.getString("precio")%>">
                         </div>
 
                         <div class="col s1">
                             <h6>Stock</h6>
                         </div>
                         <div class="col s2">
-                            <input name="stock" id="stock"  type="number" class='validate' required value="<%= rs.getString("stock")%>">
+                            <input name="stock" id="stock"  type="number" class='validate' min="1" required value="<%= rs.getString("stock")%>">
                         </div>
 
                         <div class="col s2">
