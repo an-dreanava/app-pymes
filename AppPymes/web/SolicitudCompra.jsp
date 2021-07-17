@@ -103,7 +103,7 @@
                         <label class="col s9" style="font-weight: bold; font-size: 20px; color: black;">TU SOLICITUD DE COMPRA SE HA RECIBIDO CON EXITO</label>
                     </div>
                     <div class="col s3">
-                        <a class="waves-effect  red lighten-1 btn modal-trigger white-text">IR AL CHAT</a>
+                        <a class="waves-effect  red lighten-1 btn modal-trigger white-text"  target="_blank" href="https://wa.me/message/CDL773KNWAJMO1">IR AL CHAT</a>
                     </div>
                     <div class="col s7">
                         <h5 >Detalles de tu compra</h5>
