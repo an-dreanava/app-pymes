@@ -40,24 +40,23 @@
 
             HttpSession sesion = request.getSession(true);
 
-            
             estadoSesion = (String) sesion.getAttribute("estadoSesion");
             tipo = (String) sesion.getAttribute("tipo");
 
             if (estadoSesion == null) {
                 response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
-            }else{
-                if(!tipo.equals("1")){
+            } else {
+                if (!tipo.equals("1")) {
                     response.sendRedirect("Ventana_Mensajes.jsp?titulo=Acceso Denegado&mensaje=Debe iniciar sesion como cliente para acceder a esta seccion&boton=Volver&retorno=Index.jsp");
                     sesion.setAttribute("usuario", null);
                     sesion.setAttribute("estadoSesion", "close");
                     sesion.invalidate();
-                }else{
+                } else {
                     cliente = (Cliente) sesion.getAttribute("usuario");
                 }
-                    
+
             }
-            
+
             String id = "";
             id = request.getParameter("id");
 
@@ -121,7 +120,7 @@
                 </div>
             </div>
             <div class="divider separador"></div>
-            
+
             <br>
             <div class="divider"></div>
             <div class="container">
@@ -133,17 +132,17 @@
             <div class="container" id="">        
 
                 <div class="row">
-                    <% while (rs.next()) { 
+                    <% while (rs.next()) {
                             out.println("<div class='col 12 m3 s10'>");
                             out.println("<div class='card sticky-action tarjeta'>");
                             out.println("<div class='card-image tarjeta-imagen'>");
-                            out.println("<a href='VistaProducto.jsp?id="+ rs.getString("PR.ID") +"' >");
+                            out.println("<a href='VistaProducto.jsp?id=" + rs.getString("PR.ID") + "' >");
                             out.println("<img src='Imagenes/" + rs.getString("PR.FOTO") + "' height='200' class='responsive-img' >");
                             out.println("</a>");
                             out.println("</div>");
                             out.println("<div class='card-content tarjeta-contenido'>");
                             out.println("<label class='left'>" + rs.getString("PY.NOMBRE_PYME") + "</label> <br>");
-                            out.println("<a class='right' href=''><i class='material-icons'>favorite_border</i></a>");
+                            out.println("<a class='right fav' href='#' id='" + rs.getString("PR.ID") + "' ><i  class='material-icons'>favorite_border</i></a>");
                             out.println("<p class='center'>" + rs.getString("PR.TITULO") + "</p>");
                             out.println("<label class='label-precio2'>$</label>");
                             out.println("<label class='center label-precio2'>" + rs.getString("PR.PRECIO") + "</label>");
@@ -175,7 +174,13 @@
                 // borrar el temporizador que redireccionaba
                 clearTimeout(temp);
                 // y volver a iniciarlo
-                temp = setTimeout(redireccion, 5400000 );
+                temp = setTimeout(redireccion, 5400000);
+            });
+
+            $(document).ready(function () {
+                $('.fav').on('click', function (e) {
+                    M.toast({html: 'Añadido a favoritos'});
+                });
             });
         </script>
 

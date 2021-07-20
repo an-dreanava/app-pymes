@@ -155,7 +155,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col s4">
-                        <h5 class="white-text">Nombre</h5>
+                        <h5 class="white-text"><img  src="Imagenes/logo-footer.png"></h5>
                     </div>
                     <div class="col s2 ">
                         <ul>

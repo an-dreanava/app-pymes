@@ -133,7 +133,7 @@
                             out.println("</div>");
                             out.println("<div class='card-content tarjeta-contenido'>");
                             out.println("<label class='left'>" + rs.getString("PY.NOMBRE_PYME") + "</label> <br>");
-                            out.println("<a class='right' href=''><i class='material-icons'>favorite_border</i></a>");
+                            out.println("<a class='right fav' href='#' id='" + rs.getString("PR.ID") + "' ><i  class='material-icons'>favorite_border</i></a>");
                             out.println("<p class='center'>" + rs.getString("PR.TITULO") + "</p>");
                             out.println("<label class='label-precio2'>$</label>");
                             out.println("<label class='center label-precio2'>" + rs.getString("PR.PRECIO") + "</label>");
@@ -167,6 +167,12 @@
                 clearTimeout(temp);
                 // y volver a iniciarlo
                 temp = setTimeout(redireccion, 5400000);
+            });
+            
+            $(document).ready(function () {
+                $('.fav').on('click', function (e) {
+                    M.toast({html: 'Añadido a favoritos'});
+                });
             });
         </script>
 

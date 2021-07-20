@@ -192,7 +192,7 @@
                                         out.println("<td>" + rs.getString("PE.FECHA") + "</td>");
                                         out.println("<td>$" + " " + rs.getString("PE.TOTAL") + "</td>");
                                         out.println("<td style='color: red;'>" + " " + rs.getString("E.DESCRIPCION") + "</td>");
-                                        out.println("<td><a href=''><i class='material-icons'>chat</i></a></td>");
+                                        out.println("<td><a target='_blank' href='https://wa.me/message/CDL773KNWAJMO1'><i class='material-icons'>chat</i></a></td>");
                                         out.println("<td><a href='DetallePedido.jsp?id="+ rs.getInt("PE.BOLETA") +"'><i class='material-icons'>insert_drive_file</i></a></td>");
                                     }
                                 %>
@@ -212,7 +212,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col s4">
-                        <h5 class="white-text">Nombre</h5>
+                        <h5 class="white-text"><img  src="Imagenes/logo-footer.png"></h5>
                     </div>
                     <div class="col s2 ">
                         <ul>
